@@ -1,7 +1,7 @@
 # Labyrinth
 **Table of Contents**
-+ Classes
-  + Tile
+1. Classes
+  *Tile
 ---
 ## Classes
 ---
