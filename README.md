@@ -3,6 +3,8 @@
 
 1. [Classes](#classes)
   + [Tile](#tile)
+2. [ENUMS](#enums)
+  + [DIRECTION](#direction)
 
 ---
 ## Classes
@@ -18,3 +20,12 @@
 + **pathBetween** Checks if there is a path between the current and the target tile in the specified direction.
   + **Tile** target_tile
   + **DIRECTION** direction
+
+---
+## Enums
+---
+### DIRECTION
++ NORTH
++ SOUTH
++ EAST
++ WEST
