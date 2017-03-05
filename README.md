@@ -1,12 +1,12 @@
 # Labyrinth
-Tile
+## Classes
 ----
-----
-### Variables
+### Tiles
+#### Variables
 + **Boolean** north
 + **Boolean** south
 + **Boolean** east
 + **Boolean** west
 
-### Functions
+#### Functions
 + **pathBetween**
