@@ -3,7 +3,7 @@
 
 1. [Classes](#classes)
   + [Tile](#tile)
-2. [ENUMS](#enums)
+2. [Enums](#enums)
   + [DIRECTION](#direction)
 
 ---
