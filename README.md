@@ -1,8 +1,8 @@
 # Labyrinth
 **Table of Contents**
 
-1. (Classes)[#classes]
-  + (Tile)[#tile]
+1. [Classes](#classes)
+  + [Tile](#tile)
 
 ---
 ## Classes
