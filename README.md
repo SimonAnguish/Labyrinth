@@ -15,4 +15,6 @@
 + **Boolean** west
 
 #### Functions
-+ **pathBetween** Checks if there is a path between the current and the target tile in the specified direction. 
++ **pathBetween** Checks if there is a path between the current and the target tile in the specified direction.
+  + **Tile** target_tile
+  + **DIRECTION** direction
