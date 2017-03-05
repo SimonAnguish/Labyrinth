@@ -2,7 +2,8 @@
 **Table of Contents**
 
 1. Classes
-  *Tile
+  + Tile
+
 ---
 ## Classes
 ---
