@@ -1,4 +1,7 @@
 # Labyrinth
+---
+![Labyrinth](http://www.boardgamecapital.com/game_images/labyrinth.jpg)
+---
 **Table of Contents**
 
 1. [Classes](#classes)
