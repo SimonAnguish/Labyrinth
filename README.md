@@ -28,6 +28,7 @@
 #### Variables
 + **Tile[][]** board
 + **Tile** tileInHand
+
 #### Functions
 + **initBoard** Sets the board up with the required pieces and a random orientation of the other pieces
 + **generateTiles** Generates the appropriate number of the specific tiles, and shuffles them into a List
