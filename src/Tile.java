@@ -4,6 +4,13 @@ class Tile {
 	public boolean east;
 	public boolean west;
 
+	public Tile(Boolean north, Boolean south, Boolean east, Boolean west) {
+		this.north = north;
+		this.south = south;
+		this.east = east;
+		this.west = west;
+	}
+
 	public boolean pathExists(Tile target_tile, Direction direction) {
 		switch (direction) {
 			case NORTH:
@@ -17,5 +24,20 @@ class Tile {
 			default:
 				return false;
 		}
+	}
+
+	public String toString() {
+		String rtn = "\t";
+		if (this.north) rtn += "|";
+		rtn += "\n";
+		if (this.west) rtn += "  --";
+		else rtn += "\t";
+		rtn += "+";
+		if (this.east) rtn += "--";
+		rtn += "\n\t";
+		if (this.south) rtn += "|";
+		rtn += "\n";
+
+		return rtn;
 	}
 }
