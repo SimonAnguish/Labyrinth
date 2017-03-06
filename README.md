@@ -23,6 +23,8 @@
 + **pathBetween** Checks if there is a path between the current and the target tile in the specified direction.
   + **Tile** target_tile
   + **DIRECTION** direction
++ **rotate** Rotates the tile a specified number of times clockwise.
+  + **int** The number of times to rotate the Tile. Will often be 1.
 
 ### Board
 #### Variables

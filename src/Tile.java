@@ -47,6 +47,28 @@ class Tile {
 	}
 
 	/**
+		rotate
+		Rotates the tile the specified number of times clockwise
+		@param turns The number of times to rotate the Tile
+	*/
+	public void rotate(int turns) {
+		boolean temp1, temp2;
+		for (int i=0;i<turns;i++) {
+			temp1 = this.south;
+			this.south = this.east;
+
+			temp2 = this.west;
+			this.west = temp1;
+
+			temp1 = this.north;
+			this.north = temp2;
+
+			temp2 = this.east;
+			this.east = temp1;
+		}
+	}
+
+	/**
 		toString
 		Prints an ascii image of the tile
 		@return String The image of the tile in string format
