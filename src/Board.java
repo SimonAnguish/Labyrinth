@@ -1,13 +1,28 @@
 import java.util.*;
 
+/**
+	@Author SimonAnguish
+*/
+
 public class Board {
 	private static Tile[][] board = new Tile[7][7];
+	public Tile tileInHand;
 
+	/**
+		Board
+		Constructs a randomly generated board
+	*/
 	public Board() {
 		initBoard();
 	}
 
-	private static void initBoard() {
+	/**
+		initBoard
+		Places the required tiles on the board, before generating a
+		random placement of the remaining tiles. Then places the last tile in the stack
+		into the hand for the player to use.
+	*/
+	private void initBoard() {
 		board[0][0] = new Tile(false, true, true, false);
 		board[0][2] = new Tile(false, true, true, true);
 		board[0][4] = new Tile(false, true, true, true);
@@ -28,47 +43,60 @@ public class Board {
 		board[6][4] = new Tile(true, false, true, true);
 		board[6][6] = new Tile(true, false, false, true);
 
-		List<Tile> tile_heap = generateCards();
+		List<Tile> tileHeap = generateTiles();
 
-		System.out.println(tile_heap.size());
-
+		// Places the shuffled tiles onto the board in the free spaces
 		for (int i=0;i<7;i++) {
+			// This if is for every other row, where all of the spaces are empty
+			// Else is for where we have every other space already filled in by the required tiles
 			if (i%2==1) {
 				for (int j=0;j<7;j++) {
-					board[i][j] = tile_heap.remove(tile_heap.size() - 1);
+					board[i][j] = tileHeap.remove(tileHeap.size() - 1);
 				}
 			} else {
 				for (int j=1;j<7;j+=2) {
-					board[i][j] = tile_heap.remove(tile_heap.size() - 1);
+					board[i][j] = tileHeap.remove(tileHeap.size() - 1);
 				}
 			}
 		}
 
-		System.out.println(tile_heap.size());
+		tileInHand = tileHeap.remove(0);
 	}
 
-	private static List generateCards() {
-		List<Tile> tile_heap = new ArrayList<Tile>();
+	/**
+		generateTiles
+		Generates the appropriate number of L, T, and I Shape tiles
+		@return List A shuffled collection of tiles
+	*/
+	private static List generateTiles() {
+		List<Tile> tileHeap = new ArrayList<Tile>();
 		// Add 'L' Shapes
 		for (int i=0;i<16;i++) {
-			tile_heap.add(new Tile(false, true, true, false));
+			tileHeap.add(new Tile(false, true, true, false));
 		}
 
 		// Add 'T' Shapes
 		for (int i=0;i<6;i++) {
-			tile_heap.add(new Tile(true, true, true, false));
+			tileHeap.add(new Tile(true, true, true, false));
 		}
 
 		// Add I' Shapes
 		for (int i=0;i<12;i++) {
-			tile_heap.add(new Tile(true, true, false, false));
+			tileHeap.add(new Tile(true, true, false, false));
 		}
 
-		Collections.shuffle(tile_heap);
+		Collections.shuffle(tileHeap);
 
-		return tile_heap;
+		return tileHeap;
 	}
 
+	/**
+		getTileAt
+		Gives the Tile at the appropriate row and column index
+		@param row The index of the row for the tile wanted
+		@param column The index of the column for the tile wanted
+		@return Tile The tile at the specified index
+	*/
 	public Tile getTileAt(int row, int column) {
 		return board[row][column];
 	}

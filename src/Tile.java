@@ -1,8 +1,21 @@
+/**
+	@Author SimonAnguish
+*/
+
 class Tile {
 	public boolean north;
 	public boolean south;
 	public boolean east;
 	public boolean west;
+
+	/**
+		Tile
+		Constructs a tile with the specified paths
+		@param north Boolean if there is a path north on the tile
+		@param south Boolean if there is a path south on the tile
+		@param east Boolean if there is a path east on the tile
+		@param west Boolean if there is a path west on the tile
+	*/
 
 	public Tile(Boolean north, Boolean south, Boolean east, Boolean west) {
 		this.north = north;
@@ -11,20 +24,33 @@ class Tile {
 		this.west = west;
 	}
 
-	public boolean pathExists(Tile target_tile, Direction direction) {
+	/**
+		pathExists
+		Checks if there is a direct path between the two adjacent tiles
+		@param targetTile The target tile we are checking if there is a direct path to
+		@param direction Enum to determine which path we should check for
+		@return boolean Whether there is a path directly between the two tiles
+	*/
+	public boolean pathExists(Tile targetTile, Direction direction) {
 		switch (direction) {
 			case NORTH:
-				return (north && target_tile.south);
+				return (north && targetTile.south);
 			case SOUTH:
-				return (south && target_tile.north);
+				return (south && targetTile.north);
 			case EAST:
-				return (east && target_tile.west);
+				return (east && targetTile.west);
 			case WEST:
-				return (west && target_tile.east);
+				return (west && targetTile.east);
 			default:
 				return false;
 		}
 	}
+
+	/**
+		toString
+		Prints an ascii image of the tile
+		@return String The image of the tile in string format
+	*/
 
 	public String toString() {
 		String rtn = "\t";
