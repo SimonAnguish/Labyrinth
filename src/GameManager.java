@@ -3,9 +3,13 @@
 */
 
 public class GameManager {
+
+   private Player user, computer;
+    
 	public static void main(String[] args) {
+      UserInterface ui = new UserInterface();
 		Board board = new Board();
-		System.out.printf("%s", board.getTileAt(1,5).toString());
+		ui.print(board.getTileAt(1,5).toString());
 		board.getTileAt(1,5).rotate(1);
 	}
 }
