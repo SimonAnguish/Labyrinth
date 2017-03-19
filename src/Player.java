@@ -7,11 +7,15 @@ public class Player {
      * Constructor
      */
     public Player() {
-        // Initialize some shizz
+    
     }
     
-    // Function that takes the game manager, and a player, and takes a turn
-    public void takeTurn(GameManager gm, Player p1) {
+    /**
+    * The takeTurn method
+    * @param gm GameManager
+    * @param board Board
+    */
+    public void takeTurn(GameManager gm, Board board) {
         
     }    
 }

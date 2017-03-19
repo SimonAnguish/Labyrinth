@@ -5,6 +5,10 @@
 public class HumanPlayer extends Player {
     UserInterface ui;
     
+    /**
+    * Constructor that takes the local UI object
+    * @param ui UserInterface
+    */
     public HumanPlayer(UserInterface ui) {
         this.ui = ui;
     }
@@ -12,10 +16,12 @@ public class HumanPlayer extends Player {
     /**
      * The takeTurn method
      * @param gm GameManager
-     * @param p1 opponent
+     * @param board Board
      */
-    public void takeTurn(GameManager gm, Player p1){
-
+    @Override
+    public void takeTurn(GameManager gm, Board board){
+         ui.print(board.getTileAt(1,5).toString());
+		   board.getTileAt(1,5).rotate(1);
     }
 
 }
