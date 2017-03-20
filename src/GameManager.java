@@ -8,12 +8,20 @@ import java.util.Arrays;
 
 public class GameManager {
    
+   private GraphicUI gui;
+
    // Initialize some variables for the UI, and the human + computer players
    private UserInterface ui;
    private Player user, computer;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
+
+      // ADDING GUI
+
+      Board b = new Board();
+
+      gui = new GraphicUI(b, b.tileInHand);
       
       // Create a UI to print stuff and take input
       ui = new UserInterface();
