@@ -24,13 +24,17 @@ class GraphicUI extends JFrame{
 		setTitle("Labyrinth");
 
 		// Add the big boardPanel
-		JPanel boardPanel = new JPanel();
+		JPanel boardPanel = new JPanel(new GridLayout(7,7));
+		boardPanel.setBackground(Color.LIGHT_GRAY);
 		boardPanel.setBorder(new EmptyBorder(50, 50, 50, 50));
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 100));
 		add(boardPanel, BorderLayout.WEST);
 
-		boardPanel.add(new TilePanel(b.getTileAt(0,0)));
-		
+		for (int i=0;i<7;i++) {
+			for (int j=0;j<7;j++) {
+				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
+			}
+		}
 		JPanel tileInHandPanel = new JPanel();
 		tileInHandPanel.setBackground(Color.LIGHT_GRAY);
 		tileInHandPanel.setPreferredSize(new Dimension(FRAME_WIDTH - BOARD_WIDTH, 500));
