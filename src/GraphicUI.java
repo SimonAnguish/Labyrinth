@@ -24,26 +24,18 @@ class GraphicUI extends JFrame{
 		setResizable(false);
 		setVisible(true);
 
-		callHelpScreen();
+
 	}
 
 	void buildDefault(Board b, Tile tileInHand) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Labyrinth");
 
+		// Add the score Panel
 		add(makeScorePanel(), BorderLayout.NORTH);
-		// Add the big boardPanel
-		JPanel boardPanel = new JPanel(new GridLayout(7,7));
-		boardPanel.setBackground(Color.LIGHT_GRAY);
-		boardPanel.setBorder(new EmptyBorder(50, 50, 50, 50));
-		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 100));
-		add(boardPanel, BorderLayout.WEST);
 
-		for (int i=0;i<7;i++) {
-			for (int j=0;j<7;j++) {
-				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
-			}
-		}
+		// Add the board Panel
+		add(makeBoardPanel(b), BorderLayout.WEST);
 
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
@@ -91,7 +83,32 @@ class GraphicUI extends JFrame{
 		scorePanel.add(playerScore, BorderLayout.LINE_START);
 		scorePanel.add(computerScore, BorderLayout.LINE_END);
 
+		JLabel helpLabel = new JLabel("Help");
+		helpLabel.setForeground(Color.WHITE);
+		helpLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				callHelpScreen();
+			}
+		});
+
+		scorePanel.add(helpLabel, BorderLayout.PAGE_START);
+
 		return scorePanel;
+	}
+
+	JPanel makeBoardPanel(Board b) {
+		JPanel boardPanel = new JPanel(new GridLayout(7,7));
+		boardPanel.setBackground(Color.LIGHT_GRAY);
+		boardPanel.setBorder(new EmptyBorder(50, 50, 50, 50));
+		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 100));
+
+		for (int i=0;i<7;i++) {
+			for (int j=0;j<7;j++) {
+				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
+			}
+		}
+
+		return boardPanel;
 	}
 
 	void callHelpScreen() {
