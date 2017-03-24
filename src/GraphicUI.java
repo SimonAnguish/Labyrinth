@@ -6,7 +6,7 @@ import java.awt.*;
 class GraphicUI extends JFrame{
 
 	final int FRAME_WIDTH = 1000;
-	final int FRAME_HEIGHT = 600;
+	final int FRAME_HEIGHT = 650;
 	final int BOARD_WIDTH = 600;
 
 	public GraphicUI(Board b, Tile tileInHand) {
@@ -24,6 +24,7 @@ class GraphicUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Labyrinth");
 
+		add(makeScorePanel(), BorderLayout.NORTH);
 		// Add the big boardPanel
 		JPanel boardPanel = new JPanel(new GridLayout(7,7));
 		boardPanel.setBackground(Color.LIGHT_GRAY);
@@ -63,5 +64,26 @@ class GraphicUI extends JFrame{
 		tileOptionsPanel.add(new TilePanel(newTile, 60));
 
 		rightOptionsPanel.add(tileOptionsPanel);
+	}
+
+	JPanel makeScorePanel() {
+		JPanel scorePanel = new JPanel(new BorderLayout());
+		scorePanel.setBackground(Color.DARK_GRAY);
+		scorePanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
+		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+
+		JLabel playerScore = new JLabel("Player: 0");
+		JLabel computerScore = new JLabel("Computer: 0");
+
+		playerScore.setFont(new Font("Serif", Font.BOLD, 20));
+		computerScore.setFont(new Font("Serif", Font.BOLD, 20));
+
+		playerScore.setForeground(Color.WHITE);
+		computerScore.setForeground(Color.WHITE);
+
+		scorePanel.add(playerScore, BorderLayout.LINE_START);
+		scorePanel.add(computerScore, BorderLayout.LINE_END);
+
+		return scorePanel;
 	}
 }
