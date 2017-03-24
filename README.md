@@ -1,5 +1,7 @@
 # Labyrinth
 ![Labyrinth](http://www.boardgamecapital.com/game_images/labyrinth.jpg)
+
+![GUI](docs/gui_3-27-17.PNG)
 ---
 **Table of Contents**
 
