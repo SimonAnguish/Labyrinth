@@ -1,2 +1,4 @@
 *.class
-
+.gitignore
+docs/gui_3-23-17.xcf
+docs/gui_3-23-17_annotated.png
