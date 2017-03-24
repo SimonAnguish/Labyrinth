@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.charset.Charset;
+import java.io.IOException;
+import java.util.List;
 
 class GraphicUI extends JFrame{
 
@@ -18,6 +23,8 @@ class GraphicUI extends JFrame{
 		setSize(FRAME_WIDTH,FRAME_HEIGHT);
 		setResizable(false);
 		setVisible(true);
+
+		callHelpScreen();
 	}
 
 	void buildDefault(Board b, Tile tileInHand) {
@@ -85,5 +92,36 @@ class GraphicUI extends JFrame{
 		scorePanel.add(computerScore, BorderLayout.LINE_END);
 
 		return scorePanel;
+	}
+
+	void callHelpScreen() {
+		JFrame helpFrame = new JFrame();
+		helpFrame.setTitle("Labyrinth: Help");
+
+		// Build the text
+		try {
+			String allInstructions = "<html>";
+			List<String> allLines = Files.readAllLines(
+					Paths.get("../docs/instructions.txt"), 
+					Charset.defaultCharset()
+			);
+			for (String line : allLines) {
+				allInstructions += line + "<br>";
+			}
+			JLabel instructions = new JLabel(allInstructions + "</html>");
+			instructions.setFont(new Font("Serif", Font.BOLD, 20));
+			instructions.setBorder(new EmptyBorder(20,50,20,50));
+
+			helpFrame.add(instructions, BorderLayout.CENTER);
+		} catch (IOException e) {
+			System.out.printf("Cannot find file");
+		}
+		
+		helpFrame.pack();
+
+		helpFrame.setLocation(200,150);
+		helpFrame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+		helpFrame.setResizable(false);
+		helpFrame.setVisible(true);
 	}
 }
