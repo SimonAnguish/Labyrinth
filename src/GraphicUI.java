@@ -14,20 +14,19 @@ class GraphicUI extends JFrame{
 	final int FRAME_HEIGHT = 650;
 	final int BOARD_WIDTH = 600;
 
-	public GraphicUI(Board b, Tile tileInHand) {
-		buildDefault(b, tileInHand);
+	Board board;
 
-		pack();
+	public GraphicUI(Board b) {
+		board = b;
 
-		setLocation(150,100);
-		setSize(FRAME_WIDTH,FRAME_HEIGHT);
-		setResizable(false);
-		setVisible(true);
+		callHomeScreen();
+		// buildDefault(board);
+
 
 
 	}
 
-	void buildDefault(Board b, Tile tileInHand) {
+	void buildDefault(Board b) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Labyrinth");
 
@@ -45,13 +44,13 @@ class GraphicUI extends JFrame{
 		JPanel tileInHandPanel = new JPanel();
 		tileInHandPanel.setBorder(new EmptyBorder(80,50,0,50));
 		tileInHandPanel.setBackground(Color.LIGHT_GRAY);
-		tileInHandPanel.add(new TilePanel(tileInHand, 210));
+		tileInHandPanel.add(new TilePanel(b.tileInHand, 210));
 		rightOptionsPanel.add(tileInHandPanel);
 
 		JPanel tileOptionsPanel = new JPanel();
 		tileOptionsPanel.setBorder(new EmptyBorder(60, 10, 0, 10));
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
-		Tile newTile = new Tile(tileInHand.north, tileInHand.south, tileInHand.east, tileInHand.west);
+		Tile newTile = new Tile(b.tileInHand.north, b.tileInHand.south, b.tileInHand.east, b.tileInHand.west);
 
 		newTile.rotate(1);
 		tileOptionsPanel.add(new TilePanel(newTile, 60));
@@ -63,6 +62,14 @@ class GraphicUI extends JFrame{
 		tileOptionsPanel.add(new TilePanel(newTile, 60));
 
 		rightOptionsPanel.add(tileOptionsPanel);
+
+
+		pack();
+
+		setLocation(150,100);
+		setSize(FRAME_WIDTH,FRAME_HEIGHT);
+		setResizable(false);
+		setVisible(true);
 	}
 
 	JPanel makeScorePanel() {
@@ -140,5 +147,41 @@ class GraphicUI extends JFrame{
 		helpFrame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
 		helpFrame.setResizable(false);
 		helpFrame.setVisible(true);
+	}
+
+	void callHomeScreen() {
+		JFrame homeFrame = new JFrame();
+		JPanel wrapperPanel = new JPanel();
+		wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.PAGE_AXIS));
+
+		JLabel startLabel = new JLabel("Play");
+		startLabel.setFont(new Font("Sans-Serif", Font.BOLD, 48));
+		startLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				buildDefault(board);
+				homeFrame.setVisible(false);
+			}
+		});
+
+		wrapperPanel.add(startLabel);
+
+		JLabel helpLabel = new JLabel("Help");
+		helpLabel.setFont(new Font("Sans-Serif", Font.BOLD, 36));
+		helpLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				callHelpScreen();
+			}
+		});
+
+		wrapperPanel.add(helpLabel);
+		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
+
+		homeFrame.add(wrapperPanel, BorderLayout.CENTER);
+		homeFrame.pack();
+
+		homeFrame.setLocation(100, 50);
+		homeFrame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+		homeFrame.setResizable(false);
+		homeFrame.setVisible(true);
 	}
 }

@@ -21,7 +21,7 @@ public class GameManager {
 
       Board b = new Board();
 
-      gui = new GraphicUI(b, b.tileInHand);
+      gui = new GraphicUI(b);
       
       // Create a UI to print stuff and take input
       ui = new UserInterface();
