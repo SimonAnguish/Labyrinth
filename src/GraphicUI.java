@@ -20,10 +20,6 @@ class GraphicUI extends JFrame{
 		board = b;
 
 		callHomeScreen();
-		// buildDefault(board);
-
-
-
 	}
 
 	void buildDefault(Board b) {
@@ -52,8 +48,16 @@ class GraphicUI extends JFrame{
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		Tile newTile = new Tile(b.tileInHand.north, b.tileInHand.south, b.tileInHand.east, b.tileInHand.west);
 
+		TilePanel newTilePanel;
 		newTile.rotate(1);
-		tileOptionsPanel.add(new TilePanel(newTile, 60));
+
+		newTilePanel = new TilePanel(newTile, 60);
+		newTilePanel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.printf("1");
+			}
+		});
+		tileOptionsPanel.add(newTilePanel);
 
 		newTile.rotate(1);
 		tileOptionsPanel.add(new TilePanel(newTile, 60));
@@ -177,6 +181,7 @@ class GraphicUI extends JFrame{
 		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
 
 		homeFrame.add(wrapperPanel, BorderLayout.CENTER);
+		homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		homeFrame.pack();
 
 		homeFrame.setLocation(100, 50);
