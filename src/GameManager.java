@@ -3,8 +3,7 @@
  * GameManager handles the gameplay of Labyrinth
  */
 
-import java.util.LinkedList;
-import java.util.Arrays;
+import java.util.*;
 
 public class GameManager {
 
@@ -17,10 +16,8 @@ public class GameManager {
    // Constructor for GameManager that starts the game
    public GameManager() {
 
-      // ADDING GUI
-
+      // Initialize board, gui, and size of the deck
       b = new Board();
-
       gui = new GraphicUI(b);
       
       // Create a UI to print stuff and take input
@@ -42,9 +39,13 @@ public class GameManager {
             ui.print("----------------------------------------------------------" + "\n");
          } else if (starting_choice.equals(starting_options.get(1))) {
             ui.print("Lets play Labyrinth.");
+            
             // Create the instances of user and computer
             user = new HumanPlayer(ui);
             computer = new ComputerPlayer(ui);
+            
+            // Deal hands to the user and the computer
+            dealHands(user, computer);
             
             // Initialize the board
             Board board = new Board();
@@ -64,6 +65,8 @@ public class GameManager {
                   // takeTurn function that takes this(which is the gameManager) and the board
                   user.takeTurn(this, board);
                   
+                  System.out.println(user.getHand());
+                  
                   // update the boolean to reflect that it is now the computers turn
                   player_turn = false;
                   
@@ -73,6 +76,8 @@ public class GameManager {
                   
                   // takeTurn function that takes this(which is the gameManager) and the board
                   computer.takeTurn(this, board);
+                  
+                  System.out.println(computer.getHand());
                   
                   // update the boolean to reflect that it is now the players turn
                   player_turn = true;
@@ -99,9 +104,24 @@ public class GameManager {
    
    /**
     * dealHands method deals out hands to two players
+    * @param user the user player
+    * @param computer the computer player
     */
-   public void dealHands(Player a, Player b){
-   
+   public void dealHands(Player user, Player computer){
+      int index;
+      List<Integer> deck = new LinkedList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+      Random rand = new Random();
+      while (!deck.isEmpty()){
+         // Randomly add card to users hand and remove it from the deck
+         index = rand.nextInt(deck.size());
+         user.addCard(deck.get(index));
+         deck.remove(index);
+         
+         // Randomly add card to computers hand and remove it from the deck
+         index = rand.nextInt(deck.size());
+         computer.addCard(deck.get(index));
+         deck.remove(index);
+      }
    }
    
    /**
