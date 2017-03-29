@@ -1,5 +1,5 @@
 /**
-	@Author SeanKates
+   @Author SeanKates
  * GameManager handles the gameplay of Labyrinth
  */
 
@@ -7,19 +7,19 @@ import java.util.LinkedList;
 import java.util.Arrays;
 
 public class GameManager {
-   
-   private GraphicUI gui;
 
    // Initialize some variables for the UI, and the human + computer players
    private UserInterface ui;
    private Player user, computer;
+   private Board b;
+   private GraphicUI gui;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
 
       // ADDING GUI
 
-      Board b = new Board();
+      b = new Board();
 
       gui = new GraphicUI(b);
       
@@ -95,6 +95,13 @@ public class GameManager {
             break;
          }
       }
+   }
+   
+   /**
+    * dealHands method deals out hands to two players
+    */
+   public void dealHands(Player a, Player b){
+   
    }
    
    /**
