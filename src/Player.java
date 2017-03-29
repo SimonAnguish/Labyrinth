@@ -53,20 +53,31 @@ public class Player {
     }
     
     /**
-     * The addCard method ands a card object to the LinkedList hand
-     * @param c The Card object to be added to the players hand
+     * The addCard method adds a "card" to the LinkedList hand
+     * @param c The int to be added to the players hand
      */
     public void addCard(int c) {
          hand.add(c);
     }
     
     /**
-     * The removeCard method removes a card from the LinkedList hand and updates the score
-     * @param c The Card object to be removed from players hand
+     * The removeTopCard method removes a the first card from the hand
+     * Should be called when the user reaches a specific goal/destination
+     * Updates the score of the user/computer when they remove the card
      */
-    public void removeCard(int c) {
-        hand.remove(c);
+    public void removeTopCard() {
+        hand.remove();
         score++;
+    }
+    
+    /**
+     * The getTopCard method gets the first card from the hand
+     * This will return the top card, which is the current goal to move to
+     * @return goal The top card/goal to travel to.
+     */
+    public int getTopCard() {
+        int goal = hand.getFirst();
+        return goal;
     }
 }
     

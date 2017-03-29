@@ -16,7 +16,7 @@ public class GameManager {
    // Constructor for GameManager that starts the game
    public GameManager() {
 
-      // Initialize board, gui, and size of the deck
+      // Initialize board, gui,
       b = new Board();
       gui = new GraphicUI(b);
       
@@ -65,7 +65,9 @@ public class GameManager {
                   // takeTurn function that takes this(which is the gameManager) and the board
                   user.takeTurn(this, board);
                   
-                  System.out.println(user.getHand());
+                  System.out.println("Hand: " + user.getHand());
+                  System.out.println("Goal: " + user.getTopCard());
+                  user.removeTopCard();
                   
                   // update the boolean to reflect that it is now the computers turn
                   player_turn = false;
@@ -83,16 +85,18 @@ public class GameManager {
                   player_turn = true;
                }
                
-               // Need to have an if statement at the end of every turn to determine
-               // if the game is over
-               /* if (objective is reached)
-               *     break
-               */
-               String[] answers = {"yes", "no"};
-               LinkedList<String> keep_going  = new LinkedList<>(Arrays.asList(answers));
-               String choice = ui.prompt("Do you want to keep going? (yes, no): ", keep_going);
-               
-               if (choice.equals(keep_going.get(1))) {
+               /* Checks to see if either players hands are empty, if either are empty,
+                * print the score and break from the game loop
+                */
+               if (user.isHandEmpty() || computer.isHandEmpty()){
+                  System.out.println("**************************************************");
+                  System.out.println("User Score: " + user.score);
+                  System.out.println("Computer Score: " + computer.score);
+                  if (user.score > computer.score) {
+                     System.out.println("User won!");
+                  }else{
+                     System.out.println("Computer won!");
+                  }
                   break;
                }
             }   
