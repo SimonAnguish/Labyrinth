@@ -35,27 +35,17 @@ class GraphicUI extends JFrame{
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
 		rightOptionsPanel.setPreferredSize(new Dimension(FRAME_WIDTH - BOARD_WIDTH, 500));
-//
-//		JPanel tileInHandPanel = new JPanel();
-//		tileInHandPanel.setBorder(new EmptyBorder(80,50,0,50));
-//		tileInHandPanel.setBackground(Color.GREEN);
+		rightOptionsPanel.setBackground(Color.LIGHT_GRAY);
+		rightOptionsPanel.setBorder(new EmptyBorder(80, 100, 80, 125));
 		
-		TilePanel handTile = new TilePanel(b.tileInHand, 60);
-		handTile.setBorder(new EmptyBorder(80,50,0,50));
-		handTile.setBackground(Color.LIGHT_GRAY);
-		
-		handTile.printTileString();
-		
-//		tileInHandPanel.add(handTile);
-//		tileInHandPanel.add(new TilePanel(b.tileInHand), BorderLayout.CENTER);	
+		TilePanel handTile = new TilePanel(b.tileInHand, 50);
 		
 		rightOptionsPanel.add(handTile);
 
 		JPanel tileOptionsPanel = new JPanel();
-//		tileOptionsPanel.setBorder(new EmptyBorder(60, 10, 0, 10));
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		
-		JLabel rotateLabel = new JLabel("Rotate");
+		JLabel rotateLabel = new JLabel(new ImageIcon("../docs/rotate-clockwise.png"));
 
 		rotateLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -63,7 +53,7 @@ class GraphicUI extends JFrame{
 			}
 		});
 		
-		tileOptionsPanel.add(rotateLabel, BorderLayout.CENTER);
+		tileOptionsPanel.add(rotateLabel, BorderLayout.SOUTH);
 		rightOptionsPanel.add(tileOptionsPanel);
 		
 		add(rightOptionsPanel, BorderLayout.EAST);

@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 class TilePanel extends JComponent {
-	int tileSize = 30;
+	int bSize = 25;
 	Tile tile = new Tile(true, true, true, true);
 	TilePanel(Tile tile) {
-		setSize(new Dimension(tileSize, tileSize));
+		setSize(new Dimension(bSize, bSize));
 
 		this.tile = tile;
 	}
@@ -14,28 +14,27 @@ class TilePanel extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(Color.BLACK);
 
-		g2.fillRect(20,20,20,20);
+		g2.fillRect(bSize,bSize,bSize,bSize);
 
 		if (tile.north) {
-			g2.fillRect(20,0,20,20);
+			g2.fillRect(bSize,0,bSize,bSize);
 		}
 
 		if (tile.east) {
-			g2.fillRect(40,20,20,20);
+			g2.fillRect(2*bSize,bSize,bSize,bSize);
 		}
 
 		if (tile.south) {
-			g2.fillRect(20,40,20,20);
+			g2.fillRect(bSize,2*bSize,bSize,bSize);
 		}
 
 		if (tile.west) {
-			g2.fillRect(0,20,20,20);
+			g2.fillRect(0,bSize,bSize,bSize);
 		}
 	}
 	
 	public void printTileString() {
 		System.out.println(tile.toString());
-		System.out.println("Printing TilePanel");
 	}
 	
 	public void rotateTile() {
@@ -44,8 +43,9 @@ class TilePanel extends JComponent {
 	}
 
 	TilePanel(Tile tile, int newTileSize) {
-		tileSize = newTileSize;
-		setSize(new Dimension(tileSize, tileSize));
+		bSize = newTileSize;
+		
+		setSize(new Dimension(bSize, bSize));
 
 		this.tile = tile;
 	}
