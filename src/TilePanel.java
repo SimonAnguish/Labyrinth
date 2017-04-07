@@ -4,10 +4,10 @@ import java.awt.*;
 class TilePanel extends JComponent {
 	int tileSize = 30;
 	Tile tile = new Tile(true, true, true, true);
-	TilePanel(Tile thisTile) {
+	TilePanel(Tile tile) {
 		setSize(new Dimension(tileSize, tileSize));
 
-		tile = thisTile;
+		this.tile = tile;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -32,11 +32,21 @@ class TilePanel extends JComponent {
 			g2.fillRect(0,20,20,20);
 		}
 	}
+	
+	public void printTileString() {
+		System.out.println(tile.toString());
+		System.out.println("Printing TilePanel");
+	}
+	
+	public void rotateTile() {
+		this.tile.rotate(1);
+		repaint();
+	}
 
-	TilePanel(Tile newTile, int newTileSize) {
+	TilePanel(Tile tile, int newTileSize) {
 		tileSize = newTileSize;
 		setSize(new Dimension(tileSize, tileSize));
 
-		tile = newTile;
+		this.tile = tile;
 	}
 }

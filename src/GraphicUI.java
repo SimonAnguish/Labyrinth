@@ -35,37 +35,38 @@ class GraphicUI extends JFrame{
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
 		rightOptionsPanel.setPreferredSize(new Dimension(FRAME_WIDTH - BOARD_WIDTH, 500));
-		add(rightOptionsPanel, BorderLayout.EAST);
-
-		JPanel tileInHandPanel = new JPanel();
-		tileInHandPanel.setBorder(new EmptyBorder(80,50,0,50));
-		tileInHandPanel.setBackground(Color.LIGHT_GRAY);
-		tileInHandPanel.add(new TilePanel(b.tileInHand, 210));
-		rightOptionsPanel.add(tileInHandPanel);
+//
+//		JPanel tileInHandPanel = new JPanel();
+//		tileInHandPanel.setBorder(new EmptyBorder(80,50,0,50));
+//		tileInHandPanel.setBackground(Color.GREEN);
+		
+		TilePanel handTile = new TilePanel(b.tileInHand, 60);
+		handTile.setBorder(new EmptyBorder(80,50,0,50));
+		handTile.setBackground(Color.LIGHT_GRAY);
+		
+		handTile.printTileString();
+		
+//		tileInHandPanel.add(handTile);
+//		tileInHandPanel.add(new TilePanel(b.tileInHand), BorderLayout.CENTER);	
+		
+		rightOptionsPanel.add(handTile);
 
 		JPanel tileOptionsPanel = new JPanel();
-		tileOptionsPanel.setBorder(new EmptyBorder(60, 10, 0, 10));
+//		tileOptionsPanel.setBorder(new EmptyBorder(60, 10, 0, 10));
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
-		Tile newTile = new Tile(b.tileInHand.north, b.tileInHand.south, b.tileInHand.east, b.tileInHand.west);
+		
+		JLabel rotateLabel = new JLabel("Rotate");
 
-		TilePanel newTilePanel;
-		newTile.rotate(1);
-
-		newTilePanel = new TilePanel(newTile, 60);
-		newTilePanel.addMouseListener(new MouseAdapter() {
+		rotateLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.printf("1");
+				handTile.rotateTile();
 			}
 		});
-		tileOptionsPanel.add(newTilePanel);
-
-		newTile.rotate(1);
-		tileOptionsPanel.add(new TilePanel(newTile, 60));
-
-		newTile.rotate(1);
-		tileOptionsPanel.add(new TilePanel(newTile, 60));
-
+		
+		tileOptionsPanel.add(rotateLabel, BorderLayout.CENTER);
 		rightOptionsPanel.add(tileOptionsPanel);
+		
+		add(rightOptionsPanel, BorderLayout.EAST);
 
 
 		pack();
@@ -156,7 +157,9 @@ class GraphicUI extends JFrame{
 	void callHomeScreen() {
 		JFrame homeFrame = new JFrame();
 		JPanel wrapperPanel = new JPanel();
+		
 		wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.PAGE_AXIS));
+		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
 
 		JLabel startLabel = new JLabel("Play");
 		startLabel.setFont(new Font("Sans-Serif", Font.BOLD, 48));
@@ -178,7 +181,6 @@ class GraphicUI extends JFrame{
 		});
 
 		wrapperPanel.add(helpLabel);
-		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
 
 		homeFrame.add(wrapperPanel, BorderLayout.CENTER);
 		homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
