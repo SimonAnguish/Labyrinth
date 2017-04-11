@@ -50,52 +50,48 @@ public class GameManager {
    }
    
    public void run() {
+      // Depending on user input, we either help, play, or exit the game
+      ui.print("Lets play Labyrinth.");
+      
+      // Create the instances of user and computer
+      user = new HumanPlayer(ui);
+      computer = new ComputerPlayer(ui);
+      
+      // Deal hands to the user and the computer
+      dealHands(user, computer);
+      
+      // Initialize a boolean to determine turns
+      boolean player_turn = true;
+      
+      // While loop that is true to switch between player and computer turns
       while (true) {
-         
-         // Depending on user input, we either help, play, or exit the game
-         ui.print("Lets play Labyrinth.");
-         
-         // Create the instances of user and computer
-         user = new HumanPlayer(ui);
-         computer = new ComputerPlayer(ui);
-         
-         // Deal hands to the user and the computer
-         dealHands(user, computer);
-         
-         // Initialize a boolean to determine turns
-         boolean player_turn = true;
-         
-         // While loop that is true to switch between player and computer turns
-//         while (true) {
-//            
-//            // If player_turn = true, then the player takes a turn
-//            // else, computer takes a turn
-//            if (player_turn) {
-//               ui.print("\n"+"**************************************************"+"\n");
-//               ui.print("Players Turn");
-//               
-//               // takeTurn function that takes this(which is the gameManager) and the board
-//               user.takeTurn(this, board);
-//               
-//               // update the boolean to reflect that it is now the computers turn
-//               player_turn = false;
-//               
-//            } else {
-//               ui.print("\n"+"**************************************************"+"\n");
-//               ui.print("Computers Turn:");
-//               
-//               // takeTurn function that takes this(which is the gameManager) and the board
-//               computer.takeTurn(this, board);
-//               
-//               // update the boolean to reflect that it is now the players turn
-//               player_turn = true;
-//            }
-//            
-//            // checks for a winner every turn
-//            if(checkForWinner(user, computer)){
-//               break;
-//            }
-//         }
+        //If player_turn = true, then the player takes a turn
+        //else, computer takes a turn
+        if (player_turn) {
+           ui.print("\n"+"**************************************************"+"\n");
+           ui.print("Players Turn");
+           
+           // takeTurn function that takes this(which is the gameManager) and the board
+           user.takeTurn(this, board);
+           
+           // update the boolean to reflect that it is now the computers turn
+           player_turn = false;
+           
+        }else {
+           ui.print("\n"+"**************************************************"+"\n");
+           ui.print("Computers Turn:");
+           
+           // takeTurn function that takes this(which is the gameManager) and the board
+           computer.takeTurn(this, board);
+           
+           // update the boolean to reflect that it is now the players turn
+           player_turn = true;
+        }
+        
+        // checks for a winner every turn
+        if(checkForWinner(user, computer)){
+           break;
+        }
       }
    }
    
