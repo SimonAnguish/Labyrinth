@@ -6,7 +6,7 @@
 import java.util.*;
 
 public class GameManager {
-
+	// Yifan was here
    // Initialize some variables for the UI, and the human + computer players
    private UserInterface ui;
    private Player user, computer;
