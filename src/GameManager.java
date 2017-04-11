@@ -76,18 +76,8 @@ public class GameManager {
                   player_turn = true;
                }
                
-               /* Checks to see if either players hands are empty, if either are empty,
-                * print the score and break from the game loop
-                */
-               if (user.isHandEmpty() || computer.isHandEmpty()){
-                  System.out.println("**************************************************");
-                  System.out.println("User Score: " + user.score);
-                  System.out.println("Computer Score: " + computer.score);
-                  if (user.score > computer.score) {
-                     System.out.println("User won!");
-                  }else{
-                     System.out.println("Computer won!");
-                  }
+               // checks for a winner every turn
+               if(checkForWinner(user, computer)){
                   break;
                }
             }   
@@ -116,6 +106,28 @@ public class GameManager {
          index = rand.nextInt(deck.size());
          computer.addCard(deck.get(index));
          deck.remove(index);
+      }
+   }
+   
+   /**
+    * checkForWinner method checks both players hands to see if someone has won
+    * @param user the user player
+    * @param computer the computer player
+    * @return true or false whether there is a winner
+    */
+   public boolean checkForWinner(Player user, Player computer){
+      if (user.isHandEmpty() || computer.isHandEmpty()){
+         System.out.println("**************************************************");
+         System.out.println("User Score: " + user.score);
+         System.out.println("Computer Score: " + computer.score);
+         if (user.score > computer.score) {
+            System.out.println("User won!");
+         }else{
+            System.out.println("Computer won!");
+         }
+         return true;
+      }else{
+         return false;
       }
    }
    
