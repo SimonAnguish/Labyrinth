@@ -23,5 +23,6 @@ public class ComputerPlayer extends Player{
     public void takeTurn(GameManager gm, Board board){
          ui.print(board.getTileAt(1,5).toString());
 		   board.getTileAt(1,5).rotate(1);
+         System.out.println("Computers Hand: " + getHand());
     }    
 }

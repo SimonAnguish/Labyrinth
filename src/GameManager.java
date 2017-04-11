@@ -10,15 +10,15 @@ public class GameManager {
    // Initialize some variables for the UI, and the human + computer players
    private UserInterface ui;
    private Player user, computer;
-   private Board b;
+   private Board board;
    private GraphicUI gui;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
 
       // Initialize board, gui,
-      b = new Board();
-      gui = new GraphicUI(b);
+      board = new Board();
+      gui = new GraphicUI(board);
       
       // Create a UI to print stuff and take input
       ui = new UserInterface();
@@ -47,9 +47,6 @@ public class GameManager {
             // Deal hands to the user and the computer
             dealHands(user, computer);
             
-            // Initialize the board
-            Board board = new Board();
-            
             // Initialize a boolean to determine turns
             boolean player_turn = true;
             
@@ -65,10 +62,6 @@ public class GameManager {
                   // takeTurn function that takes this(which is the gameManager) and the board
                   user.takeTurn(this, board);
                   
-                  System.out.println("Hand: " + user.getHand());
-                  System.out.println("Goal: " + user.getTopCard());
-                  user.removeTopCard();
-                  
                   // update the boolean to reflect that it is now the computers turn
                   player_turn = false;
                   
@@ -78,8 +71,6 @@ public class GameManager {
                   
                   // takeTurn function that takes this(which is the gameManager) and the board
                   computer.takeTurn(this, board);
-                  
-                  System.out.println(computer.getHand());
                   
                   // update the boolean to reflect that it is now the players turn
                   player_turn = true;

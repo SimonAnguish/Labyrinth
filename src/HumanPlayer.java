@@ -22,6 +22,9 @@ public class HumanPlayer extends Player {
     public void takeTurn(GameManager gm, Board board){
          ui.print(board.getTileAt(1,5).toString());
 		   board.getTileAt(1,5).rotate(1);
+         System.out.println("Hand: " + getHand());
+         System.out.println("Goal: " + getTopCard());
+         removeTopCard();
     }
 
 }
