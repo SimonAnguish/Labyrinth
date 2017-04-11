@@ -15,9 +15,11 @@ class GraphicUI extends JFrame{
 	final int BOARD_WIDTH = 600;
 
 	Board board;
+	
+	GameManager gm = new GameManager();
 
-	public GraphicUI(Board b) {
-		board = b;
+	public GraphicUI() {
+		board = gm.board;
 
 		callHomeScreen();
 	}
@@ -73,7 +75,7 @@ class GraphicUI extends JFrame{
 		scorePanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-		JLabel playerScore = new JLabel("Player: 0");
+		JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
 		JLabel computerScore = new JLabel("Computer: 0");
 
 		playerScore.setFont(new Font("Serif", Font.BOLD, 20));

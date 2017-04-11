@@ -9,8 +9,8 @@ public class GameManager {
 	// Yifan was here
    // Initialize some variables for the UI, and the human + computer players
    private UserInterface ui;
-   private Player user, computer;
-   private Board board;
+   public Player user, computer;
+   public Board board;
    private GraphicUI gui;
    
    // Constructor for GameManager that starts the game
@@ -18,7 +18,7 @@ public class GameManager {
 
       // Initialize board, gui,
       board = new Board();
-      gui = new GraphicUI(board);
+//      gui = new GraphicUI(board);
       
       // Create a UI to print stuff and take input
       ui = new UserInterface();
