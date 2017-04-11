@@ -22,6 +22,7 @@ class GraphicUI extends JFrame{
 		board = gm.board;
 
 		callHomeScreen();
+		gm.run();
 	}
 
 	void buildDefault(Board b) {
@@ -48,11 +49,6 @@ class GraphicUI extends JFrame{
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		
 		JLabel rotateLabel = new JLabel(new ImageIcon("../docs/rotate-clockwise.png"));
-		
-		JLabel upLabel = new JLabel(new ImagineIcon("../docs/up_triangle_button.png"));
-		JLabel downLabel = new JLabel(new ImagineIcon("../docs/down_triangle_button.png"));
-		JLabel leftLabel = new JLabel(new ImagineIcon("../docs/left_triangle_button.png"));
-		JLabel rightLabel = new JLabel(new ImagineIcon("../docs/right_triangle_button.png"));
 
 		rotateLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -60,11 +56,11 @@ class GraphicUI extends JFrame{
 			}
 		});
 		
-		upLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				handTile.rotateTile();
-			}
-		});
+//		upLabel.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				handTile.rotateTile();
+//			}
+//		});
 		
 		tileOptionsPanel.add(rotateLabel, BorderLayout.SOUTH);
 		rightOptionsPanel.add(tileOptionsPanel);
@@ -86,8 +82,8 @@ class GraphicUI extends JFrame{
 		scorePanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-		JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
-		JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
+		JLabel playerScore = new JLabel("Player: 0");
+		JLabel computerScore = new JLabel("Computer: 0");
 
 		playerScore.setFont(new Font("Serif", Font.BOLD, 20));
 		computerScore.setFont(new Font("Serif", Font.BOLD, 20));
@@ -112,16 +108,27 @@ class GraphicUI extends JFrame{
 	}
 
 	JPanel makeBoardPanel(Board b) {
-		JPanel boardPanel = new JPanel(new GridLayout(7,7));
+		JPanel boardPanel = new JPanel(new GridLayout(9,9));
 		boardPanel.setBackground(Color.LIGHT_GRAY);
 		boardPanel.setBorder(new EmptyBorder(50, 50, 50, 50));
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 100));
+		
+		JLabel upLabel = new JLabel(new ImageIcon("../docs/up_triangle_button.png"));
+		JLabel downLabel = new JLabel(new ImageIcon("../docs/down_triangle_button.png"));
+		JLabel leftLabel = new JLabel(new ImageIcon("../docs/left_triangle_button.png"));
+		JLabel rightLabel = new JLabel(new ImageIcon("../docs/right_triangle_button.png"));
 
 		for (int i=0;i<7;i++) {
+			boardPanel.add(downLabel);
 			for (int j=0;j<7;j++) {
+				boardPanel.add(leftLabel);
 				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
+				boardPanel.add(rightLabel);
 			}
+			boardPanel.add(upLabel);
 		}
+
+		
 
 		return boardPanel;
 	}
