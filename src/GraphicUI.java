@@ -48,8 +48,19 @@ class GraphicUI extends JFrame{
 		tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		
 		JLabel rotateLabel = new JLabel(new ImageIcon("../docs/rotate-clockwise.png"));
+		
+		JLabel upLabel = new JLabel(new ImagineIcon("../docs/up_triangle_button.png"));
+		JLabel downLabel = new JLabel(new ImagineIcon("../docs/down_triangle_button.png"));
+		JLabel leftLabel = new JLabel(new ImagineIcon("../docs/left_triangle_button.png"));
+		JLabel rightLabel = new JLabel(new ImagineIcon("../docs/right_triangle_button.png"));
 
 		rotateLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				handTile.rotateTile();
+			}
+		});
+		
+		upLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				handTile.rotateTile();
 			}
@@ -76,7 +87,7 @@ class GraphicUI extends JFrame{
 		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
 		JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
-		JLabel computerScore = new JLabel("Computer: 0");
+		JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
 
 		playerScore.setFont(new Font("Serif", Font.BOLD, 20));
 		computerScore.setFont(new Font("Serif", Font.BOLD, 20));
