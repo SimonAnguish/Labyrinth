@@ -120,11 +120,4 @@ public class GameManager {
          return false;
       }
    }
-   
-   /**
-   * creates a GameManager class to kick off the game
-   */
-	public static void main(String[] args) {
-      new GameManager();
-	}
 }
