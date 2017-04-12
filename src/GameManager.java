@@ -11,12 +11,14 @@ public class GameManager {
    public Player user, computer;
    public Board board;
    private GraphicUI gui;
+   private Deck deck;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
 
-      // Initialize board, gui,
+      // Initialize board, deck
       board = new Board();
+      deck = new Deck();
 
       System.out.println("Welcome to Labyrinth, made for CS 205 by Yifan, Simon, and Sean");
    }
@@ -28,6 +30,9 @@ public class GameManager {
       // Create the instances of user and computer
       user = new HumanPlayer();
       computer = new ComputerPlayer();
+      
+      // Shuffle the deck
+      deck.shuffle();
       
       // Deal hands to the user and the computer
       dealHands(user, computer);
@@ -95,19 +100,9 @@ public class GameManager {
     * @param computer the computer player
     */
    public void dealHands(Player user, Player computer){
-      int index;
-      List<Integer> deck = new LinkedList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
-      Random rand = new Random();
       while (!deck.isEmpty()){
-         // Randomly add card to users hand and remove it from the deck
-         index = rand.nextInt(deck.size());
-         user.addCard(deck.get(index));
-         deck.remove(index);
-         
-         // Randomly add card to computers hand and remove it from the deck
-         index = rand.nextInt(deck.size());
-         computer.addCard(deck.get(index));
-         deck.remove(index);
+         user.addTreasure(deck.dealTreasure());
+         computer.addTreasure(deck.dealTreasure());
       }
    }
 }

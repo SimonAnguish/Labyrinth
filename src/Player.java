@@ -5,14 +5,14 @@ import java.util.LinkedList;
  */
 public class Player {
     
-    protected LinkedList<Integer> hand;
+    protected LinkedList<Treasure> hand;
     protected int score = 0;
     
     /**
      * Constructor
      */
     public Player() {
-         hand = new LinkedList<Integer>();
+         hand = new LinkedList<Treasure>();
     }
     
     /**
@@ -48,7 +48,7 @@ public class Player {
      * The getHand method returns the LinkedList hand
      * @return LinkedList The players hand
      */
-    public LinkedList<Integer> getHand() {
+    public LinkedList<Treasure> getHand() {
         return hand;
     }
     
@@ -56,7 +56,7 @@ public class Player {
      * The addCard method adds a "card" to the LinkedList hand
      * @param c The int to be added to the players hand
      */
-    public void addCard(int c) {
+    public void addTreasure(Treasure c) {
          hand.add(c);
     }
     
@@ -75,8 +75,8 @@ public class Player {
      * This will return the top card, which is the current goal to move to
      * @return goal The top card/goal to travel to.
      */
-    public int getTopCard() {
-        int goal = hand.getFirst();
+    public Treasure getTopCard() {
+        Treasure goal = hand.getFirst();
         return goal;
     }
 }
