@@ -109,53 +109,56 @@ class GraphicUI extends JFrame{
 		
 		JPanel boardPanel = new JPanel(new GridLayout(7,7));
 		boardPanel.setBackground(Color.LIGHT_GRAY);
-		boardPanel.setBorder(new EmptyBorder(25, 25, 25, 25));
+//		boardPanel.setBorder(new EmptyBorder(25, 25, 25, 25));
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_WIDTH));
 		
-		JLabel upLabel = new JLabel(new ImageIcon("../docs/up_triangle_button.png"));
-		JLabel downLabel = new JLabel(new ImageIcon("../docs/down_triangle_button.png"));
-		JLabel leftLabel = new JLabel(new ImageIcon("../docs/left_triangle_button.png"));
-		JLabel rightLabel = new JLabel(new ImageIcon("../docs/right_triangle_button.png"));
+		JPanel northPanel = new JPanel(new GridLayout(1,3));
+		northPanel.setBorder(new EmptyBorder(0, 65, 0, 65));
+		
+		JPanel southPanel = new JPanel(new GridLayout(1,3));
+		southPanel.setBorder(new EmptyBorder(0, 65, 0, 65));
+		
+		JPanel eastPanel = new JPanel(new GridLayout(3,1));
+		eastPanel.setBorder(new EmptyBorder(65, 0, 65, 0));
+
+		JPanel westPanel = new JPanel(new GridLayout(3,1));
+		westPanel.setBorder(new EmptyBorder(65, 0, 65, 0));
+		
+		boolean printArrow = false;
 //
 		for (int i=0;i<7;i++) {
+			if (i % 2 == 1) {
+				northPanel.add(new JArrow(new ImageIcon("../docs/down_triangle_button.png"), i, 0, "down"));
+				southPanel.add(new JArrow(new ImageIcon("../docs/up_triangle_button.png"), i, 0, "up"));
+				printArrow = true;
+				
+			} 
 			for (int j=0;j<7;j++) {
+				if (printArrow && j % 2 == 1) {
+					eastPanel.add(new JArrow(new ImageIcon("../docs/left_triangle_button.png"), 0, j, "left"));
+					westPanel.add(new JArrow(new ImageIcon("../docs/right_triangle_button.png"), 0, j, "right"));
+					printArrow = false;
+				}
 				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
 			}
 		}
 		
-		upLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println("Calling insertTile() up");
-			}
-		});
-		
-		downLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println("Calling insertTile() down");
-			}
-		});
-		
-		rightLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println("Calling insertTile() right");
-			}
-		});
-		
-		leftLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println("Calling insertTile() left");
-			}
-		});
+//		upLabel.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+////				upLabel.insertTile(upLabel.getRowCol(i, j));
+//				System.out.println("Calling insertTile() up");
+//			}
+//		});
+		boardWrapper.add(northPanel, BorderLayout.NORTH);
+		boardWrapper.add(southPanel, BorderLayout.SOUTH);
+		boardWrapper.add(eastPanel, BorderLayout.EAST);
+		boardWrapper.add(westPanel, BorderLayout.WEST);
 
 		boardWrapper.add(boardPanel, BorderLayout.CENTER);
-		boardWrapper.add(downLabel, BorderLayout.NORTH);
-		boardWrapper.add(upLabel, BorderLayout.SOUTH);
-		boardWrapper.add(leftLabel, BorderLayout.EAST);
-		boardWrapper.add(rightLabel, BorderLayout.WEST);
+//		boardWrapper.add(downLabel, BorderLayout.NORTH);
+//		boardWrapper.add(upLabel, BorderLayout.SOUTH);
+//		boardWrapper.add(leftLabel, BorderLayout.EAST);
+//		boardWrapper.add(rightLabel, BorderLayout.WEST);
 		
 		
 //		return boardPanel;
