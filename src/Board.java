@@ -100,4 +100,55 @@ public class Board {
 	public Tile getTileAt(int row, int column) {
 		return board[row][column];
 	}
+	public Tile insertTile(int choice,Tile tileInHand,int row,int column){
+
+		Tile newTileInHand = null;
+		switch(choice){
+		//down 
+		case 1: 
+			newTileInHand = getTileAt(6,column);
+			Tile[] tempdown = new Tile[7];
+			for(int t = 0;t<7;t++){
+				tempdown[t] = getTileAt(t,column);
+			}
+			board[0][column] = tileInHand;
+			for(int i = 1;i<7;i++){
+				board[i][column] = tempdown[i-1];
+			}
+			//up
+		case 2:
+			newTileInHand = getTileAt(0,column);
+			Tile[] tempup = new Tile[7];
+			for(int t = 0;t<7;t++){
+				tempup[t] = getTileAt(t,column);
+			}
+			board[6][column] = tileInHand;
+			for(int i =5;i>-1;i--){
+				board[i][column] = tempup[i+1];
+			}
+			//right
+		case 3:
+			newTileInHand = getTileAt(row,6);
+			Tile[] tempright = new Tile[7];
+			for(int t = 0;t<7;t++){
+				tempright[t] = getTileAt(row,t);
+			}
+			board[row][0] = tileInHand;
+			for(int i =1;i<7;i++ ){
+				board[row][i] = tempright[i-1];
+			}
+			//left
+		case 4:
+			newTileInHand = getTileAt(row,0);
+			Tile[] templeft = new Tile[7];
+			for(int t=0;t<7;t++){
+				templeft[t] = getTileAt(row,t);
+			}
+			board[row][6] = tileInHand;
+			for(int i = 5;i>-1;i--){
+				board[row][i] = templeft[i+1];
+			}
+		}
+		return newTileInHand;
+	}
 }
