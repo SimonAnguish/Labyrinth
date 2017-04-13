@@ -7,6 +7,8 @@ class Tile {
 	public boolean south;
 	public boolean east;
 	public boolean west;
+	
+	Treasure treasure;
 
 	/**
 		Tile

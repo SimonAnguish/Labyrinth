@@ -22,7 +22,6 @@ class GraphicUI extends JFrame{
 		board = gm.board;
 
 		callHomeScreen();
-		gm.run();
 	}
 
 	void buildDefault(Board b) {
@@ -56,11 +55,6 @@ class GraphicUI extends JFrame{
 			}
 		});
 		
-//		upLabel.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				handTile.rotateTile();
-//			}
-//		});
 		
 		tileOptionsPanel.add(rotateLabel, BorderLayout.SOUTH);
 		rightOptionsPanel.add(tileOptionsPanel);
@@ -108,7 +102,7 @@ class GraphicUI extends JFrame{
 	}
 
 	JPanel makeBoardPanel(Board b) {
-		JPanel boardPanel = new JPanel(new GridLayout(9,9));
+		JPanel boardPanel = new JPanel(new GridLayout(7,7));
 		boardPanel.setBackground(Color.LIGHT_GRAY);
 		boardPanel.setBorder(new EmptyBorder(50, 50, 50, 50));
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 100));
@@ -119,15 +113,16 @@ class GraphicUI extends JFrame{
 		JLabel rightLabel = new JLabel(new ImageIcon("../docs/right_triangle_button.png"));
 
 		for (int i=0;i<7;i++) {
-			boardPanel.add(downLabel);
 			for (int j=0;j<7;j++) {
-				boardPanel.add(leftLabel);
 				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
-				boardPanel.add(rightLabel);
 			}
-			boardPanel.add(upLabel);
 		}
 
+//		upLabel.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+//			}
+//		});
 		
 
 		return boardPanel;

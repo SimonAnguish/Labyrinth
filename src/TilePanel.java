@@ -15,6 +15,7 @@ class TilePanel extends JComponent {
 		g2.setColor(Color.BLACK);
 
 		g2.fillRect(bSize,bSize,bSize,bSize);
+		if (tile.treasure != null) add(new JLabel(tile.treasure.toString()));
 
 		if (tile.north) {
 			g2.fillRect(bSize,0,bSize,bSize);
