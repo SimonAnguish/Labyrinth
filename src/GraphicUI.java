@@ -172,6 +172,9 @@ class GraphicUI extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				buildDefault(board);
 				homeFrame.setVisible(false);
+            
+            // Hey Simon im calling the run function here so that play has to be clicked
+            gm.run();
 			}
 		});
 

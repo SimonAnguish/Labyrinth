@@ -7,55 +7,33 @@ import java.util.*;
 
 public class GameManager {
 	// Yifan was here
-   // Initialize some variables for the UI, and the human + computer players
-   private UserInterface ui;
+   // Initialize some variables for the human + computer players, and gui
    public Player user, computer;
    public Board board;
    private GraphicUI gui;
+   private Deck deck;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
 
-      // Initialize board, gui,
+      // Initialize board, deck
       board = new Board();
-//      gui = new GraphicUI(board);
-      
-      // Create a UI to print stuff and take input
-      ui = new UserInterface();
-      ui.print("Welcome to Labyrinth, made for CS 205 by Yifan, Simon, and Sean");
-      
-      // Loop to manage the game options, allows for help, play and exit
-   }
-   
-   /**
-    * dealHands method deals out hands to two players
-    * @param user the user player
-    * @param computer the computer player
-    */
-   public void dealHands(Player user, Player computer){
-      int index;
-      List<Integer> deck = new LinkedList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
-      Random rand = new Random();
-      while (!deck.isEmpty()){
-         // Randomly add card to users hand and remove it from the deck
-         index = rand.nextInt(deck.size());
-         user.addCard(deck.get(index));
-         deck.remove(index);
-         
-         // Randomly add card to computers hand and remove it from the deck
-         index = rand.nextInt(deck.size());
-         computer.addCard(deck.get(index));
-         deck.remove(index);
-      }
+      deck = new Deck();
+
+      System.out.println("Welcome to Labyrinth, made for CS 205 by Yifan, Simon, and Sean");
    }
    
    public void run() {
       // Depending on user input, we either help, play, or exit the game
-      ui.print("Lets play Labyrinth.");
+
+      System.out.println("Lets play Labyrinth.");
       
       // Create the instances of user and computer
-      user = new HumanPlayer(ui);
-      computer = new ComputerPlayer(ui);
+      user = new HumanPlayer();
+      computer = new ComputerPlayer();
+      
+      // Shuffle the deck
+      deck.shuffle();
       
       // Deal hands to the user and the computer
       dealHands(user, computer);
@@ -64,31 +42,31 @@ public class GameManager {
       boolean player_turn = true;
       
       // While loop that is true to switch between player and computer turns
-      while (!checkForWinner(user, computer)) {
-         
-         // If player_turn = true, then the player takes a turn
-         // else, computer takes a turn
-         if (player_turn) {
-            ui.print("\n"+"**************************************************"+"\n");
-            ui.print("Players Turn");
-            
-            // takeTurn function that takes this(which is the gameManager) and the board
-            user.takeTurn(this, board);
-            
-            // update the boolean to reflect that it is now the computers turn
-            player_turn = false;
-            
-         } else {
-            ui.print("\n"+"**************************************************"+"\n");
-            ui.print("Computers Turn:");
-            
-            // takeTurn function that takes this(which is the gameManager) and the board
-            computer.takeTurn(this, board);
-            
-            // update the boolean to reflect that it is now the players turn
-            player_turn = true;
-         }
-      }
+//      while (!checkForWinner(user, computer)) {
+//         
+//         // If player_turn = true, then the player takes a turn
+//         // else, computer takes a turn
+//         if (player_turn) {
+//            ui.print("\n"+"**************************************************"+"\n");
+//            ui.print("Players Turn");
+//            
+//            // takeTurn function that takes this(which is the gameManager) and the board
+//            user.takeTurn(this, board);
+//            
+//            // update the boolean to reflect that it is now the computers turn
+//            player_turn = false;
+//            
+//         } else {
+//            ui.print("\n"+"**************************************************"+"\n");
+//            ui.print("Computers Turn:");
+//            
+//            // takeTurn function that takes this(which is the gameManager) and the board
+//            computer.takeTurn(this, board);
+//            
+//            // update the boolean to reflect that it is now the players turn
+//            player_turn = true;
+//         }
+//      }
    }
    
    /**
@@ -114,9 +92,14 @@ public class GameManager {
    }
    
    /**
-   * creates a GameManager class to kick off the game
-   */
-	public static void main(String[] args) {
-      new GameManager();
-	}
+    * dealHands method deals out hands to two players
+    * @param user the user player
+    * @param computer the computer player
+    */
+   public void dealHands(Player user, Player computer){
+      while (!deck.isEmpty()){
+         user.addTreasure(deck.dealTreasure());
+         computer.addTreasure(deck.dealTreasure());
+      }
+   }
 }

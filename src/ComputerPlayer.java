@@ -4,14 +4,13 @@
  * Handles gameplay for the computer
  */
 public class ComputerPlayer extends Player{
-    UserInterface ui;
     
     /**
      * Constructor that takes the local UI object
      * @param ui UserInterface
      */
-    public ComputerPlayer(UserInterface ui) {
-        this.ui = ui;
+    public ComputerPlayer() {
+    
     }
     
     /**
@@ -21,8 +20,6 @@ public class ComputerPlayer extends Player{
      */
     @Override
     public void takeTurn(GameManager gm, Board board){
-         ui.print(board.getTileAt(1,5).toString());
-		   board.getTileAt(1,5).rotate(1);
          System.out.println("Computers Hand: " + getHand());
     }    
 }
