@@ -113,15 +113,19 @@ class GraphicUI extends JFrame{
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_WIDTH));
 		
 		JPanel northPanel = new JPanel(new GridLayout(1,3));
+		northPanel.setBackground(Color.LIGHT_GRAY);
 		northPanel.setBorder(new EmptyBorder(0, 65, 0, 65));
 		
 		JPanel southPanel = new JPanel(new GridLayout(1,3));
+		southPanel.setBackground(Color.LIGHT_GRAY);
 		southPanel.setBorder(new EmptyBorder(0, 65, 0, 65));
 		
 		JPanel eastPanel = new JPanel(new GridLayout(3,1));
+		eastPanel.setBackground(Color.LIGHT_GRAY);
 		eastPanel.setBorder(new EmptyBorder(65, 0, 65, 0));
 
 		JPanel westPanel = new JPanel(new GridLayout(3,1));
+		westPanel.setBackground(Color.LIGHT_GRAY);
 		westPanel.setBorder(new EmptyBorder(65, 0, 65, 0));
 		
 		boolean printArrow = false;
