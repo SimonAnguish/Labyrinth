@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class TilePanel extends JComponent {
-	int bSize = 25;
+	int bSize = 20;
 	Tile tile = new Tile(true, true, true, true);
 	TilePanel(Tile tile) {
 		setSize(new Dimension(bSize, bSize));
