@@ -128,31 +128,90 @@ class GraphicUI extends JFrame{
 		westPanel.setBackground(Color.LIGHT_GRAY);
 		westPanel.setBorder(new EmptyBorder(50, 0, 50, 0));
 		
-		boolean printArrow = false;
-//
+		JArrow northArrow_1 = new JArrow("down", 1, 0);
+		northPanel.add(northArrow_1);
+		JArrow northArrow_2 = new JArrow("down", 3, 0);
+		northPanel.add(northArrow_2);
+		JArrow northArrow_3 = new JArrow("down", 5, 0);
+		northPanel.add(northArrow_3);
+		
+		northArrow_1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(northArrow_1.getRow() + " | " + northArrow_1.getCol());
+			}
+		});
+		
+		northArrow_2.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(northArrow_2.getRow() + " | " + northArrow_2.getCol());
+			}
+		});
+		
+		northArrow_3.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(northArrow_3.getRow() + " | " + northArrow_3.getCol());
+			}
+		});
+		
+		JArrow southArrow_1 = new JArrow("up", 1, 0);
+		southPanel.add(southArrow_1);
+		JArrow southArrow_2 = new JArrow("up", 3, 0);
+		southPanel.add(southArrow_2);
+		JArrow southArrow_3 = new JArrow("up", 5, 0);
+		southPanel.add(southArrow_3);
+		
+		southArrow_1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(southArrow_1.getRow() + " | " + southArrow_1.getCol());
+			}
+		});
+		
+		southArrow_2.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(southArrow_2.getRow() + " | " + southArrow_2.getCol());
+			}
+		});
+		
+		southArrow_3.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(southArrow_3.getRow() + " | " + southArrow_3.getCol());
+			}
+		});
+
+		JArrow eastArrow_1 = new JArrow("left", 0, 1);
+		eastPanel.add(eastArrow_1);
+		JArrow eastArrow_2 = new JArrow("left", 0, 3);
+		eastPanel.add(eastArrow_2);
+		JArrow eastArrow_3 = new JArrow("left", 0, 5);
+		eastPanel.add(eastArrow_3);
+		
+		addArrowActionListeners(eastArrow_1);
+		addArrowActionListeners(eastArrow_2);
+		addArrowActionListeners(eastArrow_3);
+
+		JArrow westArrow_1 = new JArrow("right", 0, 1);
+		westPanel.add(westArrow_1);
+		JArrow westArrow_2 = new JArrow("right", 0, 3);
+		westPanel.add(westArrow_2);
+		JArrow westArrow_3 = new JArrow("right", 0, 5);
+		westPanel.add(westArrow_3);
+
+		addArrowActionListeners(westArrow_1);
+		addArrowActionListeners(westArrow_2);
+		addArrowActionListeners(westArrow_3);
+		
 		for (int i=0;i<7;i++) {
-			if (i % 2 == 1) {
-				northPanel.add(new JArrow(new ImageIcon("../docs/down_triangle_button.png"), i, 0));
-				southPanel.add(new JArrow(new ImageIcon("../docs/up_triangle_button.png"), i, 0));
-				printArrow = true;
-				
-			} 
 			for (int j=0;j<7;j++) {
-				if (printArrow && j % 2 == 1) {
-					eastPanel.add(new JArrow(new ImageIcon("../docs/left_triangle_button.png"), 0, j));
-					westPanel.add(new JArrow(new ImageIcon("../docs/right_triangle_button.png"), 0, j));
-					printArrow = false;
-				}
 				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
 			}
 		}
 		
-//		upLabel.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-////				upLabel.insertTile(upLabel.getRowCol(i, j));
-//				System.out.println("Calling insertTile() up");
-//			}
-//		});
 		boardWrapper.add(northPanel, BorderLayout.NORTH);
 		boardWrapper.add(southPanel, BorderLayout.SOUTH);
 		boardWrapper.add(eastPanel, BorderLayout.EAST);
@@ -167,6 +226,15 @@ class GraphicUI extends JFrame{
 		
 //		return boardPanel;
 		return boardWrapper;
+	}
+	
+	void addArrowActionListeners(JArrow arrow) {
+		arrow.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				System.out.println(arrow.getRow() + " | " + arrow.getCol() + " | " + arrow.getDir());
+			}
+		});
 	}
 
 	void callHelpScreen() {
