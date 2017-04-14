@@ -113,6 +113,7 @@ public class Board {
 				board[t][column] = getTileAt(t-1,column);
 			}
 			board[0][column] = tileInHand;
+			break;
 			//up
 		case "left":
 			newTileInHand = getTileAt(row,0);
@@ -120,6 +121,7 @@ public class Board {
 				board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
+			break;
 			//right
 		case "right":
 			newTileInHand = getTileAt(row,6);
@@ -127,6 +129,7 @@ public class Board {
 				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
+			break;
 			//left
 		case "up":
 			newTileInHand = getTileAt(0,column);
@@ -134,6 +137,7 @@ public class Board {
 				board[t][column] = getTileAt(t+1,column);
 			}
 			board[6][column] = tileInHand;
+			break;
 		}
 		this.tileInHand = newTileInHand;
 		System.out.println("New Tile added:");
