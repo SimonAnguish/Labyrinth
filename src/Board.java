@@ -115,6 +115,7 @@ public class Board {
 			for(int i = 1;i<7;i++){
 				board[i][column] = tempdown[i-1];
 			}
+			break;
 			//up
 		case 2:
 			newTileInHand = getTileAt(0,column);
@@ -126,6 +127,7 @@ public class Board {
 			for(int i =5;i>-1;i--){
 				board[i][column] = tempup[i+1];
 			}
+			break;
 			//right
 		case 3:
 			newTileInHand = getTileAt(row,6);
@@ -137,6 +139,7 @@ public class Board {
 			for(int i =1;i<7;i++ ){
 				board[row][i] = tempright[i-1];
 			}
+			break;
 			//left
 		case 4:
 			newTileInHand = getTileAt(row,0);
@@ -148,6 +151,7 @@ public class Board {
 			for(int i = 5;i>-1;i--){
 				board[row][i] = templeft[i+1];
 			}
+			break;
 		}
 		return newTileInHand;
 	}
