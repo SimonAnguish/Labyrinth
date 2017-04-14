@@ -17,6 +17,7 @@ class GraphicUI extends JFrame{
 	Board board;
 	
 	GameManager gm = new GameManager();
+	TilePanel handTile;
 
 	public GraphicUI() {
 		board = gm.board;
@@ -40,7 +41,7 @@ class GraphicUI extends JFrame{
 		rightOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		rightOptionsPanel.setBorder(new EmptyBorder(80, 100, 80, 125));
 		
-		TilePanel handTile = new TilePanel(b.tileInHand, 50);
+		handTile = new TilePanel(b.tileInHand, 50);
 		
 		rightOptionsPanel.add(handTile);
 
@@ -134,27 +135,10 @@ class GraphicUI extends JFrame{
 		northPanel.add(northArrow_2);
 		JArrow northArrow_3 = new JArrow("down", 5, 0);
 		northPanel.add(northArrow_3);
-		
-		northArrow_1.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(northArrow_1.getRow() + " | " + northArrow_1.getCol());
-			}
-		});
-		
-		northArrow_2.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(northArrow_2.getRow() + " | " + northArrow_2.getCol());
-			}
-		});
-		
-		northArrow_3.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(northArrow_3.getRow() + " | " + northArrow_3.getCol());
-			}
-		});
+
+		addArrowActionListeners(northArrow_1);
+		addArrowActionListeners(northArrow_2);
+		addArrowActionListeners(northArrow_3);
 		
 		JArrow southArrow_1 = new JArrow("up", 1, 0);
 		southPanel.add(southArrow_1);
@@ -162,27 +146,10 @@ class GraphicUI extends JFrame{
 		southPanel.add(southArrow_2);
 		JArrow southArrow_3 = new JArrow("up", 5, 0);
 		southPanel.add(southArrow_3);
-		
-		southArrow_1.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(southArrow_1.getRow() + " | " + southArrow_1.getCol());
-			}
-		});
-		
-		southArrow_2.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(southArrow_2.getRow() + " | " + southArrow_2.getCol());
-			}
-		});
-		
-		southArrow_3.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
-				System.out.println(southArrow_3.getRow() + " | " + southArrow_3.getCol());
-			}
-		});
+
+		addArrowActionListeners(southArrow_1);
+		addArrowActionListeners(southArrow_2);
+		addArrowActionListeners(southArrow_3);
 
 		JArrow eastArrow_1 = new JArrow("left", 0, 1);
 		eastPanel.add(eastArrow_1);
@@ -231,8 +198,9 @@ class GraphicUI extends JFrame{
 	void addArrowActionListeners(JArrow arrow) {
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				upLabel.insertTile(upLabel.getRowCol(i, j));
+				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
 				System.out.println(arrow.getRow() + " | " + arrow.getCol() + " | " + arrow.getDir());
+				handTile.repaint();
 			}
 		});
 	}
