@@ -1,11 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.EmptyBorder;
+import java.awt.event.*;
 
-class JArrow extends JLabel {
-	JArrow(ImageIcon img, int row, int col, String direction) {
+class JArrow extends JLabel implements MouseListener {
+	private int row;
+	private int col;
+
+	JArrow(ImageIcon img, int row, int col) {
 		super.setIcon(img);
-		System.out.println("New JArrow added at " + row + ", " + col + " " + direction);
-		super.setHorizontalAlignment(JLabel.CENTER);
+		this.row = row;
+		this.col = col;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
 	}
 }
