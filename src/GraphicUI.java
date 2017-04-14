@@ -132,15 +132,15 @@ class GraphicUI extends JFrame{
 //
 		for (int i=0;i<7;i++) {
 			if (i % 2 == 1) {
-				northPanel.add(new JArrow(new ImageIcon("../docs/down_triangle_button.png"), i, 0, "down"));
-				southPanel.add(new JArrow(new ImageIcon("../docs/up_triangle_button.png"), i, 0, "up"));
+				northPanel.add(new JArrow(new ImageIcon("../docs/down_triangle_button.png"), i, 0));
+				southPanel.add(new JArrow(new ImageIcon("../docs/up_triangle_button.png"), i, 0));
 				printArrow = true;
 				
 			} 
 			for (int j=0;j<7;j++) {
 				if (printArrow && j % 2 == 1) {
-					eastPanel.add(new JArrow(new ImageIcon("../docs/left_triangle_button.png"), 0, j, "left"));
-					westPanel.add(new JArrow(new ImageIcon("../docs/right_triangle_button.png"), 0, j, "right"));
+					eastPanel.add(new JArrow(new ImageIcon("../docs/left_triangle_button.png"), 0, j));
+					westPanel.add(new JArrow(new ImageIcon("../docs/right_triangle_button.png"), 0, j));
 					printArrow = false;
 				}
 				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
