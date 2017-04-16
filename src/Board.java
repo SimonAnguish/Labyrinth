@@ -85,6 +85,12 @@ public class Board {
 			tileHeap.add(new Tile(true, true, false, false));
 		}
 
+		Random rand = new Random();
+
+		for (Tile tileToRotate : tileHeap) {
+			tileToRotate.rotate(rand.nextInt(4));
+		}
+
 		Collections.shuffle(tileHeap);
 
 		return tileHeap;
@@ -104,9 +110,9 @@ public class Board {
 	public void insertTile(String direction, int row, int column){
 
 		Tile newTileInHand = null;
-		System.out.println("Inserting tile");
+		System.out.println("Inserting tile" + direction);
 		switch(direction){
-		//down 
+
 		case "down": 
 			newTileInHand = getTileAt(6,column);
 			for(int t=6;t>0;t--){
@@ -114,7 +120,6 @@ public class Board {
 			}
 			board[0][column] = tileInHand;
 			break;
-			//up
 		case "left":
 			newTileInHand = getTileAt(row,0);
 			for(int t=0;t<6;t++){
@@ -122,7 +127,6 @@ public class Board {
 			}
 			board[row][6] = tileInHand;
 			break;
-			//right
 		case "right":
 			newTileInHand = getTileAt(row,6);
 			for(int t=6;t>0;t--){
@@ -130,7 +134,6 @@ public class Board {
 			}
 			board[row][0] = tileInHand;
 			break;
-			//left
 		case "up":
 			newTileInHand = getTileAt(0,column);
 			for(int t=0;t<6;t++){

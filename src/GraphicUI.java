@@ -129,44 +129,44 @@ class GraphicUI extends JFrame{
 		westPanel.setBackground(Color.LIGHT_GRAY);
 		westPanel.setBorder(new EmptyBorder(50, 0, 50, 0));
 		
-		JArrow northArrow_1 = new JArrow("down", 1, 0);
+		JArrow northArrow_1 = new JArrow("down", 0, 1);
 		northPanel.add(northArrow_1);
-		JArrow northArrow_2 = new JArrow("down", 3, 0);
+		JArrow northArrow_2 = new JArrow("down", 0, 3);
 		northPanel.add(northArrow_2);
-		JArrow northArrow_3 = new JArrow("down", 5, 0);
+		JArrow northArrow_3 = new JArrow("down", 0, 5);
 		northPanel.add(northArrow_3);
 
 		addArrowActionListeners(northArrow_1);
 		addArrowActionListeners(northArrow_2);
 		addArrowActionListeners(northArrow_3);
 		
-		JArrow southArrow_1 = new JArrow("up", 1, 0);
+		JArrow southArrow_1 = new JArrow("up", 0, 1);
 		southPanel.add(southArrow_1);
-		JArrow southArrow_2 = new JArrow("up", 3, 0);
+		JArrow southArrow_2 = new JArrow("up", 0, 3);
 		southPanel.add(southArrow_2);
-		JArrow southArrow_3 = new JArrow("up", 5, 0);
+		JArrow southArrow_3 = new JArrow("up", 0, 5);
 		southPanel.add(southArrow_3);
 
 		addArrowActionListeners(southArrow_1);
 		addArrowActionListeners(southArrow_2);
 		addArrowActionListeners(southArrow_3);
 
-		JArrow eastArrow_1 = new JArrow("left", 0, 1);
+		JArrow eastArrow_1 = new JArrow("left", 1, 0);
 		eastPanel.add(eastArrow_1);
-		JArrow eastArrow_2 = new JArrow("left", 0, 3);
+		JArrow eastArrow_2 = new JArrow("left", 3, 0);
 		eastPanel.add(eastArrow_2);
-		JArrow eastArrow_3 = new JArrow("left", 0, 5);
+		JArrow eastArrow_3 = new JArrow("left", 5, 0);
 		eastPanel.add(eastArrow_3);
 		
 		addArrowActionListeners(eastArrow_1);
 		addArrowActionListeners(eastArrow_2);
 		addArrowActionListeners(eastArrow_3);
 
-		JArrow westArrow_1 = new JArrow("right", 0, 1);
+		JArrow westArrow_1 = new JArrow("right", 1, 0);
 		westPanel.add(westArrow_1);
-		JArrow westArrow_2 = new JArrow("right", 0, 3);
+		JArrow westArrow_2 = new JArrow("right", 3, 0);
 		westPanel.add(westArrow_2);
-		JArrow westArrow_3 = new JArrow("right", 0, 5);
+		JArrow westArrow_3 = new JArrow("right", 5, 0);
 		westPanel.add(westArrow_3);
 
 		addArrowActionListeners(westArrow_1);
