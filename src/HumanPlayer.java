@@ -4,6 +4,8 @@
  */
 public class HumanPlayer extends Player {
     
+    public int[] location = {6,6};
+    
     /**
     * Constructor
     */

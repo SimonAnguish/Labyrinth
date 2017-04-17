@@ -20,7 +20,11 @@ class GraphicUI extends JFrame{
 	
 	GameManager gm = new GameManager();
 	TilePanel handTile;
-
+	JPanel scorePanel = new JPanel(new BorderLayout());
+	
+	JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
+	JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
+	
 	public GraphicUI() {
 		board = gm.board;
 
@@ -40,7 +44,6 @@ class GraphicUI extends JFrame{
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
 		rightOptionsPanel.setPreferredSize(new Dimension(FRAME_WIDTH - FRAME_HEIGHT + 50, 500));
-		// rightOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		rightOptionsPanel.setBorder(new EmptyBorder(80, 100, 80, 125));
 		
 		handTile = new TilePanel(b.tileInHand, 60);
@@ -48,7 +51,6 @@ class GraphicUI extends JFrame{
 		rightOptionsPanel.add(handTile);
 
 		JPanel tileOptionsPanel = new JPanel();
-		// tileOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		
 		JLabel rotateLabel = new JLabel(new ImageIcon("../docs/rotate-clockwise.png"));
 
@@ -74,13 +76,10 @@ class GraphicUI extends JFrame{
 	}
 
 	JPanel makeScorePanel() {
-		JPanel scorePanel = new JPanel(new BorderLayout());
+		
 		scorePanel.setBackground(Color.DARK_GRAY);
 		scorePanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
-
-		JLabel playerScore = new JLabel("Player: 0");
-		JLabel computerScore = new JLabel("Computer: 0");
 
 		playerScore.setFont(new Font("Serif", Font.BOLD, 20));
 		computerScore.setFont(new Font("Serif", Font.BOLD, 20));
@@ -112,10 +111,10 @@ class GraphicUI extends JFrame{
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_WIDTH));
 		
 		JPanel northPanel = new JPanel(new GridLayout(1,3));
-		northPanel.setBorder(new EmptyBorder(0, 130, 0, 60));
+		northPanel.setBorder(new EmptyBorder(0, 130, 0, 70));
 		
 		JPanel southPanel = new JPanel(new GridLayout(1,3));
-		southPanel.setBorder(new EmptyBorder(0, 130, 0, 60));
+		southPanel.setBorder(new EmptyBorder(0, 130, 0, 70));
 		
 		JPanel eastPanel = new JPanel(new GridLayout(3,1));
 		eastPanel.setBorder(new EmptyBorder(40, 0, 40, 0));
@@ -169,8 +168,10 @@ class GraphicUI extends JFrame{
 		
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
-				boardPanels[i][j] = new TilePanel(b.getTileAt(i,j));
+				boardPanels[i][j] = new TilePanel(b.getTileAt(i,j), i, j);
 				boardPanel.add(boardPanels[i][j]);
+				
+				addTileActionListeners(boardPanels[i][j]);
 
 				if (i%2==0 && j%2==0) {
 					boardPanels[i][j].makeImmovable();
@@ -192,18 +193,30 @@ class GraphicUI extends JFrame{
 		return boardWrapper;
 	}
 	
+	void addTileActionListeners(TilePanel tile) {
+		tile.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Moving to " + tile.getTileLocation());
+			}
+		});
+	}
+	
 	void addArrowActionListeners(JArrow arrow) {
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-				for (int i=0;i<7;i++) {
-					for (int j=0;j<7;j++) {
-						boardPanels[i][j].setTile(board.getTileAt(i,j));
-					}
-				}
+				paintBoard();
 				handTile.setTile(board.tileInHand);
 			}
 		});
+	}
+	
+	void paintBoard() {
+		for (int i=0;i<7;i++) {
+			for (int j=0;j<7;j++) {
+				boardPanels[i][j].setTile(board.getTileAt(i,j));
+			}
+		}
 	}
 
 	void callHelpScreen() {

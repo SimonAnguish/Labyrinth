@@ -4,20 +4,38 @@ import java.awt.*;
 class TilePanel extends JComponent {
 	int bSize = 20;
 	public Tile tile = new Tile(true, true, true, true);
-
+	
+	boolean staticTile = false;
+	
+	int[] tileLocation = new int[2];
+	
 	boolean hasPlayer = false;
 	boolean hasComputer = false;
-	TilePanel(Tile tile) {
+	
+	TilePanel(Tile tile, int x, int y) {
 		setSize(new Dimension(bSize, bSize));
 		this.tile = tile;
+		
+		tileLocation[0] = x;
+		tileLocation[1] = y;
 
-		this.tile.linkTilePanel(this);
+//		this.tile.linkTilePanel(this);
 	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
 		if (tile.treasure != null) add(new JLabel(tile.treasure.toString()));
+		if (staticTile) {
+			g2.setColor(Color.LIGHT_GRAY);
+			
+			for (int i=0;i<3;i++) {
+				for (int j=0;j<3;j++) {
+					g2.fillRect(i*bSize,j*bSize,bSize,bSize);
+				}
+			}
+		}
+		
 		if (hasPlayer) {
 			g2.setColor(Color.GREEN);
 			g2.fillRect(bSize,bSize,bSize,bSize);
@@ -73,7 +91,12 @@ class TilePanel extends JComponent {
 	}
 
 	public void makeImmovable() {
-		setBackground(Color.DARK_GRAY);
+		staticTile = true;
+		repaint();
+	}
+	
+	public int[] getTileLocation() {
+		return tileLocation;
 	}
 
 	TilePanel(Tile tile, int newTileSize) {
@@ -83,6 +106,6 @@ class TilePanel extends JComponent {
 
 		this.tile = tile;
 
-		this.tile.linkTilePanel(this);
+//		this.tile.linkTilePanel(this);
 	}
 }

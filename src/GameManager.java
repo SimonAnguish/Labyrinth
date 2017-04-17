@@ -19,6 +19,9 @@ public class GameManager {
       // Initialize board, deck
       board = new Board();
       deck = new Deck();
+      
+      user = new HumanPlayer();
+      computer = new ComputerPlayer();
 
       System.out.println("Welcome to Labyrinth, made for CS 205 by Yifan, Simon, and Sean");
    }
@@ -27,10 +30,6 @@ public class GameManager {
       // Depending on user input, we either help, play, or exit the game
 
       System.out.println("Lets play Labyrinth.");
-      
-      // Create the instances of user and computer
-      user = new HumanPlayer();
-      computer = new ComputerPlayer();
       
       // Shuffle the deck
       deck.shuffle();
@@ -67,6 +66,14 @@ public class GameManager {
 //            player_turn = true;
 //         }
 //      }
+   }
+   
+   public boolean canPlayerMove(TilePanel panel) {
+      return true;
+   }
+   
+   public void moveCurrentPlayerTo(TilePanel panel) {
+      panel.setPlayer();
    }
    
    /**

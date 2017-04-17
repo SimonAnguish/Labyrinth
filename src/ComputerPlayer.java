@@ -5,6 +5,8 @@
  */
 public class ComputerPlayer extends Player{
     
+    int location[] = {0,0};
+    
     /**
      * Constructor that takes the local UI object
      * @param ui UserInterface
