@@ -207,6 +207,10 @@ class GraphicUI extends JFrame{
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
 				paintBoard();
 				handTile.setTile(board.tileInHand);
+				gm.user.removeTopCard();
+				
+				playerScore.setText("Player: " + gm.user.getScore());
+				computerScore.setText("Computer: " + gm.computer.getScore());
 			}
 		});
 	}

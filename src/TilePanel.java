@@ -101,11 +101,8 @@ class TilePanel extends JComponent {
 
 	TilePanel(Tile tile, int newTileSize) {
 		bSize = newTileSize;
-		
 		setSize(new Dimension(bSize, bSize));
 
 		this.tile = tile;
-
-//		this.tile.linkTilePanel(this);
 	}
 }

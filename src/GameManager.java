@@ -27,14 +27,9 @@ public class GameManager {
    }
    
    public void run() {
-      // Depending on user input, we either help, play, or exit the game
-
-      System.out.println("Lets play Labyrinth.");
-      
       // Shuffle the deck
       deck.shuffle();
       
-      // Deal hands to the user and the computer
       dealHands(user, computer);
       
       // Initialize a boolean to determine turns
