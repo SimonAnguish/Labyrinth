@@ -15,6 +15,8 @@ class GraphicUI extends JFrame{
 	final int BOARD_WIDTH = 470;
 
 	Board board;
+
+	TilePanel boardPanels[][] = new TilePanel[7][7];
 	
 	GameManager gm = new GameManager();
 	TilePanel handTile;
@@ -175,7 +177,8 @@ class GraphicUI extends JFrame{
 		
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
-				boardPanel.add(new TilePanel(b.getTileAt(i,j)));
+				boardPanels[i][j] = new TilePanel(b.getTileAt(i,j));
+				boardPanel.add(boardPanels[i][j]);
 			}
 		}
 		
@@ -194,6 +197,11 @@ class GraphicUI extends JFrame{
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
+				for (int i=0;i<7;i++) {
+					for (int j=0;j<7;j++) {
+						boardPanels[i][j].setTile(board.getTileAt(i,j));
+					}
+				}
 				handTile.setTile(board.tileInHand);
 			}
 		});

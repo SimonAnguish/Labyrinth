@@ -114,7 +114,7 @@ public class Board {
 		case "down": 
 			newTileInHand = getTileAt(6,column);
 			for(int t=6;t>0;t--){
-				board[t][column].getTilePanel().setTile(getTileAt(t-1, column));
+				// board[t][column].getTilePanel().setTile(getTileAt(t-1, column));
 				board[t][column] = getTileAt(t-1,column);
 			}
 			board[0][column] = tileInHand;
@@ -122,7 +122,7 @@ public class Board {
 		case "up":
 			newTileInHand = getTileAt(0,column);
 			for(int t=0;t<6;t++){
-				board[t][column].getTilePanel().setTile(getTileAt(t+1, column));
+				// board[t][column].getTilePanel().setTile(getTileAt(t+1, column));
 				board[t][column] = getTileAt(t+1,column);
 			}
 			board[6][column] = tileInHand;
@@ -130,7 +130,7 @@ public class Board {
 		case "left":
 			newTileInHand = getTileAt(row,0);
 			for(int t=0;t<6;t++){
-				board[row][t].getTilePanel().setTile(getTileAt(row, t+1));
+				// board[row][t].getTilePanel().setTile(getTileAt(row, t+1));
 				board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
@@ -138,7 +138,7 @@ public class Board {
 		case "right":
 			newTileInHand = getTileAt(row,6);
 			for(int t=6;t>0;t--){
-				board[row][t].getTilePanel().setTile(getTileAt(row, t-1));
+				// board[row][t].getTilePanel().setTile(getTileAt(row, t-1));
 				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
