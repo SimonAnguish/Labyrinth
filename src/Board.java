@@ -110,19 +110,27 @@ public class Board {
 	public void insertTile(String direction, int row, int column){
 
 		Tile newTileInHand = null;
-		System.out.println("Inserting tile" + direction);
 		switch(direction){
-
 		case "down": 
 			newTileInHand = getTileAt(6,column);
 			for(int t=6;t>0;t--){
+				board[t][column].getTilePanel().setTile(getTileAt(t-1, column));
 				board[t][column] = getTileAt(t-1,column);
 			}
 			board[0][column] = tileInHand;
 			break;
+		case "up":
+			newTileInHand = getTileAt(0,column);
+			for(int t=0;t<6;t++){
+				board[t][column].getTilePanel().setTile(getTileAt(t+1, column));
+				board[t][column] = getTileAt(t+1,column);
+			}
+			board[6][column] = tileInHand;
+			break;
 		case "left":
 			newTileInHand = getTileAt(row,0);
 			for(int t=0;t<6;t++){
+				board[row][t].getTilePanel().setTile(getTileAt(row, t+1));
 				board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
@@ -130,20 +138,16 @@ public class Board {
 		case "right":
 			newTileInHand = getTileAt(row,6);
 			for(int t=6;t>0;t--){
+				board[row][t].getTilePanel().setTile(getTileAt(row, t-1));
 				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
 			break;
-		case "up":
-			newTileInHand = getTileAt(0,column);
-			for(int t=0;t<6;t++){
-				board[t][column] = getTileAt(t+1,column);
-			}
-			board[6][column] = tileInHand;
-			break;
 		}
+
+
 		this.tileInHand = newTileInHand;
-		System.out.println("New Tile added:");
-		System.out.println(tileInHand.toString());
+		System.out.println("New Tile in hand:\n================================");
+		System.out.println(tileInHand.toString() + "\n===================================");
 	}
 }

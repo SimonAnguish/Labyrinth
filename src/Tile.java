@@ -1,3 +1,5 @@
+import java.lang.*;
+
 /**
 	@Author SimonAnguish
 */
@@ -7,6 +9,8 @@ class Tile {
 	public boolean south;
 	public boolean east;
 	public boolean west;
+
+	private TilePanel linkedTilePanel = null;
 	
 	Treasure treasure;
 
@@ -68,6 +72,31 @@ class Tile {
 			temp2 = this.east;
 			this.east = temp1;
 		}
+	}
+
+	public void linkTilePanel(TilePanel tilePanel) {
+		this.linkedTilePanel = tilePanel;
+		if (linkedTilePanel == null) {
+			System.out.println("This didn't work");
+
+			System.out.println("Should print out this tile:\n" + tilePanel.tile.toString());
+		} else {
+			System.out.println("Tile Panel set. Tile is: \n" + linkedTilePanel.tile.toString());
+		}
+	}
+
+	public TilePanel getTilePanel() {
+		return linkedTilePanel;
+	}
+
+	public void paintTilePanel() {
+		try {
+			linkedTilePanel.repaint();
+			System.out.println("Repainting to \n" + linkedTilePanel.tile.toString());
+		} catch (NullPointerException e) {
+			System.out.println("It looks like linkedTilePanel was never set.");
+		}
+		
 	}
 
 	/**

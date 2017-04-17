@@ -41,7 +41,7 @@ class GraphicUI extends JFrame{
 		rightOptionsPanel.setBackground(Color.LIGHT_GRAY);
 		rightOptionsPanel.setBorder(new EmptyBorder(80, 100, 80, 125));
 		
-		handTile = new TilePanel(b.tileInHand, 50);
+		handTile = new TilePanel(b.tileInHand, 60);
 		
 		rightOptionsPanel.add(handTile);
 
@@ -136,9 +136,9 @@ class GraphicUI extends JFrame{
 		JArrow northArrow_3 = new JArrow("down", 0, 5);
 		northPanel.add(northArrow_3);
 
-		addArrowActionListeners(northArrow_1);
-		addArrowActionListeners(northArrow_2);
-		addArrowActionListeners(northArrow_3);
+		addArrowActionListeners(northArrow_1, boardPanel);
+		addArrowActionListeners(northArrow_2, boardPanel);
+		addArrowActionListeners(northArrow_3, boardPanel);
 		
 		JArrow southArrow_1 = new JArrow("up", 0, 1);
 		southPanel.add(southArrow_1);
@@ -147,9 +147,9 @@ class GraphicUI extends JFrame{
 		JArrow southArrow_3 = new JArrow("up", 0, 5);
 		southPanel.add(southArrow_3);
 
-		addArrowActionListeners(southArrow_1);
-		addArrowActionListeners(southArrow_2);
-		addArrowActionListeners(southArrow_3);
+		addArrowActionListeners(southArrow_1, boardPanel);
+		addArrowActionListeners(southArrow_2, boardPanel);
+		addArrowActionListeners(southArrow_3, boardPanel);
 
 		JArrow eastArrow_1 = new JArrow("left", 1, 0);
 		eastPanel.add(eastArrow_1);
@@ -158,9 +158,9 @@ class GraphicUI extends JFrame{
 		JArrow eastArrow_3 = new JArrow("left", 5, 0);
 		eastPanel.add(eastArrow_3);
 		
-		addArrowActionListeners(eastArrow_1);
-		addArrowActionListeners(eastArrow_2);
-		addArrowActionListeners(eastArrow_3);
+		addArrowActionListeners(eastArrow_1, boardPanel);
+		addArrowActionListeners(eastArrow_2, boardPanel);
+		addArrowActionListeners(eastArrow_3, boardPanel);
 
 		JArrow westArrow_1 = new JArrow("right", 1, 0);
 		westPanel.add(westArrow_1);
@@ -169,9 +169,9 @@ class GraphicUI extends JFrame{
 		JArrow westArrow_3 = new JArrow("right", 5, 0);
 		westPanel.add(westArrow_3);
 
-		addArrowActionListeners(westArrow_1);
-		addArrowActionListeners(westArrow_2);
-		addArrowActionListeners(westArrow_3);
+		addArrowActionListeners(westArrow_1, boardPanel);
+		addArrowActionListeners(westArrow_2, boardPanel);
+		addArrowActionListeners(westArrow_3, boardPanel);
 		
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
@@ -185,22 +185,16 @@ class GraphicUI extends JFrame{
 		boardWrapper.add(westPanel, BorderLayout.WEST);
 
 		boardWrapper.add(boardPanel, BorderLayout.CENTER);
-//		boardWrapper.add(downLabel, BorderLayout.NORTH);
-//		boardWrapper.add(upLabel, BorderLayout.SOUTH);
-//		boardWrapper.add(leftLabel, BorderLayout.EAST);
-//		boardWrapper.add(rightLabel, BorderLayout.WEST);
-		
 		
 //		return boardPanel;
 		return boardWrapper;
 	}
 	
-	void addArrowActionListeners(JArrow arrow) {
+	void addArrowActionListeners(JArrow arrow, JPanel boardPanel) {
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-				System.out.println(arrow.getRow() + " | " + arrow.getCol() + " | " + arrow.getDir());
-				handTile.repaint();
+				handTile.setTile(board.tileInHand);
 			}
 		});
 	}

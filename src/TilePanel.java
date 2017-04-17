@@ -3,11 +3,12 @@ import java.awt.*;
 
 class TilePanel extends JComponent {
 	int bSize = 20;
-	Tile tile = new Tile(true, true, true, true);
+	public Tile tile = new Tile(true, true, true, true);
 	TilePanel(Tile tile) {
 		setSize(new Dimension(bSize, bSize));
-
 		this.tile = tile;
+
+		this.tile.linkTilePanel(this);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -43,11 +44,18 @@ class TilePanel extends JComponent {
 		repaint();
 	}
 
+	public void setTile(Tile newTile) {
+		this.tile = newTile;
+		repaint();
+	}
+
 	TilePanel(Tile tile, int newTileSize) {
 		bSize = newTileSize;
 		
 		setSize(new Dimension(bSize, bSize));
 
 		this.tile = tile;
+
+		this.tile.linkTilePanel(this);
 	}
 }
