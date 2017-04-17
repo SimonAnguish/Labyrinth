@@ -4,6 +4,9 @@ import java.awt.*;
 class TilePanel extends JComponent {
 	int bSize = 20;
 	public Tile tile = new Tile(true, true, true, true);
+
+	boolean hasPlayer = false;
+	boolean hasComputer = false;
 	TilePanel(Tile tile) {
 		setSize(new Dimension(bSize, bSize));
 		this.tile = tile;
@@ -13,10 +16,20 @@ class TilePanel extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.BLACK);
 
-		g2.fillRect(bSize,bSize,bSize,bSize);
 		if (tile.treasure != null) add(new JLabel(tile.treasure.toString()));
+		if (hasPlayer) {
+			g2.setColor(Color.GREEN);
+			g2.fillRect(bSize,bSize,bSize,bSize);
+			g2.setColor(Color.BLACK);
+		} else if (hasComputer) {
+			g2.setColor(Color.RED);
+			g2.fillRect(bSize,bSize,bSize,bSize);
+			g2.setColor(Color.BLACK);
+		} else {
+			g2.setColor(Color.BLACK);
+			g2.fillRect(bSize,bSize,bSize,bSize);
+		}
 
 		if (tile.north) {
 			g2.fillRect(bSize,0,bSize,bSize);
@@ -47,6 +60,20 @@ class TilePanel extends JComponent {
 	public void setTile(Tile newTile) {
 		this.tile = newTile;
 		repaint();
+	}
+
+	public void setPlayer() {
+		this.hasPlayer = !this.hasPlayer;
+		repaint();
+	}
+
+	public void setComputer() {
+		this.hasComputer = !this.hasComputer;
+		repaint();
+	}
+
+	public void makeImmovable() {
+		setBackground(Color.DARK_GRAY);
 	}
 
 	TilePanel(Tile tile, int newTileSize) {
