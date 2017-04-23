@@ -1,5 +1,5 @@
 /**
-   @Author SeanKates
+   @Author SeanKates&&Simon&&Yifan
  * GameManager handles the gameplay of Labyrinth
  */
 
@@ -62,14 +62,82 @@ public class GameManager {
 //         }
 //      }
    }
+   /**
+       * check if there exists a path to the destination
+       * @param curPanel This is the place where player is
+       * @param desPanel This is the place that the player wants to go
+       * @param board
+       * @return if there exists a path to the destination,then it returns true, otherwise returns false
+       */
+   public boolean canPlayerMove(TilePanel curPanel,TilePanel desPanel,Board board) {
+   	   boolean[][] visited = new boolean[7][7];
+   	   visited[curPanel.tileLocation[0]][curPanel.tileLocation[1]] = true;
+   	   LinkedList<TilePanel> bfsQueue = new LinkedList<TilePanel>();
+   	   Tile neiTile;
+   	   int tileX;
+   	   int tileY;
+   	   bfsQueue.add(curPanel);
+   	   while(bfsQueue.size()>0){
+   		   TilePanel preTilePanel = bfsQueue.poll();
+   		   if(preTilePanel.tileLocation[0]>0){
+   			   tileX = preTilePanel.tileLocation[0]-1;
+   			   tileY = preTilePanel.tileLocation[1];
+   			   neiTile = board.getTileAt(tileX, tileY);
+   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.WEST)){
+   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   				   bfsQueue.add(tilePanel);
+   				   visited[tileX][tileY] = true;
+   			   }
+					   
+   		   }
+   		   if(preTilePanel.tileLocation[0]<6){
+   			   tileX = preTilePanel.tileLocation[0]+1;
+   			   tileY = preTilePanel.tileLocation[1];
+   			   neiTile = board.getTileAt(tileX, tileY);
+   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.EAST)){
+   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   				   bfsQueue.add(tilePanel);
+   				   visited[tileX][tileY] = true;
+   			   }
+   		   }
+   		   if(preTilePanel.tileLocation[1]>0){
+   			   tileX = preTilePanel.tileLocation[0];
+   			   tileY = preTilePanel.tileLocation[1]-1;
+   			   neiTile = board.getTileAt(tileX, tileY);
+   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.NORTH)){
+   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   				   bfsQueue.add(tilePanel);
+   				   visited[tileX][tileY] = true;
+   			   }
+					   
+   		   }
+   		   if(preTilePanel.tileLocation[1]<6){
+   			   tileX = preTilePanel.tileLocation[0];
+   			   tileY = preTilePanel.tileLocation[1]+1;
+   			   neiTile = board.getTileAt(tileX, tileY);
+   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.SOUTH)){
+   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   				   bfsQueue.add(tilePanel);
+   				   visited[tileX][tileY] = true;
+   			   }
+   		   }
+		   
+   	   }
+   	   return visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]];
+      }
+	  /**
+	      * if there exists a path to the destination, move the player to destination
+	      * @param curPanel This is the place where player is
+	      * @param desPanel This is the place the player wants to go
+	      * @param board
+	      */
+      public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel,Board board) {
+         if(canPlayerMove(curPanel, desPanel, board))
+       	  desPanel.setPlayer();
+         else
+       	  System.out.println("You could not move to that place.");
+      }
    
-   public boolean canPlayerMove(TilePanel panel) {
-      return true;
-   }
-   
-   public void moveCurrentPlayerTo(TilePanel panel) {
-      panel.setPlayer();
-   }
    
    /**
     * checkForWinner method checks both players hands to see if someone has won
