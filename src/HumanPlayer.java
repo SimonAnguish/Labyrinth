@@ -19,7 +19,7 @@ public class HumanPlayer extends Player {
      * @param board Board
      */
     @Override
-    public void takeTurn(GameManager gm,TilePanel handTile,TilePanel[][] boardPanels){
+    public void takeTurn(GameManager gm, TilePanel[][] boardPanels){
          System.out.println("*********************************");
          System.out.println("Your Hand: " + getHand());
          System.out.println("You reached your goal: " + getTopCard());

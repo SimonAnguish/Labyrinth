@@ -3,6 +3,8 @@
  * Extends the Player Class and is the counterpart of the HumanPlayer class
  * Handles gameplay for the computer
  */
+import java.util.*;
+
 public class ComputerPlayer extends Player{
     
     int location[] = {0,0};
@@ -21,69 +23,70 @@ public class ComputerPlayer extends Player{
      * @param board Board
      */
     @Override
-    public void takeTurn(GameManager gm, TilePanel handInTile,TilePanel[][] boardPanels){
-         System.out.println("*********************************");
-         System.out.println("Computers Hand: " + getHand());
-         System.out.println("Computers score: " + getScore());
- 		int rotateNo;
- 		TilePanel curPanel = null;
- 		TilePanel desPanel = null;
- 		rotateNo = (int)Math.random()*3+1;
- 		for(int i = 0;i<rotateNo;i++){
- 			handInTile.tile.rotate(1);
- 		}
- 		System.out.println("The tile in hand rotated "+rotateNo +"times.");
- 		int randomDir;
- 		int randomCol;
- 		int randomRow;
- 		randomDir = (int)Math.random()*4;
- 		switch(randomDir){
- 		case 0:
- 			randomCol = (int)Math.random()*5+1;
- 			if(randomCol % 2 ==0 )
- 				randomCol = randomCol+1;
- 			gm.board.insertTile("down", 0, randomCol);
- 			break;
- 		case 1:
- 			randomCol = (int)Math.random()*5+1;
- 			if(randomCol % 2 ==0 )
- 				randomCol = randomCol+1;
- 			gm.board.insertTile("up", 6, randomCol);
- 			break;
- 		case 2:
- 			randomRow = (int)Math.random()*5+1;
- 			if(randomRow % 2 ==0 )
- 				randomRow = randomRow+1;
- 			gm.board.insertTile("right", randomRow, 0);
- 			break;
- 		case 3:
- 			randomRow = (int)Math.random()*5+1;
- 			if(randomRow % 2 ==0 )
- 				randomRow = randomRow+1;
- 			gm.board.insertTile("left", randomRow, 6);
- 			break;
- 		}
- 		for(int i=0;i<boardPanels.length;i++){
- 			for(int j=0;j<boardPanels[i].length;j++){
- 				if(boardPanels[i][j].hasComputer){
- 					curPanel = boardPanels[i][j];
- 				}
- 				if(boardPanels[i][j].tile.treasure == getTopCard()){
- 					desPanel = boardPanels[i][j];
- 				}
-
- 			}
- 		}
- 		moveComputerPlayerTo(curPanel,desPanel,gm.board);
+    public void takeTurn(GameManager gm, TilePanel[][] boardPanels){
+      // System.out.println("*********************************");
+//       System.out.println("Computers Hand: " + getHand());
+//       System.out.println("Computers score: " + getScore());
+//  		int rotateNo;
+//  		TilePanel curPanel = null;
+//  		TilePanel desPanel = null;
+//  		rotateNo = (int)Math.random()*3+1;
+//  		for(int i = 0;i<rotateNo;i++){
+//  			gm.board.tileInHand.rotate(1);
+//  		}
+//  		System.out.println("The tile in hand rotated "+rotateNo +"times.");
+//  		int randomDir;
+//  		int randomCol;
+//  		int randomRow;
+//  		randomDir = (int)Math.random()*4;
+//  		switch(randomDir){
+//  		case 0:
+//  			randomCol = (int)Math.random()*5+1;
+//  			if(randomCol % 2 ==0 )
+//  				randomCol = randomCol+1;
+//  			gm.board.insertTile("down", 0, randomCol);
+//  			break;
+//  		case 1:
+//  			randomCol = (int)Math.random()*5+1;
+//  			if(randomCol % 2 ==0 )
+//  				randomCol = randomCol+1;
+//  			gm.board.insertTile("up", 6, randomCol);
+//  			break;
+//  		case 2:
+//  			randomRow = (int)Math.random()*5+1;
+//  			if(randomRow % 2 ==0 )
+//  				randomRow = randomRow+1;
+//  			gm.board.insertTile("right", randomRow, 0);
+//  			break;
+//  		case 3:
+//  			randomRow = (int)Math.random()*5+1;
+//  			if(randomRow % 2 ==0 )
+//  				randomRow = randomRow+1;
+//  			gm.board.insertTile("left", randomRow, 6);
+//  			break;
+//  		}
+//  		for(int i=0;i<boardPanels.length;i++){
+//  			for(int j=0;j<boardPanels[i].length;j++){
+//  				if(boardPanels[i][j].hasComputer){
+//  					curPanel = boardPanels[i][j];
+//  				}
+//  				if(boardPanels[i][j].tile.treasure == getTopCard()){
+//  					desPanel = boardPanels[i][j];
+//  				}
+// 
+//  			}
+//  		}
+//  		moveComputerPlayerTo(curPanel,desPanel,gm.board);
  		 
-         // Check for a winner
-         if (!gm.checkForWinner()){
-            // Have the user take a turn if no winner
-            gm.user.takeTurn(gm);
-         }else{
-            gm.callWinScreen();
-         }
+      // Check for a winner
+      if (!gm.checkForWinner()){
+         // Have the user take a turn if no winner
+         gm.user.takeTurn(gm, boardPanels);
+      }else{
+         gm.callWinScreen();
+      }
     }  
+    
     public void moveComputerPlayerTo(TilePanel curPanel,TilePanel desPanel,Board board){
 		boolean[][] visited = new boolean[7][7];
 		visited[curPanel.tileLocation[0]][curPanel.tileLocation[1]] = true;

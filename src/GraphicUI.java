@@ -118,7 +118,7 @@ class GraphicUI extends JFrame{
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
             updateScorePanel();
-				gm.computer.takeTurn(gm,handTile,boardPanels);
+				gm.computer.takeTurn(gm, boardPanels);
 			}
 		});
 
