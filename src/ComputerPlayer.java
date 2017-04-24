@@ -21,7 +21,12 @@ public class ComputerPlayer extends Player{
      * @param board Board
      */
     @Override
-    public void takeTurn(GameManager gm, Board board){
+    public void takeTurn(GameManager gm){
+         System.out.println("*********************************");
          System.out.println("Computers Hand: " + getHand());
+         
+         gm.checkForWinner();
+         
+         gm.user.takeTurn(gm);
     }    
 }

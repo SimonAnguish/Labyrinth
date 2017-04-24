@@ -20,7 +20,7 @@ public class Player {
     * @param gm GameManager
     * @param board Board
     */
-    public void takeTurn(GameManager gm, Board board) {
+    public void takeTurn(GameManager gm) {
         
     }    
     

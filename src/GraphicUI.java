@@ -13,21 +13,23 @@ class GraphicUI extends JFrame{
 	final int FRAME_WIDTH = 1000;
 	final int FRAME_HEIGHT = 650;
 	final int BOARD_WIDTH = 470;
-
+   
 	Board board;
-
+   
+   GameManager gm = new GameManager();
+   
 	TilePanel boardPanels[][] = new TilePanel[7][7];
 	
-	GameManager gm = new GameManager();
 	TilePanel handTile;
 	JPanel scorePanel = new JPanel(new BorderLayout());
+   JPanel nextPanel = new JPanel(new BorderLayout());
 	
 	JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
 	JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
 	
 	public GraphicUI() {
 		board = gm.board;
-
+      
 		callHomeScreen();
 	}
 
@@ -40,6 +42,9 @@ class GraphicUI extends JFrame{
 
 		// Add the board Panel
 		add(makeBoardPanel(b), BorderLayout.WEST);
+      
+      // Add the next button panel
+      add(makeNextButton(), BorderLayout.SOUTH);
 
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
@@ -59,8 +64,7 @@ class GraphicUI extends JFrame{
 				handTile.rotateTile();
 			}
 		});
-		
-		
+      
 		tileOptionsPanel.add(rotateLabel, BorderLayout.SOUTH);
 		rightOptionsPanel.add(tileOptionsPanel);
 		
@@ -99,8 +103,27 @@ class GraphicUI extends JFrame{
 		});
 
 		scorePanel.add(helpLabel, BorderLayout.PAGE_START);
-
+      
 		return scorePanel;
+	}
+   
+   JPanel makeNextButton() {
+		
+		nextPanel.setBackground(Color.DARK_GRAY);
+		nextPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
+		nextPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+
+		JLabel helpLabel = new JLabel("Next Turn");
+		helpLabel.setForeground(Color.WHITE);
+		helpLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				gm.computer.takeTurn(gm);
+			}
+		});
+
+		nextPanel.add(helpLabel, BorderLayout.PAGE_START);
+      
+		return nextPanel;
 	}
 
 	JPanel makeBoardPanel(Board b) {
@@ -207,10 +230,10 @@ class GraphicUI extends JFrame{
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
 				paintBoard();
 				handTile.setTile(board.tileInHand);
-				gm.user.removeTopCard();
+				//gm.user.removeTopCard();
 				
 				playerScore.setText("Player: " + gm.user.getScore());
-				computerScore.setText("Computer: " + gm.computer.getScore());
+				computerScore.setText("Computer: " + gm.user.getScore());
 			}
 		});
 	}
@@ -267,9 +290,7 @@ class GraphicUI extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				buildDefault(board);
 				homeFrame.setVisible(false);
-            
-            // Hey Simon im calling the run function here so that play has to be clicked
-            gm.run();
+            play();
 			}
 		});
 
@@ -294,4 +315,9 @@ class GraphicUI extends JFrame{
 		homeFrame.setResizable(false);
 		homeFrame.setVisible(true);
 	}
+   
+   // call the game loop of the gameManager
+   public void play(){
+      gm.run();
+   }
 }

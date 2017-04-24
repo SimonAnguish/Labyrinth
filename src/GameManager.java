@@ -9,58 +9,31 @@ public class GameManager {
 	// Yifan was here
    // Initialize some variables for the human + computer players, and gui
    public Player user, computer;
-   public Board board;
-   private GraphicUI gui;
    private Deck deck;
+   public Board board;
+   
+   // Initialize a boolean to determine turns
+   public boolean player_turn;
    
    // Constructor for GameManager that starts the game
    public GameManager() {
 
-      // Initialize board, deck
-      board = new Board();
+      // Initialize deck, board, user, and computer, gui
       deck = new Deck();
-      
+      board = new Board();
       user = new HumanPlayer();
       computer = new ComputerPlayer();
-
+      
       System.out.println("Welcome to Labyrinth, made for CS 205 by Yifan, Simon, and Sean");
    }
    
    public void run() {
-      // Shuffle the deck
+      // Shuffle the deck and deal the hands
       deck.shuffle();
-      
       dealHands(user, computer);
       
-      // Initialize a boolean to determine turns
-      boolean player_turn = true;
-      
-      // While loop that is true to switch between player and computer turns
-//      while (!checkForWinner(user, computer)) {
-//         
-//         // If player_turn = true, then the player takes a turn
-//         // else, computer takes a turn
-//         if (player_turn) {
-//            ui.print("\n"+"**************************************************"+"\n");
-//            ui.print("Players Turn");
-//            
-//            // takeTurn function that takes this(which is the gameManager) and the board
-//            user.takeTurn(this, board);
-//            
-//            // update the boolean to reflect that it is now the computers turn
-//            player_turn = false;
-//            
-//         } else {
-//            ui.print("\n"+"**************************************************"+"\n");
-//            ui.print("Computers Turn:");
-//            
-//            // takeTurn function that takes this(which is the gameManager) and the board
-//            computer.takeTurn(this, board);
-//            
-//            // update the boolean to reflect that it is now the players turn
-//            player_turn = true;
-//         }
-//      }
+      // Initialize player_turn as true so the human starts
+      player_turn = true;
    }
    /**
        * check if there exists a path to the destination
@@ -145,7 +118,8 @@ public class GameManager {
     * @param computer the computer player
     * @return true or false whether there is a winner
     */
-   public boolean checkForWinner(Player user, Player computer){
+   public boolean checkForWinner(){
+      // once we determine the winner we are going to want to display that on the GUI and exit
       if (user.isHandEmpty() || computer.isHandEmpty()){
          System.out.println("**************************************************");
          System.out.println("User Score: " + user.score);

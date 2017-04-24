@@ -19,10 +19,12 @@ public class HumanPlayer extends Player {
      * @param board Board
      */
     @Override
-    public void takeTurn(GameManager gm, Board board){
-         System.out.println("Hand: " + getHand());
+    public void takeTurn(GameManager gm){
+         System.out.println("*********************************");
+         System.out.println("Your Hand: " + getHand());
          System.out.println("Goal: " + getTopCard());
          removeTopCard();
+         
+         gm.checkForWinner();
     }
-
 }
