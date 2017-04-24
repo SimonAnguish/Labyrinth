@@ -13,6 +13,8 @@ class Tile {
 //	private TilePanel linkedTilePanel = null;
 	
 	Treasure treasure = new Treasure(1);
+	
+	Player playerOnTile = null;
 
 	/**
 		Tile
@@ -93,5 +95,13 @@ class Tile {
 		rtn += "\n";
 
 		return rtn;
+	}
+	
+	public void clearPlayers() {
+		playerOnTile = null;
+	}
+	
+	public void addPlayer(Player p) {
+		playerOnTile = p;
 	}
 }

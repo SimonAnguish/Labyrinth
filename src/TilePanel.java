@@ -36,11 +36,11 @@ class TilePanel extends JComponent {
 			}
 		}
 		
-		if (hasPlayer) {
+		if (tile.playerOnTile instanceof HumanPlayer) {
 			g2.setColor(Color.GREEN);
 			g2.fillRect(bSize,bSize,bSize,bSize);
 			g2.setColor(Color.BLACK);
-		} else if (hasComputer) {
+		} else if (tile.playerOnTile instanceof ComputerPlayer) {
 			g2.setColor(Color.RED);
 			g2.fillRect(bSize,bSize,bSize,bSize);
 			g2.setColor(Color.BLACK);
@@ -80,13 +80,19 @@ class TilePanel extends JComponent {
 		repaint();
 	}
 
-	public void setPlayer() {
+	public void setUser() {
 		this.hasPlayer = !this.hasPlayer;
 		repaint();
 	}
 
 	public void setComputer() {
 		this.hasComputer = !this.hasComputer;
+		repaint();
+	}
+	
+	public void setPlayer(Player p) {
+		tile.addPlayer(p);
+		p.location = getTileLocation();
 		repaint();
 	}
 

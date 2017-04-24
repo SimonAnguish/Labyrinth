@@ -118,7 +118,7 @@ public class GameManager extends JFrame {
 	      */
       public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel,Board board) {
          if(canPlayerMove(curPanel, desPanel, board))
-       	  desPanel.setPlayer();
+       	  desPanel.setPlayer(user);
          else
        	  System.out.println("You could not move to that place.");
       }
@@ -145,6 +145,11 @@ public class GameManager extends JFrame {
       }else{
          return false;
       }
+   }
+   
+   public void movePlayerTo(Player p, TilePanel moveHere) {
+      board.getTileAt(p.location[0],p.location[1]).clearPlayers();
+      moveHere.setPlayer(p);
    }
    
    /**

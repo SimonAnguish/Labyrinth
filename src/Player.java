@@ -8,6 +8,8 @@ public class Player {
     protected LinkedList<Treasure> hand;
     protected int score = 0;
     
+    int[] location;
+    
     /**
      * Constructor
      */

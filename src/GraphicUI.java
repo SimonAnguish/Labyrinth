@@ -204,7 +204,7 @@ class GraphicUI extends JFrame{
 		}
 
 		boardPanels[0][0].setComputer();
-		boardPanels[6][6].setPlayer();
+		boardPanels[6][6].setPlayer(gm.user);
 		
 		boardWrapper.add(northPanel, BorderLayout.NORTH);
 		boardWrapper.add(southPanel, BorderLayout.SOUTH);
@@ -221,6 +221,10 @@ class GraphicUI extends JFrame{
 		tile.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Moving to " + tile.getTileLocation());
+				System.out.println(gm.canPlayerMove(boardPanels[6][6], tile, board));
+				if (gm.canPlayerMove(boardPanels[6][6], tile, board)) {
+					gm.movePlayerTo(gm.user, tile);
+				}
 			}
 		});
       updateScorePanel();
