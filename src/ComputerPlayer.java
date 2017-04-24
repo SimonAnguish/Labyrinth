@@ -103,7 +103,7 @@ public class ComputerPlayer extends Player{
 				tileX = preTilePanel.tileLocation[0]-1;
 				tileY = preTilePanel.tileLocation[1];
 				neiTile = board.getTileAt(tileX, tileY);
-				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.WEST)){
+				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.NORTH)){
 					TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
 					bfsQueue.add(tilePanel);
 					visitedSequence.add(tilePanel);
@@ -115,7 +115,7 @@ public class ComputerPlayer extends Player{
 				tileX = preTilePanel.tileLocation[0]+1;
 				tileY = preTilePanel.tileLocation[1];
 				neiTile = board.getTileAt(tileX, tileY);
-				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.EAST)){
+				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.SOUTH)){
 					TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
 					bfsQueue.add(tilePanel);
 					visitedSequence.add(tilePanel);
@@ -126,7 +126,7 @@ public class ComputerPlayer extends Player{
 				tileX = preTilePanel.tileLocation[0];
 				tileY = preTilePanel.tileLocation[1]-1;
 				neiTile = board.getTileAt(tileX, tileY);
-				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.NORTH)){
+				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.WEST)){
 					TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
 					bfsQueue.add(tilePanel);
 					visitedSequence.add(tilePanel);
@@ -138,7 +138,7 @@ public class ComputerPlayer extends Player{
 				tileX = preTilePanel.tileLocation[0];
 				tileY = preTilePanel.tileLocation[1]+1;
 				neiTile = board.getTileAt(tileX, tileY);
-				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.SOUTH)){
+				if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.EAST)){
 					TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
 					bfsQueue.add(tilePanel);
 					visitedSequence.add(tilePanel);
