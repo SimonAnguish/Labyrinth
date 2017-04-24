@@ -22,9 +22,13 @@ public class HumanPlayer extends Player {
     public void takeTurn(GameManager gm){
          System.out.println("*********************************");
          System.out.println("Your Hand: " + getHand());
-         System.out.println("Goal: " + getTopCard());
+         System.out.println("You reached your goal: " + getTopCard());
          removeTopCard();
+         System.out.println("Your score: " + getScore());
          
-         gm.checkForWinner();
+         if ( gm.checkForWinner() ){
+            gm.callWinScreen();
+         }
+        
     }
 }

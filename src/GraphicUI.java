@@ -117,6 +117,7 @@ class GraphicUI extends JFrame{
 		helpLabel.setForeground(Color.WHITE);
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+            updateScorePanel();
 				gm.computer.takeTurn(gm);
 			}
 		});
@@ -222,6 +223,7 @@ class GraphicUI extends JFrame{
 				System.out.println("Moving to " + tile.getTileLocation());
 			}
 		});
+      updateScorePanel();
 	}
 	
 	void addArrowActionListeners(JArrow arrow) {
@@ -230,10 +232,7 @@ class GraphicUI extends JFrame{
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
 				paintBoard();
 				handTile.setTile(board.tileInHand);
-				//gm.user.removeTopCard();
-				
-				playerScore.setText("Player: " + gm.user.getScore());
-				computerScore.setText("Computer: " + gm.user.getScore());
+				updateScorePanel();
 			}
 		});
 	}
@@ -244,7 +243,14 @@ class GraphicUI extends JFrame{
 				boardPanels[i][j].setTile(board.getTileAt(i,j));
 			}
 		}
+      updateScorePanel();
 	}
+   
+   // Function to update the score panel
+   void updateScorePanel(){
+      playerScore.setText("Player: " + gm.user.getScore());
+		computerScore.setText("Computer: " + gm.computer.getScore());
+   }
 
 	void callHelpScreen() {
 		JFrame helpFrame = new JFrame();

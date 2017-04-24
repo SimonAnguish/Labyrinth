@@ -24,9 +24,13 @@ public class ComputerPlayer extends Player{
     public void takeTurn(GameManager gm){
          System.out.println("*********************************");
          System.out.println("Computers Hand: " + getHand());
-         
-         gm.checkForWinner();
-         
-         gm.user.takeTurn(gm);
+         System.out.println("Computers score: " + getScore());
+         // Check for a winner
+         if (!gm.checkForWinner()){
+            // Have the user take a turn if no winner
+            gm.user.takeTurn(gm);
+         }else{
+            gm.callWinScreen();
+         }
     }    
 }

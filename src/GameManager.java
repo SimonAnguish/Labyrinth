@@ -4,13 +4,25 @@
  */
 
 import java.util.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.charset.Charset;
+import java.io.IOException;
+import java.util.List;
 
-public class GameManager {
-	// Yifan was here
+public class GameManager extends JFrame {
    // Initialize some variables for the human + computer players, and gui
    public Player user, computer;
    private Deck deck;
    public Board board;
+   
+   final int FRAME_WIDTH = 1000;
+	final int FRAME_HEIGHT = 650;
+	final int BOARD_WIDTH = 470;
    
    // Initialize a boolean to determine turns
    public boolean player_turn;
@@ -146,4 +158,47 @@ public class GameManager {
          computer.addTreasure(deck.dealTreasure());
       }
    }
+   
+   // Rough version of a win screen
+   // With the gameloop logic I couldnt get this to work in GraphicUI
+   // Need to quit the game when there is a winner too
+   void callWinScreen() {
+		JFrame winFrame = new JFrame();
+		JPanel wrapperPanel = new JPanel();
+		
+		wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.PAGE_AXIS));
+		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
+
+		JLabel winLabel = new JLabel("We Have A Winner!");
+		winLabel.setFont(new Font("Sans-Serif", Font.BOLD, 48));
+      
+      JLabel userScoreLabel = new JLabel("User Score: " + user.getScore());
+		userScoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 30));
+      
+      JLabel computerScoreLabel = new JLabel("Computer Score: " + computer.getScore());
+		computerScoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 30));
+      
+      // There has got to be a better way to do this
+      JButton exit = new JButton("Exit");
+      ActionListener al=new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+         System.exit(0);
+         }
+      };
+      exit.addActionListener(al);
+      
+      wrapperPanel.add(exit);
+		wrapperPanel.add(winLabel);
+      wrapperPanel.add(userScoreLabel);
+      wrapperPanel.add(computerScoreLabel);
+      
+		winFrame.add(wrapperPanel, BorderLayout.CENTER);
+		winFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		winFrame.pack();
+
+		winFrame.setLocation(100, 50);
+		winFrame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+		winFrame.setResizable(false);
+		winFrame.setVisible(true);
+	}
 }
