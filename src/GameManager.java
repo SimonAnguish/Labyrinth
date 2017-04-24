@@ -54,7 +54,7 @@ public class GameManager extends JFrame {
        * @param board
        * @return if there exists a path to the destination,then it returns true, otherwise returns false
        */
-   public boolean canPlayerMove(TilePanel curPanel,TilePanel desPanel,Board board) {
+   public boolean canPlayerMove(TilePanel curPanel,TilePanel desPanel) {
    	   boolean[][] visited = new boolean[7][7];
    	   visited[curPanel.tileLocation[0]][curPanel.tileLocation[1]] = true;
    	   LinkedList<TilePanel> bfsQueue = new LinkedList<TilePanel>();
@@ -116,8 +116,9 @@ public class GameManager extends JFrame {
 	      * @param desPanel This is the place the player wants to go
 	      * @param board
 	      */
-      public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel,Board board) {
-         if(canPlayerMove(curPanel, desPanel, board))
+
+      public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel) {
+         if(canPlayerMove(curPanel, desPanel))
        	  desPanel.setPlayer(user);
          else
        	  System.out.println("You could not move to that place.");

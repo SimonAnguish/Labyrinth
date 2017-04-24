@@ -118,7 +118,7 @@ class GraphicUI extends JFrame{
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
             updateScorePanel();
-				gm.computer.takeTurn(gm);
+				gm.computer.takeTurn(gm, boardPanels);
 			}
 		});
 
@@ -221,8 +221,8 @@ class GraphicUI extends JFrame{
 		tile.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Moving to " + tile.getTileLocation());
-				System.out.println(gm.canPlayerMove(boardPanels[6][6], tile, board));
-				if (gm.canPlayerMove(boardPanels[6][6], tile, board)) {
+				System.out.println(gm.canPlayerMove(boardPanels[6][6], tile));
+				if (gm.canPlayerMove(boardPanels[6][6], tile)) {
 					gm.movePlayerTo(gm.user, tile);
 				}
 			}
