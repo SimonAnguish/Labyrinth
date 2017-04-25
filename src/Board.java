@@ -113,6 +113,7 @@ public class Board {
    
    // Update the treasure at the tile
    public void updateTreasureAt(int row, int column, Treasure t) {
+      System.out.println("Updated treasure to " + t.toString() + " On a tile");
 		board[row][column].treasureOnTile = t;
 	}
 	
