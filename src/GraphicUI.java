@@ -108,7 +108,6 @@ class GraphicUI extends JFrame{
 	}
    
    JPanel makeNextButton() {
-		
 		nextPanel.setBackground(Color.DARK_GRAY);
 		nextPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		nextPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -117,8 +116,8 @@ class GraphicUI extends JFrame{
 		helpLabel.setForeground(Color.WHITE);
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-            updateScorePanel();
 				gm.computer.takeTurn(gm, boardPanels);
+				updateScorePanel();
 			}
 		});
 
@@ -220,11 +219,12 @@ class GraphicUI extends JFrame{
 	void addTileActionListeners(TilePanel tile) {
 		tile.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Moving to " + tile.getTileLocation());
-				System.out.println(gm.canPlayerMove(boardPanels[6][6], tile));
-				if (gm.canPlayerMove(boardPanels[6][6], tile)) {
+				int[] userLocation = gm.user.location;
+				if (gm.canPlayerMove(boardPanels[userLocation[0]][userLocation[1]], tile)) {
 					gm.movePlayerTo(gm.user, tile);
 				}
+				userLocation = gm.user.location;
+				paintBoard();
 			}
 		});
       updateScorePanel();
@@ -234,9 +234,9 @@ class GraphicUI extends JFrame{
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-				paintBoard();
 				handTile.setTile(board.tileInHand);
 				updateScorePanel();
+				paintBoard();
 			}
 		});
 	}
