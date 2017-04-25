@@ -3,7 +3,7 @@ import java.awt.*;
 
 class TilePanel extends JComponent {
 	int bSize = 20;
-	public Tile tile = new Tile(true, true, true, true);
+	public Tile tile = new Tile(true, true, true, true, new Treasure(0));
 	
 	boolean staticTile = false;
 	
@@ -27,10 +27,20 @@ class TilePanel extends JComponent {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+		if (tile.treasure != new Treasure(0)) add(new JLabel(tile.treasure.toString()));
+=======
+>>>>>>> Stashed changes
 		if (tile.treasureOnTile != null){
          System.out.println(tile.treasureOnTile.toString());
          add(new JLabel(tile.treasureOnTile.toString()));
       }
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 		if (staticTile) {
 			g2.setColor(Color.LIGHT_GRAY);
 			

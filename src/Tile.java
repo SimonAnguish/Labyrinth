@@ -12,7 +12,15 @@ class Tile {
 
 //	private TilePanel linkedTilePanel = null;
 	
+<<<<<<< Updated upstream
 	Treasure treasureOnTile = null;
+=======
+<<<<<<< HEAD
+	Treasure treasure ;
+=======
+	Treasure treasureOnTile = null;
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 	
 	Player playerOnTile = null;
 
@@ -25,11 +33,12 @@ class Tile {
 		@param west Boolean if there is a path west on the tile
 	*/
 
-	public Tile(Boolean north, Boolean south, Boolean east, Boolean west) {
+	public Tile(Boolean north, Boolean south, Boolean east, Boolean west, Treasure treasure) {
 		this.north = north;
 		this.south = south;
 		this.east = east;
 		this.west = west;
+		this.treasure = treasure;
 	}
 
 	/**

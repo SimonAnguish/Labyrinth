@@ -22,6 +22,31 @@ public class Board {
 		random placement of the remaining tiles. Then places the last tile in the stack
 		into the hand for the player to use.
 	*/
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	private void initBoard() {
+		board[0][0] = new Tile(false, true, true, false,new Treasure(0));
+		board[0][2] = new Tile(false, true, true, true,new Treasure(1));
+		board[0][4] = new Tile(false, true, true, true,new Treasure(2));
+		board[0][6] = new Tile(false, true, false, true,new Treasure(0));
+
+		board[2][0] = new Tile(true, true, true, false,new Treasure(3));
+		board[2][2] = new Tile(true, true, true, false,new Treasure(4));
+		board[2][4] = new Tile(false, true, true, true,new Treasure(5));
+		board[2][6] = new Tile(true, true, false, true,new Treasure(6));
+
+		board[4][0] = new Tile(true, true, true, false,new Treasure(7));
+		board[4][2] = new Tile(true, false, true, true,new Treasure(8));
+		board[4][4] = new Tile(true, true, false, true,new Treasure(9));
+		board[4][6] = new Tile(true, true, false, true,new Treasure(10));
+
+		board[6][0] = new Tile(true, false, true, false,new Treasure(0));
+		board[6][2] = new Tile(true, false, true, true,new Treasure(11));
+		board[6][4] = new Tile(true, false, true, true,new Treasure(12));
+		board[6][6] = new Tile(true, false, false, true,new Treasure(0));
+=======
+>>>>>>> Stashed changes
 	private void initBoard(Deck d) {
 		board[0][0] = new Tile(false, true, true, false);
 		board[0][2] = new Tile(false, true, true, true);
@@ -42,6 +67,7 @@ public class Board {
 		board[6][2] = new Tile(true, false, true, true);
 		board[6][4] = new Tile(true, false, true, true);
 		board[6][6] = new Tile(true, false, false, true);
+>>>>>>> origin/master
 
 		List<Tile> tileHeap = generateTiles();
 
@@ -76,17 +102,22 @@ public class Board {
 		List<Tile> tileHeap = new ArrayList<Tile>();
 		// Add 'L' Shapes
 		for (int i=0;i<16;i++) {
-			tileHeap.add(new Tile(false, true, true, false));
+			if(i<6){
+				tileHeap.add(new Tile(false, true, true, false,new Treasure(i+13)));
+			}
+			else
+				tileHeap.add(new Tile(false, true, true, false,new Treasure(0)));
+			
 		}
 
 		// Add 'T' Shapes
 		for (int i=0;i<6;i++) {
-			tileHeap.add(new Tile(true, true, true, false));
+			tileHeap.add(new Tile(true, true, true, false,new Treasure(19+i)));
 		}
 
 		// Add I' Shapes
 		for (int i=0;i<12;i++) {
-			tileHeap.add(new Tile(true, true, false, false));
+			tileHeap.add(new Tile(true, true, false, false,new Treasure(0)));
 		}
 
 		Random rand = new Random();
