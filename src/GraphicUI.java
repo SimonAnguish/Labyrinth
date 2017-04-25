@@ -212,7 +212,6 @@ class GraphicUI extends JFrame{
 
 		boardWrapper.add(boardPanel, BorderLayout.CENTER);
 		
-//		return boardPanel;
 		return boardWrapper;
 	}
 	

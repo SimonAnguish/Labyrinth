@@ -146,8 +146,7 @@ public class Board {
 			board[row][0] = tileInHand;
 			break;
 		}
-
-
+      
 		this.tileInHand = newTileInHand;
 	}
 }

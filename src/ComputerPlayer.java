@@ -70,8 +70,9 @@ public class ComputerPlayer extends Player{
  				if(boardPanels[i][j].hasComputer){
  					curPanel = boardPanels[i][j];
  				}
- 				if(boardPanels[i][j].tile.treasure == getTopCard()){
+ 				if(boardPanels[i][j].tile.treasure.getValue() == getTopCard().getValue()){
  					desPanel = boardPanels[i][j];
+               System.out.println("Computers destination: " + boardPanels[i][j].tile.treasure.toString());
  				}
 
  			}
@@ -150,13 +151,14 @@ public class ComputerPlayer extends Player{
 
 		}
       
-      // HERE IS THE ERROR IN THE COMPUTER MOVING CODE
-      // desPanel is passed into the function as null because it is never initialized
-      // desPanel is initialized with current goal, but no panels have treasures
-// 		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
-//          gm.movePlayerTo(gm.computer, desPanel);
-//       }else {
-			//gm.movePlayerTo(gm.computer, visitedSequence.pollLast());
-		//}
+      // WE GET ERRORS HERE
+      // I think its because where we are trying to move them are null
+   		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
+            gm.movePlayerTo(gm.computer, desPanel);
+         }else {
+            if (visitedSequence.pollLast() != null){
+   			   //gm.movePlayerTo(gm.computer, visitedSequence.pollLast());
+            }
+   		}
 	}	  
 }

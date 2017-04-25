@@ -22,9 +22,10 @@ class TilePanel extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-
-		if (tile.treasure != null){
-         System.out.println(tile.treasure.toString());
+      
+      // There seems to be duplicate treasures, may be something between tilePanel and tile
+		if ( tile.treasure.getValue() != 0 ){
+         //System.out.println(tile.treasure.toString());
          add(new JLabel(tile.treasure.toString()));
       }
 

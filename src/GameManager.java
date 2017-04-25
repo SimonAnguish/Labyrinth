@@ -109,7 +109,6 @@ public class GameManager extends JFrame {
     * if there exists a path to the destination, move the player to destination
     * @param curPanel This is the place where player is
     * @param desPanel This is the place the player wants to go
-    * @param board
     */
    public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel) {
       if(canPlayerMove(curPanel, desPanel))
