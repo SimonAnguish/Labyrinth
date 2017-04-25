@@ -12,8 +12,8 @@ public class Board {
 		Board
 		Constructs a randomly generated board
 	*/
-	public Board() {
-		initBoard();
+	public Board(Deck d) {
+		initBoard(d);
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class Board {
 		random placement of the remaining tiles. Then places the last tile in the stack
 		into the hand for the player to use.
 	*/
-	private void initBoard() {
+	private void initBoard(Deck d) {
 		board[0][0] = new Tile(false, true, true, false);
 		board[0][2] = new Tile(false, true, true, true);
 		board[0][4] = new Tile(false, true, true, true);
@@ -61,6 +61,10 @@ public class Board {
 		}
 
 		tileInHand = tileHeap.remove(0);
+      
+      // Assign treasures to board
+      d.assignTreasuresToBoard(this);
+      
 	}
 
 	/**
@@ -105,6 +109,11 @@ public class Board {
 	*/
 	public Tile getTileAt(int row, int column) {
 		return board[row][column];
+	}
+   
+   // Update the treasure at the tile
+   public void updateTreasureAt(int row, int column, Treasure t) {
+		board[row][column].treasureOnTile = t;
 	}
 	
 	public void insertTile(String direction, int row, int column){

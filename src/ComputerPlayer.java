@@ -70,7 +70,7 @@ public class ComputerPlayer extends Player{
  				if(boardPanels[i][j].hasComputer){
  					curPanel = boardPanels[i][j];
  				}
- 				if(boardPanels[i][j].tile.treasure == getTopCard()){
+ 				if(boardPanels[i][j].tile.treasureOnTile == getTopCard()){
  					desPanel = boardPanels[i][j];
  				}
 

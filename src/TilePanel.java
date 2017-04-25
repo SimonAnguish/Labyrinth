@@ -11,6 +11,7 @@ class TilePanel extends JComponent {
 	
 	boolean hasPlayer = false;
 	boolean hasComputer = false;
+   Treasure treasure = null;
 	
 	TilePanel(Tile tile, int x, int y) {
 		setSize(new Dimension(bSize, bSize));
@@ -20,12 +21,16 @@ class TilePanel extends JComponent {
 		tileLocation[1] = y;
 
 //		this.tile.linkTilePanel(this);
+      this.treasure = tile.treasureOnTile;
 	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
-		if (tile.treasure != null) add(new JLabel(tile.treasure.toString()));
+		if (tile.treasureOnTile != null){
+         System.out.println(tile.treasureOnTile.toString());
+         add(new JLabel(tile.treasureOnTile.toString()));
+      }
 		if (staticTile) {
 			g2.setColor(Color.LIGHT_GRAY);
 			
@@ -87,6 +92,11 @@ class TilePanel extends JComponent {
 
 	public void setComputer() {
 		this.hasComputer = !this.hasComputer;
+		repaint();
+	}
+   
+   public void removeTreasure() {
+		this.treasure = null;
 		repaint();
 	}
 	

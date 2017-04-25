@@ -12,7 +12,7 @@ class Tile {
 
 //	private TilePanel linkedTilePanel = null;
 	
-	Treasure treasure = new Treasure(1);
+	Treasure treasureOnTile = null;
 	
 	Player playerOnTile = null;
 
@@ -103,5 +103,9 @@ class Tile {
 	
 	public void addPlayer(Player p) {
 		playerOnTile = p;
+	}
+   
+   public void addTreasure(Treasure t) {
+		treasureOnTile = t;
 	}
 }

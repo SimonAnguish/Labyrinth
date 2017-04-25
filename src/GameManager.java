@@ -29,7 +29,7 @@ public class GameManager extends JFrame {
 
       // Initialize deck, board, user, and computer, gui
       deck = new Deck();
-      board = new Board();
+      board = new Board(this.deck);
       user = new HumanPlayer();
       computer = new ComputerPlayer();
       
@@ -38,7 +38,6 @@ public class GameManager extends JFrame {
    
    public void run() {
       // Shuffle the deck and deal the hands
-      deck.shuffle();
       dealHands(user, computer);
    }
    
