@@ -24,9 +24,6 @@ public class GameManager extends JFrame {
 	final int FRAME_HEIGHT = 650;
 	final int BOARD_WIDTH = 470;
    
-   // Initialize a boolean to determine turns
-   public boolean player_turn;
-   
    // Constructor for GameManager that starts the game
    public GameManager() {
 
@@ -43,87 +40,89 @@ public class GameManager extends JFrame {
       // Shuffle the deck and deal the hands
       deck.shuffle();
       dealHands(user, computer);
-      
-      // Initialize player_turn as true so the human starts
-      player_turn = true;
    }
-   /**
-       * check if there exists a path to the destination
-       * @param curPanel This is the place where player is
-       * @param desPanel This is the place that the player wants to go
-       * @param board
-       * @return if there exists a path to the destination,then it returns true, otherwise returns false
-       */
-   public boolean canPlayerMove(TilePanel curPanel,TilePanel desPanel) {
-   	   boolean[][] visited = new boolean[7][7];
-   	   visited[curPanel.tileLocation[0]][curPanel.tileLocation[1]] = true;
-   	   LinkedList<TilePanel> bfsQueue = new LinkedList<TilePanel>();
-   	   Tile neiTile;
-   	   int tileX;
-   	   int tileY;
-   	   bfsQueue.add(curPanel);
-   	   while(bfsQueue.size()>0){
-   		   TilePanel preTilePanel = bfsQueue.poll();
-   		   if(preTilePanel.tileLocation[0]>0){
-   			   tileX = preTilePanel.tileLocation[0]-1;
-   			   tileY = preTilePanel.tileLocation[1];
-   			   neiTile = board.getTileAt(tileX, tileY);
-   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.NORTH)){
-   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
-   				   bfsQueue.add(tilePanel);
-   				   visited[tileX][tileY] = true;
-   			   }
-					   
-   		   }
-   		   if(preTilePanel.tileLocation[0]<6){
-   			   tileX = preTilePanel.tileLocation[0]+1;
-   			   tileY = preTilePanel.tileLocation[1];
-   			   neiTile = board.getTileAt(tileX, tileY);
-   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.SOUTH)){
-   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
-   				   bfsQueue.add(tilePanel);
-   				   visited[tileX][tileY] = true;
-   			   }
-   		   }
-   		   if(preTilePanel.tileLocation[1]>0){
-   			   tileX = preTilePanel.tileLocation[0];
-   			   tileY = preTilePanel.tileLocation[1]-1;
-   			   neiTile = board.getTileAt(tileX, tileY);
-   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.WEST)){
-   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
-   				   bfsQueue.add(tilePanel);
-   				   visited[tileX][tileY] = true;
-   			   }
-					   
-   		   }
-   		   if(preTilePanel.tileLocation[1]<6){
-   			   tileX = preTilePanel.tileLocation[0];
-   			   tileY = preTilePanel.tileLocation[1]+1;
-   			   neiTile = board.getTileAt(tileX, tileY);
-   			   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.EAST)){
-   				   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
-   				   bfsQueue.add(tilePanel);
-   				   visited[tileX][tileY] = true;
-   			   }
-   		   }
-		   
-   	   }
-   	   return visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]];
-      }
-	  /**
-	      * if there exists a path to the destination, move the player to destination
-	      * @param curPanel This is the place where player is
-	      * @param desPanel This is the place the player wants to go
-	      * @param board
-	      */
-
-      public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel) {
-         if(canPlayerMove(curPanel, desPanel))
-       	  desPanel.setPlayer(user);
-         else
-       	  System.out.println("You could not move to that place.");
-      }
    
+   /**
+    * check if there exists a path to the destination
+    * @param curPanel This is the place where player is
+    * @param desPanel This is the place that the player wants to go
+    * @param board
+    * @return if there exists a path to the destination,then it returns true, otherwise returns false
+    */
+   public boolean canPlayerMove(TilePanel curPanel,TilePanel desPanel) {
+      boolean[][] visited = new boolean[7][7];
+      visited[curPanel.tileLocation[0]][curPanel.tileLocation[1]] = true;
+      LinkedList<TilePanel> bfsQueue = new LinkedList<TilePanel>();
+      Tile neiTile;
+      int tileX;
+      int tileY;
+      bfsQueue.add(curPanel);
+      while(bfsQueue.size()>0){
+   	   TilePanel preTilePanel = bfsQueue.poll();
+   	   if(preTilePanel.tileLocation[0]>0){
+   		   tileX = preTilePanel.tileLocation[0]-1;
+   		   tileY = preTilePanel.tileLocation[1];
+   		   neiTile = board.getTileAt(tileX, tileY);
+   		   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.NORTH)){
+   			   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   			   bfsQueue.add(tilePanel);
+   			   visited[tileX][tileY] = true;
+   		   }
+   			   
+   	   }
+   	   if(preTilePanel.tileLocation[0]<6){
+   		   tileX = preTilePanel.tileLocation[0]+1;
+   		   tileY = preTilePanel.tileLocation[1];
+   		   neiTile = board.getTileAt(tileX, tileY);
+   		   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.SOUTH)){
+   			   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   			   bfsQueue.add(tilePanel);
+   			   visited[tileX][tileY] = true;
+   		   }
+   	   }
+   	   if(preTilePanel.tileLocation[1]>0){
+   		   tileX = preTilePanel.tileLocation[0];
+   		   tileY = preTilePanel.tileLocation[1]-1;
+   		   neiTile = board.getTileAt(tileX, tileY);
+   		   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.WEST)){
+   			   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   			   bfsQueue.add(tilePanel);
+   			   visited[tileX][tileY] = true;
+   		   }
+   			   
+   	   }
+   	   if(preTilePanel.tileLocation[1]<6){
+   		   tileX = preTilePanel.tileLocation[0];
+   		   tileY = preTilePanel.tileLocation[1]+1;
+   		   neiTile = board.getTileAt(tileX, tileY);
+   		   if(!visited[tileX][tileY]&&preTilePanel.tile.pathExists(neiTile,Direction.EAST)){
+   			   TilePanel tilePanel = new TilePanel(neiTile,tileX,tileY);
+   			   bfsQueue.add(tilePanel);
+   			   visited[tileX][tileY] = true;
+   		   }
+   	   }
+      
+      }
+      return visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]];
+   }
+   
+   /**
+    * if there exists a path to the destination, move the player to destination
+    * @param curPanel This is the place where player is
+    * @param desPanel This is the place the player wants to go
+    * @param board
+    */
+   public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel) {
+      if(canPlayerMove(curPanel, desPanel))
+        desPanel.setPlayer(user);
+      else
+        System.out.println("You could not move to that place.");
+   }
+   
+   public void movePlayerTo(Player p, TilePanel moveHere) {
+      board.getTileAt(p.location[0],p.location[1]).clearPlayers();
+      moveHere.setPlayer(p);
+   }
    
    /**
     * checkForWinner method checks both players hands to see if someone has won
@@ -146,11 +145,6 @@ public class GameManager extends JFrame {
       }else{
          return false;
       }
-   }
-   
-   public void movePlayerTo(Player p, TilePanel moveHere) {
-      board.getTileAt(p.location[0],p.location[1]).clearPlayers();
-      moveHere.setPlayer(p);
    }
    
    /**
