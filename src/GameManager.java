@@ -29,7 +29,7 @@ public class GameManager extends JFrame {
 
       // Initialize deck, board, user, and computer, gui
       deck = new Deck();
-      board = new Board(this.deck);
+      board = new Board();
       user = new HumanPlayer();
       computer = new ComputerPlayer();
       

@@ -11,16 +11,7 @@ class Tile {
 	public boolean west;
 
 //	private TilePanel linkedTilePanel = null;
-	
-<<<<<<< Updated upstream
-	Treasure treasureOnTile = null;
-=======
-<<<<<<< HEAD
-	Treasure treasure ;
-=======
-	Treasure treasureOnTile = null;
->>>>>>> origin/master
->>>>>>> Stashed changes
+	Treasure treasure;
 	
 	Player playerOnTile = null;
 
@@ -112,9 +103,5 @@ class Tile {
 	
 	public void addPlayer(Player p) {
 		playerOnTile = p;
-	}
-   
-   public void addTreasure(Treasure t) {
-		treasureOnTile = t;
 	}
 }

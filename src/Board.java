@@ -12,8 +12,8 @@ public class Board {
 		Board
 		Constructs a randomly generated board
 	*/
-	public Board(Deck d) {
-		initBoard(d);
+	public Board() {
+		initBoard();
 	}
 
 	/**
@@ -22,9 +22,6 @@ public class Board {
 		random placement of the remaining tiles. Then places the last tile in the stack
 		into the hand for the player to use.
 	*/
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 	private void initBoard() {
 		board[0][0] = new Tile(false, true, true, false,new Treasure(0));
 		board[0][2] = new Tile(false, true, true, true,new Treasure(1));
@@ -45,29 +42,6 @@ public class Board {
 		board[6][2] = new Tile(true, false, true, true,new Treasure(11));
 		board[6][4] = new Tile(true, false, true, true,new Treasure(12));
 		board[6][6] = new Tile(true, false, false, true,new Treasure(0));
-=======
->>>>>>> Stashed changes
-	private void initBoard(Deck d) {
-		board[0][0] = new Tile(false, true, true, false);
-		board[0][2] = new Tile(false, true, true, true);
-		board[0][4] = new Tile(false, true, true, true);
-		board[0][6] = new Tile(false, true, false, true);
-
-		board[2][0] = new Tile(true, true, true, false);
-		board[2][2] = new Tile(true, true, true, false);
-		board[2][4] = new Tile(false, true, true, true);
-		board[2][6] = new Tile(true, true, false, true);
-
-		board[4][0] = new Tile(true, true, true, false);
-		board[4][2] = new Tile(true, false, true, true);
-		board[4][4] = new Tile(true, true, false, true);
-		board[4][6] = new Tile(true, true, false, true);
-
-		board[6][0] = new Tile(true, false, true, false);
-		board[6][2] = new Tile(true, false, true, true);
-		board[6][4] = new Tile(true, false, true, true);
-		board[6][6] = new Tile(true, false, false, true);
->>>>>>> origin/master
 
 		List<Tile> tileHeap = generateTiles();
 
@@ -87,9 +61,6 @@ public class Board {
 		}
 
 		tileInHand = tileHeap.remove(0);
-      
-      // Assign treasures to board
-      d.assignTreasuresToBoard(this);
       
 	}
 
@@ -140,12 +111,6 @@ public class Board {
 	*/
 	public Tile getTileAt(int row, int column) {
 		return board[row][column];
-	}
-   
-   // Update the treasure at the tile
-   public void updateTreasureAt(int row, int column, Treasure t) {
-      System.out.println("Updated treasure to " + t.toString() + " On a tile");
-		board[row][column].treasureOnTile = t;
 	}
 	
 	public void insertTile(String direction, int row, int column){
