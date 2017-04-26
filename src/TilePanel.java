@@ -11,6 +11,7 @@ class TilePanel extends JComponent {
 	
 	boolean hasPlayer = false;
 	boolean hasComputer = false;
+	JLabel treasureLabel;
 	
 	TilePanel(Tile tile, int x, int y) {
 		setSize(new Dimension(bSize, bSize));
@@ -18,16 +19,17 @@ class TilePanel extends JComponent {
 		
 		tileLocation[0] = x;
 		tileLocation[1] = y;
+		if (tile.treasure.getValue() != 0){
+			treasureLabel = new JLabel(tile.treasure.toString());
+			treasureLabel.setSize(bSize, bSize);
+        	add(treasureLabel);
+     	}
 	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
       
       // There seems to be duplicate treasures, may be something between tilePanel and tile
-		if ( tile.treasure.getValue() != 0 ){
-         //System.out.println(tile.treasure.toString());
-         add(new JLabel(tile.treasure.toString()));
-      }
 
 		if (staticTile) {
 			g2.setColor(Color.LIGHT_GRAY);

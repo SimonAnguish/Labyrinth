@@ -27,6 +27,7 @@ class GraphicUI extends JFrame{
 	
 	JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
 	JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
+	JLabel currentTreasureGoal = new JLabel("", SwingConstants.CENTER);
 	
 	public GraphicUI() {
 		board = gm.board;
@@ -45,7 +46,7 @@ class GraphicUI extends JFrame{
 		add(makeBoardPanel(b), BorderLayout.WEST);
       
       // Add the next button panel
-      add(makeNextButton(), BorderLayout.SOUTH);
+      	add(makeNextButton(), BorderLayout.SOUTH);
 
 		JPanel rightOptionsPanel = new JPanel();
 		rightOptionsPanel.setLayout(new GridLayout(2,1));
@@ -87,12 +88,15 @@ class GraphicUI extends JFrame{
 		scorePanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
 		playerScore.setFont(new Font("Serif", Font.BOLD, 20));
+		currentTreasureGoal.setFont(new Font("Serif", Font.BOLD, 20));
 		computerScore.setFont(new Font("Serif", Font.BOLD, 20));
 
 		playerScore.setForeground(Color.WHITE);
+		currentTreasureGoal.setForeground(Color.WHITE);
 		computerScore.setForeground(Color.WHITE);
 
 		scorePanel.add(playerScore, BorderLayout.LINE_START);
+		scorePanel.add(currentTreasureGoal, BorderLayout.CENTER);
 		scorePanel.add(computerScore, BorderLayout.LINE_END);
 
 		JLabel helpLabel = new JLabel("Help");
@@ -311,7 +315,7 @@ class GraphicUI extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				buildDefault(board);
 				homeFrame.setVisible(false);
-            play();
+            	play();
 			}
 		});
 
@@ -340,5 +344,6 @@ class GraphicUI extends JFrame{
    // call the game loop of the gameManager
    public void play(){
       gm.run();
+		currentTreasureGoal.setText("Current Goal: " + gm.user.getTopCard().toString());
    }
 }
