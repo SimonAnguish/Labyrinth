@@ -26,7 +26,6 @@ public class ComputerPlayer extends Player{
     public void takeTurn(GameManager gm, TilePanel[][] boardPanels){
       System.out.println("*********************************");
       System.out.println("Computers Hand: " + getHand());
-      System.out.println("Computers score: " + getScore());
  		int rotateNo;
  		TilePanel curPanel = null;
  		TilePanel desPanel = null;
@@ -34,7 +33,6 @@ public class ComputerPlayer extends Player{
  		for(int i = 0;i<rotateNo;i++){
  			gm.board.tileInHand.rotate(1);
  		}
- 		System.out.println("The tile in hand rotated "+rotateNo +"times.");
  		int randomDir;
  		int randomCol;
  		int randomRow;

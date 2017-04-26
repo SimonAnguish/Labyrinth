@@ -120,6 +120,12 @@ public class GameManager extends JFrame {
    public void movePlayerTo(Player p, TilePanel moveHere) {
       board.getTileAt(p.location[0],p.location[1]).clearPlayers();
       moveHere.setPlayer(p);
+      System.out.println(p.getTopCard().getValue());
+      System.out.println(moveHere.tile.treasure.getValue());
+      if (p.getTopCard().getValue() == moveHere.tile.treasure.getValue()){
+         moveHere.tile.treasure.setValue(0);
+         p.removeTopCard();
+      }
    }
    
    /**

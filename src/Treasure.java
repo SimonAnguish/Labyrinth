@@ -25,6 +25,14 @@ public class Treasure {
 	public int getValue() {     
 		return value;
 	}
+   
+   /**
+	 * setValue() sets the numeric value of the Treasure
+	 * @param value The numeric value of the Treasure.
+	 */
+	public void setValue(int v) {     
+		this.value = v;
+	}
 
 	/**
 	 * toString method converts the value to a string
