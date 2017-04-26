@@ -238,8 +238,10 @@ class GraphicUI extends JFrame{
 						gm.movePlayerTo(gm.user, tile);
 					}
 					userLocation = gm.user.location;
+
 					gm.computer.takeTurn(gm, boardPanels);
 					handTile.setTile(board.tileInHand);
+					
 					paintBoard();
 					updateScorePanel();
 					canInsertTile = true;

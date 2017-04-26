@@ -117,7 +117,7 @@ public class GameManager extends JFrame {
          System.out.println("Reached the destination!");
          moveHere.tile.treasure.setValue(0);
          p.removeTopCard();
-         
+         moveHere.treasureLabel.setVisible(false);
       }
    }
    
