@@ -26,7 +26,7 @@ class GraphicUI extends JFrame{
 	TilePanel handTile;
 	JPanel scorePanel = new JPanel(new BorderLayout());
    JPanel nextPanel = new JPanel(new BorderLayout());
-   JLabel helpLabel = new JLabel("Skip Turn", SwingConstants.CENTER);
+   JLabel skipLabel = new JLabel("Skip Turn", SwingConstants.CENTER);
 	
 	JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
 	JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
@@ -120,22 +120,25 @@ class GraphicUI extends JFrame{
 		nextPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		nextPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-		helpLabel.setFont(new Font("Sans-Serif", Font.BOLD, 25));
-		helpLabel.setForeground(Color.WHITE);
-		helpLabel.addMouseListener(new MouseAdapter() {
+		skipLabel.setFont(new Font("Sans-Serif", Font.BOLD, 25));
+		skipLabel.setForeground(Color.WHITE);
+		skipLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (!canInsertTile) {
 					gm.computer.takeTurn(gm, boardPanels);
 					handTile.setTile(board.tileInHand);
 					updateScorePanel();
 					paintBoard();
+
+					canInsertTile = true;
+					skipLabel.setVisible(false);
 				}
 			}
 		});
 
-		helpLabel.setVisible(false);
+		skipLabel.setVisible(false);
 
-		nextPanel.add(helpLabel, BorderLayout.PAGE_START);
+		nextPanel.add(skipLabel, BorderLayout.PAGE_START);
       
 		return nextPanel;
 	}
@@ -241,11 +244,11 @@ class GraphicUI extends JFrame{
 
 					gm.computer.takeTurn(gm, boardPanels);
 					handTile.setTile(board.tileInHand);
-					
+
 					paintBoard();
 					updateScorePanel();
 					canInsertTile = true;
-					helpLabel.setVisible(false);
+					skipLabel.setVisible(false);
 				}
 			}
 		});
@@ -270,7 +273,7 @@ class GraphicUI extends JFrame{
 						System.out.println("You could not move that tile.");
 					canInsertTile = false;
 
-					helpLabel.setVisible(true);
+					skipLabel.setVisible(true);
 				}
 			}
 		});
