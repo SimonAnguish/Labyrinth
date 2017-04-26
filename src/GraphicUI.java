@@ -112,7 +112,7 @@ class GraphicUI extends JFrame{
 		return scorePanel;
 	}
    
-   JPanel makeNextButton() {
+	JPanel makeNextButton() {
 		nextPanel.setBackground(Color.DARK_GRAY);
 		nextPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		nextPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -122,7 +122,9 @@ class GraphicUI extends JFrame{
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				gm.computer.takeTurn(gm, boardPanels);
+				handTile.setTile(board.tileInHand);
 				updateScorePanel();
+				paintBoard();
 			}
 		});
 
@@ -130,7 +132,6 @@ class GraphicUI extends JFrame{
       
 		return nextPanel;
 	}
-
 	JPanel makeBoardPanel(Board b) {
 		JPanel boardWrapper = new JPanel(new BorderLayout());
 		boardWrapper.setPreferredSize(new Dimension(FRAME_HEIGHT-50, FRAME_HEIGHT-50));
@@ -207,7 +208,7 @@ class GraphicUI extends JFrame{
 			}
 		}
 
-		boardPanels[0][0].setComputer();
+		boardPanels[0][0].setPlayer(gm.computer);
 		boardPanels[6][6].setPlayer(gm.user);
 		
 		boardWrapper.add(northPanel, BorderLayout.NORTH);
@@ -241,8 +242,6 @@ class GraphicUI extends JFrame{
 						&& !(oldRow == arrow.getRow() && oldCol == 0 && arrow.getCol() == 6)
 						&& !(oldCol == arrow.getCol() && oldRow == 6 && arrow.getRow()==0)
 						&& !(oldCol == arrow.getCol() && oldRow == 0 && arrow.getRow()==6)){
-					System.out.println("the old col:"+oldCol+"the new col:"+arrow.getCol());
-					System.out.println("the old row:"+oldRow+"the new row:"+arrow.getRow());
 					board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
 					handTile.setTile(board.tileInHand);
 					oldCol = arrow.getCol();

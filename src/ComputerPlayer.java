@@ -45,6 +45,7 @@ public class ComputerPlayer extends Player{
  			if(randomCol % 2 ==0 )
  				randomCol = randomCol+1;
  			gm.board.insertTile("down", 0, randomCol);
+ 			
  			break;
  		case 1:
  			randomCol = (int)Math.random()*5+1;
@@ -65,11 +66,10 @@ public class ComputerPlayer extends Player{
  			gm.board.insertTile("left", randomRow, 6);
  			break;
  		}
+ 		int[] playerLocation = gm.computer.location;
+ 		curPanel = boardPanels[playerLocation[0]][playerLocation[1]];
  		for(int i=0;i<boardPanels.length;i++){
  			for(int j=0;j<boardPanels[i].length;j++){
- 				if(boardPanels[i][j].hasComputer){
- 					curPanel = boardPanels[i][j];
- 				}
  				if(boardPanels[i][j].tile.treasure.getValue() == getTopCard().getValue()){
  					desPanel = boardPanels[i][j];
                System.out.println("Computers destination: " + boardPanels[i][j].tile.treasure.toString());
@@ -151,13 +151,12 @@ public class ComputerPlayer extends Player{
 
 		}
       
-      // WE GET ERRORS HERE
-      // I think its because where we are trying to move them are null
+
    		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
             gm.movePlayerTo(gm.computer, desPanel);
          }else {
             if (visitedSequence.pollLast() != null){
-   			   //gm.movePlayerTo(gm.computer, visitedSequence.pollLast());
+   			   gm.movePlayerTo(gm.computer, visitedSequence.pollLast());
             }
    		}
 	}	  
