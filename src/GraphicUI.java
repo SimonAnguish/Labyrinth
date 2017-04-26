@@ -16,6 +16,8 @@ class GraphicUI extends JFrame{
 	int oldCol = -1;
 	int oldRow = -1;
 	Board board;
+
+	boolean canInsertTile = true;
    
    GameManager gm = new GameManager();
    
@@ -121,10 +123,12 @@ class GraphicUI extends JFrame{
 		helpLabel.setForeground(Color.WHITE);
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				gm.computer.takeTurn(gm, boardPanels);
-				handTile.setTile(board.tileInHand);
-				updateScorePanel();
-				paintBoard();
+				if (!canInsertTile) {
+					gm.computer.takeTurn(gm, boardPanels);
+					handTile.setTile(board.tileInHand);
+					updateScorePanel();
+					paintBoard();
+				}
 			}
 		});
 
@@ -224,13 +228,19 @@ class GraphicUI extends JFrame{
 	void addTileActionListeners(TilePanel tile) {
 		tile.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int[] userLocation = gm.user.location;
-				if (gm.canPlayerMove(boardPanels[userLocation[0]][userLocation[1]], tile)) {
-					gm.movePlayerTo(gm.user, tile);
+
+				if (!canInsertTile) {
+					int[] userLocation = gm.user.location;
+					if (gm.canPlayerMove(boardPanels[userLocation[0]][userLocation[1]], tile)) {
+						gm.movePlayerTo(gm.user, tile);
+					}
+					userLocation = gm.user.location;
+					gm.computer.takeTurn(gm, boardPanels);
+					handTile.setTile(board.tileInHand);
+					paintBoard();
+					updateScorePanel();
+					canInsertTile = true;
 				}
-				userLocation = gm.user.location;
-				paintBoard();
-				updateScorePanel();
 			}
 		});
 	}
@@ -238,19 +248,22 @@ class GraphicUI extends JFrame{
 	void addArrowActionListeners(JArrow arrow) {
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(!(oldRow == arrow.getRow() && oldCol == 6 && arrow.getCol() == 0)
-						&& !(oldRow == arrow.getRow() && oldCol == 0 && arrow.getCol() == 6)
-						&& !(oldCol == arrow.getCol() && oldRow == 6 && arrow.getRow()==0)
-						&& !(oldCol == arrow.getCol() && oldRow == 0 && arrow.getRow()==6)){
-					board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-					handTile.setTile(board.tileInHand);
-					oldCol = arrow.getCol();
-					oldRow = arrow.getRow();
-					updateScorePanel();
-					paintBoard();
+				if (canInsertTile) {
+					if(!(oldRow == arrow.getRow() && oldCol == 6 && arrow.getCol() == 0)
+							&& !(oldRow == arrow.getRow() && oldCol == 0 && arrow.getCol() == 6)
+							&& !(oldCol == arrow.getCol() && oldRow == 6 && arrow.getRow()==0)
+							&& !(oldCol == arrow.getCol() && oldRow == 0 && arrow.getRow()==6)){
+						board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
+						handTile.setTile(board.tileInHand);
+						oldCol = arrow.getCol();
+						oldRow = arrow.getRow();
+						updateScorePanel();
+						paintBoard();
+					}
+					else
+						System.out.println("You could not move that tile.");
+					canInsertTile = false;
 				}
-				else
-					System.out.println("You could not move that tile.");
 			}
 		});
 	}
