@@ -148,14 +148,16 @@ public class ComputerPlayer extends Player{
 			}
 
 		}
-      
-
-   		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
-            gm.movePlayerTo(gm.computer, desPanel);
-         }else {
-            if (visitedSequence.pollLast() != null){
-   			   gm.movePlayerTo(gm.computer, visitedSequence.pollLast());
-            }
-   		}
+      System.out.println("Visited the destination: " + visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]]);
+		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
+         System.out.println("Moving computer to its destination");
+         gm.movePlayerTo(gm.computer, desPanel);
+      }else if (visitedSequence.peekLast() == null){
+         System.out.println("Cant move the computer!");
+      }else{
+         System.out.println("Moving computer to a random tile:");
+         visitedSequence.peekLast().printTileString();
+			gm.movePlayerTo(gm.computer, visitedSequence.peekLast());
+		}
 	}	  
 }

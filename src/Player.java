@@ -81,6 +81,13 @@ public class Player {
         Treasure goal = hand.getFirst();
         return goal;
     }
+    
+    /**
+     * Checks if the player exists
+     */
+    public void playerExists() {
+        System.out.println("Player exists!");
+    }
 }
     
     
