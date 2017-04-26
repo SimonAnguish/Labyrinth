@@ -116,59 +116,59 @@ public class Board {
 	public void insertTile(String direction, int row, int column){
 
 		Tile newTileInHand = null;
-		Treasure treasure = null;
+		Player player = null;
 		switch(direction){
 		case "down": 
 			newTileInHand = getTileAt(6,column);
-			if (newTileInHand.treasure != new Treasure(0)){
-				treasure = newTileInHand.treasure;
-				newTileInHand.treasure = new Treasure(0);
+			if (newTileInHand.playerOnTile != null){
+				player = newTileInHand.playerOnTile;
+				newTileInHand.playerOnTile = null;
 			}
 			for(int t=6;t>0;t--){
 				board[t][column] = getTileAt(t-1,column);
 			}
 			board[0][column] = tileInHand;
-			if(treasure != null)
-				board[0][column].treasure = treasure;
+			if(player !=null)
+				board[0][column].addPlayer(player);
 			break;
 		case "up":
 			newTileInHand = getTileAt(0,column);
-			if (newTileInHand.treasure != new Treasure(0)){
-				treasure = newTileInHand.treasure;
-				newTileInHand.treasure = new Treasure(0);
+			if (newTileInHand.playerOnTile != null){
+				player = newTileInHand.playerOnTile;
+				newTileInHand.playerOnTile = null;
 			}
 			for(int t=0;t<6;t++){
 				board[t][column] = getTileAt(t+1,column);
 			}
 			board[6][column] = tileInHand;
-			if(treasure != null)
-				board[6][column].treasure = treasure;
+			if(player !=null)
+				board[6][column].addPlayer(player);
 			break;
 		case "left":
 			newTileInHand = getTileAt(row,0);
-			if (newTileInHand.treasure != new Treasure(0)){
-				treasure = newTileInHand.treasure;
-				newTileInHand.treasure = new Treasure(0);
+			if (newTileInHand.playerOnTile != null){
+				player = newTileInHand.playerOnTile;
+				newTileInHand.playerOnTile = null;
 			}
 			for(int t=0;t<6;t++){
 				board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
-			if(treasure != null)
-				board[row][6].treasure = treasure;
+			if(player !=null)
+				board[row][6].addPlayer(player);
 			break;
 		case "right":
 			newTileInHand = getTileAt(row,6);
-			if (newTileInHand.treasure != new Treasure(0)){
-				treasure = newTileInHand.treasure;
-				newTileInHand.treasure = new Treasure(0);
+			if (newTileInHand.playerOnTile != null){
+				player = newTileInHand.playerOnTile;
+				newTileInHand.playerOnTile = null;
 			}
 			for(int t=6;t>0;t--){
 				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
-			if(treasure != null)
-				board[row][0].treasure = treasure;
+			if(player !=null)
+				board[row][0].addPlayer(player);
 			break;
 		}
 
