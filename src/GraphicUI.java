@@ -230,9 +230,9 @@ class GraphicUI extends JFrame{
 				}
 				userLocation = gm.user.location;
 				paintBoard();
+				updateScorePanel();
 			}
 		});
-      updateScorePanel();
 	}
 	
 	void addArrowActionListeners(JArrow arrow) {
@@ -266,8 +266,9 @@ class GraphicUI extends JFrame{
    
    // Function to update the score panel
    void updateScorePanel(){
-      playerScore.setText("Player: " + gm.user.getScore());
+   		playerScore.setText("Player: " + gm.user.getScore());
 		computerScore.setText("Computer: " + gm.computer.getScore());
+		currentTreasureGoal.setText("Current Goal: " + gm.user.getTopCard().toString());
    }
 
 	void callHelpScreen() {
@@ -342,7 +343,7 @@ class GraphicUI extends JFrame{
    
    // call the game loop of the gameManager
    public void play(){
-      gm.run();
+	    gm.run();
 		currentTreasureGoal.setText("Current Goal: " + gm.user.getTopCard().toString());
    }
 }
