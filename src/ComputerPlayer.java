@@ -30,7 +30,7 @@ public class ComputerPlayer extends Player{
  		int rotateNo;
  		TilePanel curPanel = null;
  		TilePanel desPanel = null;
- 		rotateNo = (int)Math.random()*3+1;
+ 		rotateNo = (int)(Math.random()*3)+1;
  		for(int i = 0;i<rotateNo;i++){
  			gm.board.tileInHand.rotate(1);
  		}
@@ -38,29 +38,29 @@ public class ComputerPlayer extends Player{
  		int randomDir;
  		int randomCol;
  		int randomRow;
- 		randomDir = (int)Math.random()*4;
+ 		randomDir = (int)(Math.random()*4);
  		switch(randomDir){
  		case 0:
- 			randomCol = (int)Math.random()*5+1;
+ 			randomCol = (int)(Math.random()*5)+1;
  			if(randomCol % 2 ==0 )
  				randomCol = randomCol+1;
  			gm.board.insertTile("down", 0, randomCol);
  			
  			break;
  		case 1:
- 			randomCol = (int)Math.random()*5+1;
+ 			randomCol = (int)(Math.random()*5)+1;
  			if(randomCol % 2 ==0 )
  				randomCol = randomCol+1;
  			gm.board.insertTile("up", 6, randomCol);
  			break;
  		case 2:
- 			randomRow = (int)Math.random()*5+1;
+ 			randomRow = (int)(Math.random()*5)+1;
  			if(randomRow % 2 ==0 )
  				randomRow = randomRow+1;
  			gm.board.insertTile("right", randomRow, 0);
  			break;
  		case 3:
- 			randomRow = (int)Math.random()*5+1;
+ 			randomRow = (int)(Math.random()*5)+1;
  			if(randomRow % 2 ==0 )
  				randomRow = randomRow+1;
  			gm.board.insertTile("left", randomRow, 6);
