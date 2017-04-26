@@ -66,17 +66,22 @@ public class ComputerPlayer extends Player{
  		}
  		int[] playerLocation = gm.computer.location;
  		curPanel = boardPanels[playerLocation[0]][playerLocation[1]];
- 		for(int i=0;i<boardPanels.length;i++){
- 			for(int j=0;j<boardPanels[i].length;j++){
+ 		for(int i=0; i<boardPanels.length; i++){
+ 			for(int j=0; j<boardPanels[i].length; j++){
  				if(boardPanels[i][j].tile.treasure.getValue() == getTopCard().getValue()){
+               // THIS DOES NOT GET INITIALIZED ONCE IN A WHILE
  					desPanel = boardPanels[i][j];
                System.out.println("Computers destination: " + boardPanels[i][j].tile.treasure.toString());
  				}
 
  			}
  		}
-      
-      moveComputerPlayerTo( curPanel, desPanel, gm );
+      // If loop just to get rid of errors
+      if (desPanel != null){
+         moveComputerPlayerTo( curPanel, desPanel, gm );
+      }else{
+         System.out.println("DESTINATION IS NULL!!");
+      }
       
       // Check for a winner
       if (!gm.checkForWinner()){
@@ -148,6 +153,7 @@ public class ComputerPlayer extends Player{
 			}
 
 		}
+      
       System.out.println("Visited the destination: " + visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]]);
 		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
          System.out.println("Moving computer to its destination");
@@ -155,8 +161,7 @@ public class ComputerPlayer extends Player{
       }else if (visitedSequence.peekLast() == null){
          System.out.println("Cant move the computer!");
       }else{
-         System.out.println("Moving computer to a random tile:");
-         visitedSequence.peekLast().printTileString();
+         System.out.println("Moving computer to the last visited tile in BFS");
 			gm.movePlayerTo(gm.computer, visitedSequence.peekLast());
 		}
 	}	  
