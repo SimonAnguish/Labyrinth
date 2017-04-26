@@ -128,8 +128,11 @@ public class Board {
 				board[t][column] = getTileAt(t-1,column);
 			}
 			board[0][column] = tileInHand;
-			if(player !=null)
+			if(player !=null){
+				player.location[0] = 0;
+				player.location[1] = column;
 				board[0][column].addPlayer(player);
+			}	
 			break;
 		case "up":
 			newTileInHand = getTileAt(0,column);
@@ -141,8 +144,11 @@ public class Board {
 				board[t][column] = getTileAt(t+1,column);
 			}
 			board[6][column] = tileInHand;
-			if(player !=null)
+			if(player !=null){
+				player.location[0] = 6;
+				player.location[1] = column;
 				board[6][column].addPlayer(player);
+			}	
 			break;
 		case "left":
 			newTileInHand = getTileAt(row,0);
@@ -154,8 +160,11 @@ public class Board {
 				board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
-			if(player !=null)
+			if(player !=null){
+				player.location[0] = row;
+				player.location[1] = 6;
 				board[row][6].addPlayer(player);
+			}	
 			break;
 		case "right":
 			newTileInHand = getTileAt(row,6);
@@ -167,8 +176,11 @@ public class Board {
 				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
-			if(player !=null)
+			if(player !=null){
+				player.location[0] = row;
+				player.location[1] = 0;
 				board[row][0].addPlayer(player);
+			}
 			break;
 		}
 
