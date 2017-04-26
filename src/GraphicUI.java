@@ -26,6 +26,7 @@ class GraphicUI extends JFrame{
 	TilePanel handTile;
 	JPanel scorePanel = new JPanel(new BorderLayout());
    JPanel nextPanel = new JPanel(new BorderLayout());
+   JLabel helpLabel = new JLabel("Skip Turn", SwingConstants.CENTER);
 	
 	JLabel playerScore = new JLabel("Player: " + gm.user.getScore());
 	JLabel computerScore = new JLabel("Computer: " + gm.computer.getScore());
@@ -119,7 +120,7 @@ class GraphicUI extends JFrame{
 		nextPanel.setPreferredSize(new Dimension(BOARD_WIDTH, 50));
 		nextPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-		JLabel helpLabel = new JLabel("Next Turn");
+		helpLabel.setFont(new Font("Sans-Serif", Font.BOLD, 25));
 		helpLabel.setForeground(Color.WHITE);
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -131,6 +132,8 @@ class GraphicUI extends JFrame{
 				}
 			}
 		});
+
+		helpLabel.setVisible(false);
 
 		nextPanel.add(helpLabel, BorderLayout.PAGE_START);
       
@@ -240,6 +243,7 @@ class GraphicUI extends JFrame{
 					paintBoard();
 					updateScorePanel();
 					canInsertTile = true;
+					helpLabel.setVisible(false);
 				}
 			}
 		});
@@ -263,6 +267,8 @@ class GraphicUI extends JFrame{
 					else
 						System.out.println("You could not move that tile.");
 					canInsertTile = false;
+
+					helpLabel.setVisible(true);
 				}
 			}
 		});
