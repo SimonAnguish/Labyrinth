@@ -110,16 +110,15 @@ public class GameManager extends JFrame {
     * @param curPanel This is the place where player is
     * @param desPanel This is the place the player wants to go
     */
-   public void moveCurrentPlayerTo(TilePanel curPanel,TilePanel desPanel) {
-      if(canPlayerMove(curPanel, desPanel))
-        desPanel.setPlayer(user);
-      else
-        System.out.println("You could not move to that place.");
-   }
-   
    public void movePlayerTo(Player p, TilePanel moveHere) {
       board.getTileAt(p.location[0],p.location[1]).clearPlayers();
       moveHere.setPlayer(p);
+      if (p.getTopCard().getValue() == moveHere.tile.treasure.getValue()){
+         System.out.println("Reached the destination!");
+         moveHere.tile.treasure.setValue(0);
+         p.removeTopCard();
+         
+      }
    }
    
    /**

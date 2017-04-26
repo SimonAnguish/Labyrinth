@@ -22,9 +22,6 @@ public class HumanPlayer extends Player {
     public void takeTurn(GameManager gm, TilePanel[][] boardPanels){
          System.out.println("*********************************");
          System.out.println("Your Hand: " + getHand());
-         System.out.println("You reached your goal: " + getTopCard());
-         removeTopCard();
-         System.out.println("Your score: " + getScore());
          
          if ( gm.checkForWinner() ){
             gm.callWinScreen();
