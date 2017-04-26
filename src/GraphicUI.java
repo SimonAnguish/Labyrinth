@@ -134,7 +134,7 @@ class GraphicUI extends JFrame{
 	}
 	JPanel makeBoardPanel(Board b) {
 		JPanel boardWrapper = new JPanel(new BorderLayout());
-		boardWrapper.setPreferredSize(new Dimension(FRAME_HEIGHT-50, FRAME_HEIGHT-50));
+		boardWrapper.setPreferredSize(new Dimension(FRAME_HEIGHT-100, FRAME_HEIGHT));
 		
 		JPanel boardPanel = new JPanel(new GridLayout(7,7));
 		boardPanel.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_WIDTH));
