@@ -13,7 +13,8 @@ class GraphicUI extends JFrame{
 	final int FRAME_WIDTH = 1000;
 	final int FRAME_HEIGHT = 650;
 	final int BOARD_WIDTH = 470;
-   
+	int oldCol = -1;
+	int oldRow = -1;
 	Board board;
    
    GameManager gm = new GameManager();
@@ -156,22 +157,22 @@ class GraphicUI extends JFrame{
 		addArrowActionListeners(northArrow_2);
 		addArrowActionListeners(northArrow_3);
 		
-		JArrow southArrow_1 = new JArrow("up", 0, 1);
+		JArrow southArrow_1 = new JArrow("up", 6, 1);
 		southPanel.add(southArrow_1);
-		JArrow southArrow_2 = new JArrow("up", 0, 3);
+		JArrow southArrow_2 = new JArrow("up", 6, 3);
 		southPanel.add(southArrow_2);
-		JArrow southArrow_3 = new JArrow("up", 0, 5);
+		JArrow southArrow_3 = new JArrow("up", 6, 5);
 		southPanel.add(southArrow_3);
 
 		addArrowActionListeners(southArrow_1);
 		addArrowActionListeners(southArrow_2);
 		addArrowActionListeners(southArrow_3);
 
-		JArrow eastArrow_1 = new JArrow("left", 1, 0);
+		JArrow eastArrow_1 = new JArrow("left", 1, 6);
 		eastPanel.add(eastArrow_1);
-		JArrow eastArrow_2 = new JArrow("left", 3, 0);
+		JArrow eastArrow_2 = new JArrow("left", 3, 6);
 		eastPanel.add(eastArrow_2);
-		JArrow eastArrow_3 = new JArrow("left", 5, 0);
+		JArrow eastArrow_3 = new JArrow("left", 5, 6);
 		eastPanel.add(eastArrow_3);
 		
 		addArrowActionListeners(eastArrow_1);
@@ -232,10 +233,21 @@ class GraphicUI extends JFrame{
 	void addArrowActionListeners(JArrow arrow) {
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-				handTile.setTile(board.tileInHand);
-				updateScorePanel();
-				paintBoard();
+				if(!(oldRow == arrow.getRow() && oldCol == 6 && arrow.getCol() == 0)
+						&& !(oldRow == arrow.getRow() && oldCol == 0 && arrow.getCol() == 6)
+						&& !(oldCol == arrow.getCol() && oldRow == 6 && arrow.getRow()==0)
+						&& !(oldCol == arrow.getCol() && oldRow == 0 && arrow.getRow()==6)){
+					System.out.println("the old col:"+oldCol+"the new col:"+arrow.getCol());
+					System.out.println("the old row:"+oldRow+"the new row:"+arrow.getRow());
+					board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
+					handTile.setTile(board.tileInHand);
+					oldCol = arrow.getCol();
+					oldRow = arrow.getRow();
+					updateScorePanel();
+					paintBoard();
+				}
+				else
+					System.out.println("You could not move that tile.");
 			}
 		});
 	}
