@@ -167,8 +167,8 @@ public class Board {
 			for(int t=0;t<6;t++){
 				board[row][t] = getTileAt(row,t+1);
 				if(board[row][t].playerOnTile !=null){
-					board[row][t].playerOnTile.location[0] = t;
-					board[row][t].playerOnTile.location[1] = column;
+					board[row][t].playerOnTile.location[0] = row;
+					board[row][t].playerOnTile.location[1] = t;
 				}
 			}
 			board[row][6] = tileInHand;
@@ -187,8 +187,8 @@ public class Board {
 			for(int t=6;t>0;t--){
 				board[row][t] = getTileAt(row,t-1);
 				if(board[row][t].playerOnTile !=null){
-					board[row][t].playerOnTile.location[0] = t;
-					board[row][t].playerOnTile.location[1] = column;
+					board[row][t].playerOnTile.location[0] = row;
+					board[row][t].playerOnTile.location[1] = t;
 				}
 			}
 			board[row][0] = tileInHand;
