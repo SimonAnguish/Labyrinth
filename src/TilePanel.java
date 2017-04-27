@@ -32,7 +32,7 @@ class TilePanel extends JComponent {
 	
 	private void generateRandomBackground() {
 		int startingGreen = 150;
-		if (staticTile) {
+		if (tileLocation[0] % 2 == 0 && tileLocation[1] % 2 == 0) {
 			startingGreen = 20;
 		}
 		Random rand = new Random();
@@ -44,7 +44,7 @@ class TilePanel extends JComponent {
 		int randGray;
 		for (int i=0;i<pathMatrix.length;i++) {
 			for (int j=0;j<pathMatrix.length;j++) {
-				randGray = rand.nextInt(80);
+				randGray = rand.nextInt(60);
 				pathMatrix[i][j] = new Color(130+randGray, 130+randGray, 130+randGray);
 			}
 		}
@@ -177,6 +177,8 @@ class TilePanel extends JComponent {
 	TilePanel(Tile tile, int newTileSize) {
 		bSize = newTileSize;
 		setSize(new Dimension(bSize, bSize));
+		tileLocation[0] = -1;
+		tileLocation[1] = -1;
 
 		this.tile = tile;
 		
