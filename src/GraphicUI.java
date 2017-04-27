@@ -239,16 +239,17 @@ class GraphicUI extends JFrame{
 					int[] userLocation = gm.user.location;
 					if (gm.canPlayerMove(boardPanels[userLocation[0]][userLocation[1]], tile)) {
 						gm.movePlayerTo(gm.user, tile);
+						userLocation = gm.user.location;
+
+						gm.computer.takeTurn(gm, boardPanels);
+						handTile.setTile(board.tileInHand);
+
+						paintBoard();
+						updateScorePanel();
+						canInsertTile = true;
+						skipLabel.setVisible(false);
 					}
-					userLocation = gm.user.location;
-
-					gm.computer.takeTurn(gm, boardPanels);
-					handTile.setTile(board.tileInHand);
-
-					paintBoard();
-					updateScorePanel();
-					canInsertTile = true;
-					skipLabel.setVisible(false);
+					
 				}
 			}
 		});
