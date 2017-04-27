@@ -328,12 +328,19 @@ class GraphicUI extends JFrame{
 
 	void callHomeScreen() {
 		JFrame homeFrame = new JFrame();
-		JPanel wrapperPanel = new JPanel();
+		JPanel optionsPanel = new JPanel();
+		optionsPanel.setBackground(Color.WHITE);
+		optionsPanel.setPreferredSize(new Dimension(300,500));
+		optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.PAGE_AXIS));
+		optionsPanel.setBorder(new EmptyBorder(50,20,50,20));
+
+		BackgroundPanel wrapperPanel = new BackgroundPanel("../docs/eichenwalde-pixel.jpg");
 		
 		wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.PAGE_AXIS));
-		wrapperPanel.setBorder(new EmptyBorder(100,100,100,100));
+		wrapperPanel.setBorder(new EmptyBorder(100,100,100,600));
 
 		JLabel startLabel = new JLabel("Play");
+		startLabel.setForeground(Color.DARK_GRAY);
 		startLabel.setFont(new Font("Sans-Serif", Font.BOLD, 48));
 		startLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -343,9 +350,10 @@ class GraphicUI extends JFrame{
 			}
 		});
 
-		wrapperPanel.add(startLabel);
+		optionsPanel.add(startLabel);
 
 		JLabel helpLabel = new JLabel("Help");
+		helpLabel.setForeground(Color.DARK_GRAY);
 		helpLabel.setFont(new Font("Sans-Serif", Font.BOLD, 36));
 		helpLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -353,7 +361,9 @@ class GraphicUI extends JFrame{
 			}
 		});
 
-		wrapperPanel.add(helpLabel);
+		optionsPanel.add(helpLabel);
+
+		wrapperPanel.add(optionsPanel);
 
 		homeFrame.add(wrapperPanel, BorderLayout.CENTER);
 		homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
