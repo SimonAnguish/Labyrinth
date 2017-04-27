@@ -259,22 +259,16 @@ class GraphicUI extends JFrame{
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (canInsertTile) {
-					if(!(oldRow == arrow.getRow() && oldCol == 6 && arrow.getCol() == 0)
-							&& !(oldRow == arrow.getRow() && oldCol == 0 && arrow.getCol() == 6)
-							&& !(oldCol == arrow.getCol() && oldRow == 6 && arrow.getRow()==0)
-							&& !(oldCol == arrow.getCol() && oldRow == 0 && arrow.getRow()==6)){
-						board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
-						handTile.setTile(board.tileInHand);
-						oldCol = arrow.getCol();
-						oldRow = arrow.getRow();
-						updateScorePanel();
-						paintBoard();
-					}
-					else
-						System.out.println("You could not move that tile.");
-					canInsertTile = false;
-
-					skipLabel.setVisible(true);
+                    if(arrow.getRow() != gm.computer.randomRow && arrow.getCol() != gm.computer.randomCol){
+                    	board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
+    					handTile.setTile(board.tileInHand);
+    					oldCol = arrow.getCol();
+    					oldRow = arrow.getRow();
+    					updateScorePanel();
+    					paintBoard();
+    					canInsertTile = false;
+    					skipLabel.setVisible(true);
+                    }		
 				}
 			}
 		});

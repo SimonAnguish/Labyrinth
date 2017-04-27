@@ -9,6 +9,8 @@ public class Player {
     protected int score = 0;
     
     int[] location;
+	protected int randomCol ;
+	protected int randomRow ;
     
     /**
      * Constructor

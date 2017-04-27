@@ -8,7 +8,8 @@ import java.util.*;
 public class ComputerPlayer extends Player{
     
     int location[] = {0,0};
-    
+	int randomCol = -1;
+	int randomRow = -1;
     /**
      * Constructor that takes the local UI object
      * @param ui UserInterface
@@ -34,8 +35,6 @@ public class ComputerPlayer extends Player{
  			gm.board.tileInHand.rotate(1);
  		}
  		int randomDir;
- 		int randomCol;
- 		int randomRow;
  		randomDir = (int)(Math.random()*4);
  		switch(randomDir){
  		case 0:
