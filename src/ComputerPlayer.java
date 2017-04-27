@@ -158,11 +158,13 @@ public class ComputerPlayer extends Player{
 		if( visited[desPanel.tileLocation[0]][desPanel.tileLocation[1]] ){
          System.out.println("Moving computer to its destination");
          gm.movePlayerTo(gm.computer, desPanel);
+		 visitedSequence.clear();
       }else if (visitedSequence.peekLast() == null){
          System.out.println("Cant move the computer!");
       }else{
          System.out.println("Moving computer to the last visited tile in BFS");
 			gm.movePlayerTo(gm.computer, visitedSequence.peekLast());
+			visitedSequence.clear();
 		}
 	}	  
 }

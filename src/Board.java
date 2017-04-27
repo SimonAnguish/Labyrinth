@@ -126,6 +126,10 @@ public class Board {
 			}
 			for(int t=6;t>0;t--){
 				board[t][column] = getTileAt(t-1,column);
+				if(board[t][column].playerOnTile !=null){
+					board[t][column].playerOnTile.location[0] = t;
+					board[t][column].playerOnTile.location[1] = column;
+				}
 			}
 			board[0][column] = tileInHand;
 			if(player !=null){
@@ -142,6 +146,10 @@ public class Board {
 			}
 			for(int t=0;t<6;t++){
 				board[t][column] = getTileAt(t+1,column);
+				if(board[t][column].playerOnTile !=null){
+					board[t][column].playerOnTile.location[0] = t;
+					board[t][column].playerOnTile.location[1] = column;
+				}
 			}
 			board[6][column] = tileInHand;
 			if(player !=null){
@@ -158,6 +166,10 @@ public class Board {
 			}
 			for(int t=0;t<6;t++){
 				board[row][t] = getTileAt(row,t+1);
+				if(board[row][t].playerOnTile !=null){
+					board[row][t].playerOnTile.location[0] = t;
+					board[row][t].playerOnTile.location[1] = column;
+				}
 			}
 			board[row][6] = tileInHand;
 			if(player !=null){
@@ -174,6 +186,10 @@ public class Board {
 			}
 			for(int t=6;t>0;t--){
 				board[row][t] = getTileAt(row,t-1);
+				if(board[row][t].playerOnTile !=null){
+					board[row][t].playerOnTile.location[0] = t;
+					board[row][t].playerOnTile.location[1] = column;
+				}
 			}
 			board[row][0] = tileInHand;
 			if(player !=null){
