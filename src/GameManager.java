@@ -120,7 +120,8 @@ public class GameManager extends JFrame {
       if (p.getTopCard().getValue() == moveHere.tile.treasure.getValue()){
          System.out.println("Reached the destination!");
          p.removeTopCard();
-         moveHere.removeTreasure();
+         System.out.println("Removing the treasure from the map: " + moveHere.tile.treasure.toString());
+         moveHere.tile.treasure.setValue(0);
       }
    }
    
