@@ -206,7 +206,7 @@ public class Board {
 					playerOnChangedTile = getTileAt(row,t-1).playerOnTile;
 					playerOnChangedTile.location[0] = row;
 					playerOnChangedTile.location[1] = t;
-					getTileAt(row,t+1).clearPlayers();
+					getTileAt(row,t-1).clearPlayers();
 					board[row][t] = getTileAt(row,t-1);
 					board[row][t].addPlayer(playerOnChangedTile);
 				}

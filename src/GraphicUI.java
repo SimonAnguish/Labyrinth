@@ -240,7 +240,7 @@ class GraphicUI extends JFrame{
 					if (gm.canPlayerMove(boardPanels[userLocation[0]][userLocation[1]], tile)) {
 						gm.movePlayerTo(gm.user, tile);
 						userLocation = gm.user.location;
-
+                  paintBoard();
 						gm.computer.takeTurn(gm, boardPanels);
 						handTile.setTile(board.tileInHand);
 

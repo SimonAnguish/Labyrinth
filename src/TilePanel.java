@@ -155,7 +155,7 @@ class TilePanel extends JComponent {
 	}
    
    public void removeTreasure() {
-		this.tile.treasure = null;
+      this.tile.removeTreasure();
 		repaint();
 	}
 	

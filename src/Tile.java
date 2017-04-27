@@ -100,6 +100,10 @@ class Tile {
 	public void clearPlayers() {
 		playerOnTile = null;
 	}
+   
+   public void removeTreasure() {
+		this.treasure.setValue(0);
+	}
 	
 	public void addPlayer(Player p) {
 		playerOnTile = p;
