@@ -117,6 +117,7 @@ public class Board {
 
 		Tile newTileInHand = null;
 		Player player = null;
+		Player playerOnChangedTile = null;
 		switch(direction){
 		case "down": 
 			newTileInHand = getTileAt(6,column);
@@ -125,11 +126,16 @@ public class Board {
 				newTileInHand.playerOnTile = null;
 			}
 			for(int t=6;t>0;t--){
-				board[t][column] = getTileAt(t-1,column);
-				if(board[t][column].playerOnTile !=null){
-					board[t][column].playerOnTile.location[0] = t;
-					board[t][column].playerOnTile.location[1] = column;
+				if(getTileAt(t-1,column).playerOnTile != null){
+					playerOnChangedTile = getTileAt(t-1,column).playerOnTile;
+					playerOnChangedTile.location[0] = t;
+					playerOnChangedTile.location[1] = column;
+					getTileAt(t-1,column).clearPlayers();
+					board[t][column] = getTileAt(t-1,column);
+					board[t][column].addPlayer(playerOnChangedTile);
 				}
+				else
+					board[t][column] = getTileAt(t-1,column);			
 			}
 			board[0][column] = tileInHand;
 			if(player !=null){
@@ -141,15 +147,20 @@ public class Board {
 		case "up":
 			newTileInHand = getTileAt(0,column);
 			if (newTileInHand.playerOnTile != null){
-				player = newTileInHand.playerOnTile;
+				playerOnChangedTile = newTileInHand.playerOnTile;
 				newTileInHand.playerOnTile = null;
 			}
 			for(int t=0;t<6;t++){
-				board[t][column] = getTileAt(t+1,column);
-				if(board[t][column].playerOnTile !=null){
-					board[t][column].playerOnTile.location[0] = t;
-					board[t][column].playerOnTile.location[1] = column;
+				if(getTileAt(t+1,column).playerOnTile != null){
+					playerOnChangedTile = getTileAt(t+1,column).playerOnTile;
+					playerOnChangedTile.location[0] = t;
+					playerOnChangedTile.location[1] = column;
+					getTileAt(t+1,column).clearPlayers();
+					board[t][column] = getTileAt(t+1,column);
+					board[t][column].addPlayer(playerOnChangedTile);
 				}
+				else
+					board[t][column] = getTileAt(t+1,column);
 			}
 			board[6][column] = tileInHand;
 			if(player !=null){
@@ -165,11 +176,17 @@ public class Board {
 				newTileInHand.playerOnTile = null;
 			}
 			for(int t=0;t<6;t++){
-				board[row][t] = getTileAt(row,t+1);
-				if(board[row][t].playerOnTile !=null){
-					board[row][t].playerOnTile.location[0] = row;
-					board[row][t].playerOnTile.location[1] = t;
+				if(getTileAt(row,t+1).playerOnTile != null){
+					playerOnChangedTile = getTileAt(row,t+1).playerOnTile;
+					playerOnChangedTile.location[0] = row;
+					playerOnChangedTile.location[1] = t;
+					getTileAt(row,t+1).clearPlayers();
+					board[row][t] = getTileAt(row,t+1);
+					board[row][t].addPlayer(playerOnChangedTile);
 				}
+				else
+					board[row][t] = getTileAt(row,t+1);
+				//board[row][t] = getTileAt(row,t+1);
 			}
 			board[row][6] = tileInHand;
 			if(player !=null){
@@ -185,11 +202,17 @@ public class Board {
 				newTileInHand.playerOnTile = null;
 			}
 			for(int t=6;t>0;t--){
-				board[row][t] = getTileAt(row,t-1);
-				if(board[row][t].playerOnTile !=null){
-					board[row][t].playerOnTile.location[0] = row;
-					board[row][t].playerOnTile.location[1] = t;
+				if(getTileAt(row,t-1).playerOnTile != null){
+					playerOnChangedTile = getTileAt(row,t-1).playerOnTile;
+					playerOnChangedTile.location[0] = row;
+					playerOnChangedTile.location[1] = t;
+					getTileAt(row,t+1).clearPlayers();
+					board[row][t] = getTileAt(row,t-1);
+					board[row][t].addPlayer(playerOnChangedTile);
 				}
+				else
+					board[row][t] = getTileAt(row,t-1);
+				board[row][t] = getTileAt(row,t-1);
 			}
 			board[row][0] = tileInHand;
 			if(player !=null){
@@ -203,4 +226,5 @@ public class Board {
 
 		this.tileInHand = newTileInHand;
 	}
+
 }

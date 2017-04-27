@@ -259,7 +259,10 @@ class GraphicUI extends JFrame{
 		arrow.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (canInsertTile) {
-                    if(arrow.getRow() != gm.computer.randomRow && arrow.getCol() != gm.computer.randomCol){
+                    if(!(arrow.getRow() == gm.computer.randomRow && gm.computer.randomCol == 0 && arrow.getCol() ==6)
+                    		&&!(arrow.getRow() == gm.computer.randomRow && gm.computer.randomCol == 6 && arrow.getCol() ==0)
+                    		&&!(arrow.getCol() == gm.computer.randomCol && gm.computer.randomRow == 0 && arrow.getRow() ==6)
+                    		&&!(arrow.getCol() == gm.computer.randomCol && gm.computer.randomRow == 6 && arrow.getRow() ==0)){
                     	board.insertTile(arrow.getDir(), arrow.getRow(), arrow.getCol());
     					handTile.setTile(board.tileInHand);
     					oldCol = arrow.getCol();
@@ -268,11 +271,14 @@ class GraphicUI extends JFrame{
     					paintBoard();
     					canInsertTile = false;
     					skipLabel.setVisible(true);
-                    }		
+                    
+                    }
+						
 				}
 			}
 		});
 	}
+
 	
 	void paintBoard() {
 		for (int i=0;i<7;i++) {

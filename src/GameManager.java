@@ -111,7 +111,11 @@ public class GameManager extends JFrame {
     * @param desPanel This is the place the player wants to go
     */
    public void movePlayerTo(Player p, TilePanel moveHere) {
-      board.getTileAt(p.location[0],p.location[1]).clearPlayers();
+	   while(board.getTileAt(p.location[0],p.location[1]).playerOnTile!=null){
+		   board.getTileAt(p.location[0],p.location[1]).clearPlayers();
+		   System.out.println("Clear the player.");
+	   }
+      
       moveHere.setPlayer(p);
       if (p.getTopCard().getValue() == moveHere.tile.treasure.getValue()){
          System.out.println("Reached the destination!");
