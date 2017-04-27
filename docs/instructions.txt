@@ -1,3 +1,9 @@
-The game board forms a maze built of both fixed and moving pieces. The players rearrange the maze to their advantage by moving a row of pieces in turn. Each player has one token, which they move in the maze. The player's goal is to collect treasures in the labyrinth and then return to their own starting position. The treasures appear in the cards that are dealt to the players in the beginning of the game.
+Enter the enchanted labyrinth! Your task is to reach all of the mysterious objects, treasures, and creatures assigned to you. To fulfill your task you must use your magical powers to skillfully manipulate the walls of the maze. The first player to accomplish this wins.
 
-The player is allowed to see only the card that shows their current destination. The player has to reveal the card when they reach the destination, and take a new card from their pile. The other players notice when the pile is empty, and then usually try to prevent the leading player from returning to the starting position. Advanced players also try to guess other players' destinations in order to make their proceeding more difficult or try to trap them in dead ends.
+From the edge of the board, push the extra maze card into the labyrinth. The places where the maze card can be added are indicated on the edge of the board by an arrow. The maze card that is pushed out will become the next player’s means of shifting the maze.
+
+<b>Note: You must move the maze</b> before each turn, even if you don’t need to in order to reach your goal. This way you can wall in another player!
+
+<b>You may not immediately reverse the last player’s move</b> by returning the extra card to the position it was just pushed out of.
+
+After shifting the maze, move your playing pieces <b>as far as you choose</b> along the open corridor. You can also choose not to move at all. Often you will be able to reach your goal in one move. If not, try to get in the best possible position for your next turn. Once you reach your first goal, the next goal will show up at the top of the screen.
