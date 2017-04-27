@@ -14,7 +14,7 @@ class TilePanel extends JComponent {
 	
 	boolean hasPlayer = false;
 	boolean hasComputer = false;
-	JLabel treasureLabel;
+	JLabel treasureLabel = new JLabel("", SwingConstants.CENTER);
 	
 	TilePanel(Tile tile, int x, int y) {
 		setSize(new Dimension(bSize, bSize));
@@ -23,7 +23,7 @@ class TilePanel extends JComponent {
 		tileLocation[0] = x;
 		tileLocation[1] = y;
 		if (tile.treasure.getValue() != 0){
-			treasureLabel = new JLabel(tile.treasure.toString(), SwingConstants.CENTER);
+			treasureLabel.setText(tile.treasure.toString());
 			treasureLabel.setSize(bSize, bSize);
         	add(treasureLabel);
      	}
@@ -52,6 +52,12 @@ class TilePanel extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
+		
+		if (tile.treasure.getValue() != 0){
+			treasureLabel.setVisible(true);
+		} else {
+			treasureLabel.setVisible(false);
+		}
       
 		int tileSize = bSize*3;
 		for (int i=0;i<backgroundMatrix.length;i++) {
@@ -173,6 +179,12 @@ class TilePanel extends JComponent {
 		setSize(new Dimension(bSize, bSize));
 
 		this.tile = tile;
+		
+		if (tile.treasure.getValue() != 0){
+			treasureLabel.setText(tile.treasure.toString());
+			treasureLabel.setSize(bSize, bSize);
+        	add(treasureLabel);
+     	}
 		generateRandomBackground();
 	}
 }
