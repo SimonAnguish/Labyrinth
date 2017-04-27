@@ -1,7 +1,9 @@
 import java.util.*;
 
-/**
-	@Author SimonAnguish
+/** This is used to generate the new board, four rows and four columns are
+ * fixed and the others are movable rows/columns. 
+	@Author SimonAnguish build this structure, Yifan and Sean worked on the 
+	insert tile function.
 */
 
 public class Board {
@@ -112,7 +114,14 @@ public class Board {
 	public Tile getTileAt(int row, int column) {
 		return board[row][column];
 	}
-	
+	/**
+		 * This is used insert the tile in hand into the board and generate the new
+		 * tile in hand, if there is a player on the pushed out tile, the player will be
+		 * transfered to the newly insert tile.
+		 * @param direction
+		 * @param row
+		 * @param column
+		 */
 	public void insertTile(String direction, int row, int column){
 
 		Tile newTileInHand = null;

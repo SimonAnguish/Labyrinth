@@ -2,6 +2,7 @@ import java.util.LinkedList;
 
 /**
  * Player superclass for both human and computer players
+ * Sean Kates
  */
 public class Player {
     

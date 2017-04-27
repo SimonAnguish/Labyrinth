@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+/**
+ * This is used to set up the insert buttons
+ * @author Simon Anguish
+ *
+ */
 class JArrow extends JLabel {
 	private int row;
 	private int col;

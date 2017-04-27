@@ -2,6 +2,8 @@
  * ComputerPlayer Class
  * Extends the Player Class and is the counterpart of the HumanPlayer class
  * Handles gameplay for the computer
+ * Sean Kates build the structure, both of Yifan and Sean worked on the take turn and 
+ * move computer player to method
  */
 import java.util.*;
 
@@ -19,7 +21,11 @@ public class ComputerPlayer extends Player{
     }
     
     /**
-     * The takeTurn method
+     * The takeTurn method is used to make the computer player play
+     *  the game automatically, at first it will rotate the hand tile
+     *  in random time and then randomly choose a direction, a column or
+     *  row to insert the hand tile, after doing this, it will move to 
+     *  its goal.
      * @param gm GameManager
      * @param board Board
      */
@@ -90,7 +96,14 @@ public class ComputerPlayer extends Player{
          gm.callWinScreen();
       }
     }
-    
+    /**
+     * This method is used to move the computer player to its destination. If
+     * there exists a continuous path to its goal, it will be moved to it, if 
+     * not, move to the tile as close to the goal as possible by using BFS
+     * @param curPanel the current position of the computer player
+     * @param desPanel the destination of the computer player
+     * @param gm
+     */   
     public void moveComputerPlayerTo(TilePanel curPanel,TilePanel desPanel,GameManager gm){
 		Board board = gm.board;
       boolean[][] visited = new boolean[7][7];

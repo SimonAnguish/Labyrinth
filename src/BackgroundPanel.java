@@ -1,5 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
+/**
+ * This is used to set up the background
+ * @author Simon Anguish
+ *
+ */
 
 class BackgroundPanel extends JPanel {
 	private Image img;

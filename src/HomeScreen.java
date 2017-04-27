@@ -1,7 +1,11 @@
 import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * This is the structure of home screen
+ * @author Simon Anguish
+ *
+ */
 class HomeScreen extends JComponent {
 	final int FRAME_HEIGHT = 650;
 	final int FRAME_WIDTH = 1000;

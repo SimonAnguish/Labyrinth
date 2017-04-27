@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
-
+/**
+ * This is used to display the tiles in our graphic user interface
+ * @author Simon Anguish
+ *
+ */
 class TilePanel extends JComponent {
 	int bSize = 20;
 	public Tile tile = new Tile(true, true, true, true, new Treasure(0));

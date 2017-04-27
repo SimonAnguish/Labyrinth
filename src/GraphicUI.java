@@ -7,7 +7,13 @@ import java.nio.file.Files;
 import java.nio.charset.Charset;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * This is the sturcture of graphic user interface
+ * @author Simon build the structure and alomost all of the staffs,
+ * Sean worked on the makeNext button, Yifan added some logic staff into
+ * arrow listeners.
+ *
+ */
 class GraphicUI extends JFrame{
 
 	final int FRAME_WIDTH = 1000;

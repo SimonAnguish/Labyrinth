@@ -1,6 +1,7 @@
 /**
  * HumanPlayer class
- * Handles gameplay for human user
+ * Handles game play for human user
+ * Sean Kates
  */
 public class HumanPlayer extends Player {
     

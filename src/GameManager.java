@@ -1,6 +1,7 @@
 /**
-   @Author SeanKates&&Simon&&Yifan
- * GameManager handles the gameplay of Labyrinth
+   @Author SeanKates build the structure, Yifan worked on the canPlayerMove method,
+   Simon worked on the movePlayerto method
+ * GameManager handles the game play of Labyrinth
  */
 
 import java.util.*;

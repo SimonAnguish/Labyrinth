@@ -1,5 +1,6 @@
 /**
-   @Authors YifanChang, SeanKates
+ * This is used to set up the treasures
+   @Authors YifanZhang, SeanKates
  * Treasure
  */
 

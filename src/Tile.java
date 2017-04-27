@@ -1,6 +1,8 @@
 import java.lang.*;
 
 /**
+ * This is used to set up the tiles, each tile contains four directions, and 
+ * the treasure is an attribute of tile
 	@Author SimonAnguish
 */
 
