@@ -23,8 +23,10 @@ class TilePanel extends JComponent {
 		tileLocation[0] = x;
 		tileLocation[1] = y;
 		if (tile.treasure.getValue() != 0){
+			treasureLabel.setFont(new Font("Sans-Serif", Font.BOLD,20));
+			treasureLabel.setForeground(Color.WHITE);
 			treasureLabel.setText(tile.treasure.toString());
-			treasureLabel.setSize(bSize, bSize);
+			treasureLabel.setSize(bSize*3, bSize*3);
         	add(treasureLabel);
      	}
 		generateRandomBackground();
@@ -183,8 +185,10 @@ class TilePanel extends JComponent {
 		this.tile = tile;
 		
 		if (tile.treasure.getValue() != 0){
+			treasureLabel.setFont(new Font("Sans-Serif", Font.BOLD,50));
+			treasureLabel.setForeground(Color.WHITE);
 			treasureLabel.setText(tile.treasure.toString());
-			treasureLabel.setSize(bSize, bSize);
+			treasureLabel.setSize(bSize*3, bSize*3);
         	add(treasureLabel);
      	}
 		generateRandomBackground();
