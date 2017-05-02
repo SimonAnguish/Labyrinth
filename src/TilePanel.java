@@ -64,7 +64,13 @@ class TilePanel extends JComponent {
 		} else {
 			treasureLabel.setVisible(false);
 		}
-      
+		if (tile.treasure.getValue() != 0){
+					treasureLabel.setFont(new Font("Sans-Serif", Font.BOLD,20));
+					treasureLabel.setForeground(Color.WHITE);
+					treasureLabel.setText(tile.treasure.toString());
+					treasureLabel.setSize(bSize*3, bSize*3);
+		        	add(treasureLabel);
+		}      
 		int tileSize = bSize*3;
 		for (int i=0;i<backgroundMatrix.length;i++) {
 			for (int j=0;j<backgroundMatrix.length;j++) {
